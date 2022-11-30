@@ -1,0 +1,5280 @@
+---
+source: frb_codegen/tests/get_configs.rs
+assertion_line: 27
+expression: get_opt().get_ir_file()
+---
+IrFile {
+    funcs: [
+        IrFunc {
+            name: "simple_adder",
+            inputs: [
+                IrField {
+                    ty: Primitive(
+                        I32,
+                    ),
+                    name: IrIdent {
+                        raw: "a",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Primitive(
+                        I32,
+                    ),
+                    name: IrIdent {
+                        raw: "b",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Primitive(
+                I32,
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [
+                IrComment(
+                    "/// Documentation on a simple adder function.",
+                ),
+            ],
+        },
+        IrFunc {
+            name: "primitive_types",
+            inputs: [
+                IrField {
+                    ty: Primitive(
+                        I32,
+                    ),
+                    name: IrIdent {
+                        raw: "my_i32",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Primitive(
+                        I64,
+                    ),
+                    name: IrIdent {
+                        raw: "my_i64",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Primitive(
+                        F64,
+                    ),
+                    name: IrIdent {
+                        raw: "my_f64",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Primitive(
+                        Bool,
+                    ),
+                    name: IrIdent {
+                        raw: "my_bool",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Primitive(
+                I32,
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [
+                IrComment(
+                    "///\n/// Multiline comments are fine,\n/// but they are not preferred in Rust nor in Dart.\n/// Newlines are preserved.\n///",
+                ),
+            ],
+        },
+        IrFunc {
+            name: "primitive_u32",
+            inputs: [
+                IrField {
+                    ty: Primitive(
+                        U32,
+                    ),
+                    name: IrIdent {
+                        raw: "my_u32",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Primitive(
+                U32,
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_string",
+            inputs: [
+                IrField {
+                    ty: Delegate(
+                        String,
+                    ),
+                    name: IrIdent {
+                        raw: "s",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Delegate(
+                String,
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_return_unit",
+            inputs: [],
+            output: Primitive(
+                Unit,
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_vec_u8",
+            inputs: [
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: U8,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "v",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: PrimitiveList(
+                IrTypePrimitiveList {
+                    primitive: U8,
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_vec_of_primitive",
+            inputs: [
+                IrField {
+                    ty: Primitive(
+                        I32,
+                    ),
+                    name: IrIdent {
+                        raw: "n",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: StructRef(
+                IrTypeStructRef {
+                    name: "VecOfPrimitivePack",
+                    freezed: false,
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_zero_copy_vec_of_primitive",
+            inputs: [
+                IrField {
+                    ty: Primitive(
+                        I32,
+                    ),
+                    name: IrIdent {
+                        raw: "n",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: StructRef(
+                IrTypeStructRef {
+                    name: "ZeroCopyVecOfPrimitivePack",
+                    freezed: false,
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_struct",
+            inputs: [
+                IrField {
+                    ty: StructRef(
+                        IrTypeStructRef {
+                            name: "MySize",
+                            freezed: false,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "arg",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Boxed(
+                        IrTypeBoxed {
+                            exist_in_real_api: true,
+                            inner: StructRef(
+                                IrTypeStructRef {
+                                    name: "MySize",
+                                    freezed: false,
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "boxed",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: StructRef(
+                IrTypeStructRef {
+                    name: "MySize",
+                    freezed: false,
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_newtype",
+            inputs: [
+                IrField {
+                    ty: StructRef(
+                        IrTypeStructRef {
+                            name: "NewTypeInt",
+                            freezed: false,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "arg",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: StructRef(
+                IrTypeStructRef {
+                    name: "NewTypeInt",
+                    freezed: false,
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_list_of_struct",
+            inputs: [
+                IrField {
+                    ty: GeneralList(
+                        IrTypeGeneralList {
+                            inner: StructRef(
+                                IrTypeStructRef {
+                                    name: "MySize",
+                                    freezed: false,
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "l",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: GeneralList(
+                IrTypeGeneralList {
+                    inner: StructRef(
+                        IrTypeStructRef {
+                            name: "MySize",
+                            freezed: false,
+                        },
+                    ),
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_string_list",
+            inputs: [
+                IrField {
+                    ty: Delegate(
+                        StringList,
+                    ),
+                    name: IrIdent {
+                        raw: "names",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Delegate(
+                StringList,
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_complex_struct",
+            inputs: [
+                IrField {
+                    ty: StructRef(
+                        IrTypeStructRef {
+                            name: "MyTreeNode",
+                            freezed: false,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "s",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: StructRef(
+                IrTypeStructRef {
+                    name: "MyTreeNode",
+                    freezed: false,
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_sync_return",
+            inputs: [
+                IrField {
+                    ty: Delegate(
+                        String,
+                    ),
+                    name: IrIdent {
+                        raw: "mode",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: SyncReturn(
+                VecU8,
+            ),
+            fallible: true,
+            mode: Sync,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_sync_bool",
+            inputs: [
+                IrField {
+                    ty: Primitive(
+                        Bool,
+                    ),
+                    name: IrIdent {
+                        raw: "input",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: SyncReturn(
+                Primitive(
+                    Bool,
+                ),
+            ),
+            fallible: false,
+            mode: Sync,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_sync_u8",
+            inputs: [
+                IrField {
+                    ty: Primitive(
+                        U8,
+                    ),
+                    name: IrIdent {
+                        raw: "input",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: SyncReturn(
+                Primitive(
+                    U8,
+                ),
+            ),
+            fallible: false,
+            mode: Sync,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_sync_u16",
+            inputs: [
+                IrField {
+                    ty: Primitive(
+                        U16,
+                    ),
+                    name: IrIdent {
+                        raw: "input",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: SyncReturn(
+                Primitive(
+                    U16,
+                ),
+            ),
+            fallible: false,
+            mode: Sync,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_sync_u32",
+            inputs: [
+                IrField {
+                    ty: Primitive(
+                        U32,
+                    ),
+                    name: IrIdent {
+                        raw: "input",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: SyncReturn(
+                Primitive(
+                    U32,
+                ),
+            ),
+            fallible: false,
+            mode: Sync,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_sync_u64",
+            inputs: [
+                IrField {
+                    ty: Primitive(
+                        U64,
+                    ),
+                    name: IrIdent {
+                        raw: "input",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: SyncReturn(
+                Primitive(
+                    U64,
+                ),
+            ),
+            fallible: false,
+            mode: Sync,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_sync_i8",
+            inputs: [
+                IrField {
+                    ty: Primitive(
+                        I8,
+                    ),
+                    name: IrIdent {
+                        raw: "input",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: SyncReturn(
+                Primitive(
+                    I8,
+                ),
+            ),
+            fallible: false,
+            mode: Sync,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_sync_i16",
+            inputs: [
+                IrField {
+                    ty: Primitive(
+                        I16,
+                    ),
+                    name: IrIdent {
+                        raw: "input",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: SyncReturn(
+                Primitive(
+                    I16,
+                ),
+            ),
+            fallible: false,
+            mode: Sync,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_sync_i32",
+            inputs: [
+                IrField {
+                    ty: Primitive(
+                        I32,
+                    ),
+                    name: IrIdent {
+                        raw: "input",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: SyncReturn(
+                Primitive(
+                    I32,
+                ),
+            ),
+            fallible: false,
+            mode: Sync,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_sync_i64",
+            inputs: [
+                IrField {
+                    ty: Primitive(
+                        I64,
+                    ),
+                    name: IrIdent {
+                        raw: "input",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: SyncReturn(
+                Primitive(
+                    I64,
+                ),
+            ),
+            fallible: false,
+            mode: Sync,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_sync_f32",
+            inputs: [
+                IrField {
+                    ty: Primitive(
+                        F32,
+                    ),
+                    name: IrIdent {
+                        raw: "input",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: SyncReturn(
+                Primitive(
+                    F32,
+                ),
+            ),
+            fallible: false,
+            mode: Sync,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_sync_f64",
+            inputs: [
+                IrField {
+                    ty: Primitive(
+                        F64,
+                    ),
+                    name: IrIdent {
+                        raw: "input",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: SyncReturn(
+                Primitive(
+                    F64,
+                ),
+            ),
+            fallible: false,
+            mode: Sync,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_sync_string",
+            inputs: [
+                IrField {
+                    ty: Delegate(
+                        String,
+                    ),
+                    name: IrIdent {
+                        raw: "input",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: SyncReturn(
+                String,
+            ),
+            fallible: false,
+            mode: Sync,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_stream",
+            inputs: [
+                IrField {
+                    ty: Delegate(
+                        String,
+                    ),
+                    name: IrIdent {
+                        raw: "arg",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Delegate(
+                String,
+            ),
+            fallible: false,
+            mode: Stream {
+                argument_index: 0,
+            },
+            comments: [],
+        },
+        IrFunc {
+            name: "return_err",
+            inputs: [],
+            output: Primitive(
+                I32,
+            ),
+            fallible: true,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "return_panic",
+            inputs: [],
+            output: Primitive(
+                I32,
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_optional_return",
+            inputs: [
+                IrField {
+                    ty: Primitive(
+                        F64,
+                    ),
+                    name: IrIdent {
+                        raw: "left",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Primitive(
+                        F64,
+                    ),
+                    name: IrIdent {
+                        raw: "right",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Optional(
+                IrTypeOptional {
+                    inner: Boxed(
+                        IrTypeBoxed {
+                            exist_in_real_api: false,
+                            inner: Primitive(
+                                F64,
+                            ),
+                        },
+                    ),
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_optional_struct",
+            inputs: [
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: Delegate(
+                                String,
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "document",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Optional(
+                IrTypeOptional {
+                    inner: Boxed(
+                        IrTypeBoxed {
+                            exist_in_real_api: false,
+                            inner: StructRef(
+                                IrTypeStructRef {
+                                    name: "Element",
+                                    freezed: false,
+                                },
+                            ),
+                        },
+                    ),
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_optional_increment",
+            inputs: [
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: Boxed(
+                                IrTypeBoxed {
+                                    exist_in_real_api: false,
+                                    inner: StructRef(
+                                        IrTypeStructRef {
+                                            name: "ExoticOptionals",
+                                            freezed: false,
+                                        },
+                                    ),
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "opt",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Optional(
+                IrTypeOptional {
+                    inner: Boxed(
+                        IrTypeBoxed {
+                            exist_in_real_api: false,
+                            inner: StructRef(
+                                IrTypeStructRef {
+                                    name: "ExoticOptionals",
+                                    freezed: false,
+                                },
+                            ),
+                        },
+                    ),
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_increment_boxed_optional",
+            inputs: [
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: Boxed(
+                                IrTypeBoxed {
+                                    exist_in_real_api: true,
+                                    inner: Primitive(
+                                        F64,
+                                    ),
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "opt",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Primitive(
+                F64,
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_option_box_arguments",
+            inputs: [
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: Boxed(
+                                IrTypeBoxed {
+                                    exist_in_real_api: true,
+                                    inner: Primitive(
+                                        I8,
+                                    ),
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "i8box",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: Boxed(
+                                IrTypeBoxed {
+                                    exist_in_real_api: true,
+                                    inner: Primitive(
+                                        U8,
+                                    ),
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "u8box",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: Boxed(
+                                IrTypeBoxed {
+                                    exist_in_real_api: true,
+                                    inner: Primitive(
+                                        I32,
+                                    ),
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "i32box",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: Boxed(
+                                IrTypeBoxed {
+                                    exist_in_real_api: true,
+                                    inner: Primitive(
+                                        I64,
+                                    ),
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "i64box",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: Boxed(
+                                IrTypeBoxed {
+                                    exist_in_real_api: true,
+                                    inner: Primitive(
+                                        F64,
+                                    ),
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "f64box",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: Boxed(
+                                IrTypeBoxed {
+                                    exist_in_real_api: true,
+                                    inner: Primitive(
+                                        Bool,
+                                    ),
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "boolbox",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: Boxed(
+                                IrTypeBoxed {
+                                    exist_in_real_api: true,
+                                    inner: StructRef(
+                                        IrTypeStructRef {
+                                            name: "ExoticOptionals",
+                                            freezed: false,
+                                        },
+                                    ),
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "structbox",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Delegate(
+                String,
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "print_note",
+            inputs: [
+                IrField {
+                    ty: StructRef(
+                        IrTypeStructRef {
+                            name: "Note",
+                            freezed: false,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "note",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Delegate(
+                ZeroCopyBufferVecPrimitive(
+                    U8,
+                ),
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_return_enum",
+            inputs: [
+                IrField {
+                    ty: Delegate(
+                        String,
+                    ),
+                    name: IrIdent {
+                        raw: "input",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Optional(
+                IrTypeOptional {
+                    inner: Delegate(
+                        PrimitiveEnum {
+                            ir: IrTypeEnumRef {
+                                name: "Weekdays",
+                            },
+                            repr: I32,
+                        },
+                    ),
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_enum_parameter",
+            inputs: [
+                IrField {
+                    ty: Delegate(
+                        PrimitiveEnum {
+                            ir: IrTypeEnumRef {
+                                name: "Weekdays",
+                            },
+                            repr: I32,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "weekday",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Delegate(
+                PrimitiveEnum {
+                    ir: IrTypeEnumRef {
+                        name: "Weekdays",
+                    },
+                    repr: I32,
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_customized_struct",
+            inputs: [
+                IrField {
+                    ty: StructRef(
+                        IrTypeStructRef {
+                            name: "Customized",
+                            freezed: false,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "val",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Primitive(
+                Unit,
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_enum_struct",
+            inputs: [
+                IrField {
+                    ty: EnumRef(
+                        IrTypeEnumRef {
+                            name: "KitchenSink",
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "val",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: EnumRef(
+                IrTypeEnumRef {
+                    name: "KitchenSink",
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "use_imported_struct",
+            inputs: [
+                IrField {
+                    ty: StructRef(
+                        IrTypeStructRef {
+                            name: "MyStruct",
+                            freezed: false,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "my_struct",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Primitive(
+                Bool,
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "use_imported_enum",
+            inputs: [
+                IrField {
+                    ty: Delegate(
+                        PrimitiveEnum {
+                            ir: IrTypeEnumRef {
+                                name: "MyEnum",
+                            },
+                            repr: I32,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "my_enum",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Primitive(
+                Bool,
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "get_app_settings",
+            inputs: [],
+            output: StructRef(
+                IrTypeStructRef {
+                    name: "ApplicationSettings",
+                    freezed: false,
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "is_app_embedded",
+            inputs: [
+                IrField {
+                    ty: StructRef(
+                        IrTypeStructRef {
+                            name: "ApplicationSettings",
+                            freezed: false,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "app_settings",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Primitive(
+                Bool,
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "get_message",
+            inputs: [],
+            output: EnumRef(
+                IrTypeEnumRef {
+                    name: "ApplicationMessage",
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "repeat_number",
+            inputs: [
+                IrField {
+                    ty: Primitive(
+                        I32,
+                    ),
+                    name: IrIdent {
+                        raw: "num",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Primitive(
+                        Usize,
+                    ),
+                    name: IrIdent {
+                        raw: "times",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: StructRef(
+                IrTypeStructRef {
+                    name: "Numbers",
+                    freezed: false,
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "repeat_sequence",
+            inputs: [
+                IrField {
+                    ty: Primitive(
+                        I32,
+                    ),
+                    name: IrIdent {
+                        raw: "seq",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Primitive(
+                        Usize,
+                    ),
+                    name: IrIdent {
+                        raw: "times",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: StructRef(
+                IrTypeStructRef {
+                    name: "Sequences",
+                    freezed: false,
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "first_number",
+            inputs: [
+                IrField {
+                    ty: StructRef(
+                        IrTypeStructRef {
+                            name: "Numbers",
+                            freezed: false,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "nums",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Optional(
+                IrTypeOptional {
+                    inner: Boxed(
+                        IrTypeBoxed {
+                            exist_in_real_api: false,
+                            inner: Primitive(
+                                I32,
+                            ),
+                        },
+                    ),
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "first_sequence",
+            inputs: [
+                IrField {
+                    ty: StructRef(
+                        IrTypeStructRef {
+                            name: "Sequences",
+                            freezed: false,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "seqs",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Optional(
+                IrTypeOptional {
+                    inner: Boxed(
+                        IrTypeBoxed {
+                            exist_in_real_api: false,
+                            inner: Primitive(
+                                I32,
+                            ),
+                        },
+                    ),
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "get_array",
+            inputs: [],
+            output: Delegate(
+                Array(
+                    PrimitiveArray {
+                        length: 5,
+                        primitive: U8,
+                    },
+                ),
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "get_complex_array",
+            inputs: [],
+            output: Delegate(
+                Array(
+                    GeneralArray {
+                        length: 2,
+                        general: StructRef(
+                            IrTypeStructRef {
+                                name: "Point",
+                                freezed: false,
+                            },
+                        ),
+                    },
+                ),
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "get_usize",
+            inputs: [
+                IrField {
+                    ty: Primitive(
+                        Usize,
+                    ),
+                    name: IrIdent {
+                        raw: "u",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Primitive(
+                Usize,
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "next_user_id",
+            inputs: [
+                IrField {
+                    ty: StructRef(
+                        IrTypeStructRef {
+                            name: "UserId",
+                            freezed: true,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "user_id",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: StructRef(
+                IrTypeStructRef {
+                    name: "UserId",
+                    freezed: true,
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "register_event_listener",
+            inputs: [],
+            output: StructRef(
+                IrTypeStructRef {
+                    name: "Event",
+                    freezed: true,
+                },
+            ),
+            fallible: true,
+            mode: Stream {
+                argument_index: 0,
+            },
+            comments: [],
+        },
+        IrFunc {
+            name: "close_event_listener",
+            inputs: [],
+            output: Primitive(
+                Unit,
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "create_event",
+            inputs: [
+                IrField {
+                    ty: Delegate(
+                        String,
+                    ),
+                    name: IrIdent {
+                        raw: "address",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Delegate(
+                        String,
+                    ),
+                    name: IrIdent {
+                        raw: "payload",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Primitive(
+                Unit,
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_stream_sink_at_1",
+            inputs: [
+                IrField {
+                    ty: Primitive(
+                        U32,
+                    ),
+                    name: IrIdent {
+                        raw: "key",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Primitive(
+                        U32,
+                    ),
+                    name: IrIdent {
+                        raw: "max",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: StructRef(
+                IrTypeStructRef {
+                    name: "Log",
+                    freezed: false,
+                },
+            ),
+            fallible: false,
+            mode: Stream {
+                argument_index: 2,
+            },
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_stream_sink_at_2",
+            inputs: [
+                IrField {
+                    ty: Primitive(
+                        U32,
+                    ),
+                    name: IrIdent {
+                        raw: "key",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Primitive(
+                        U32,
+                    ),
+                    name: IrIdent {
+                        raw: "max",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: StructRef(
+                IrTypeStructRef {
+                    name: "Log",
+                    freezed: false,
+                },
+            ),
+            fallible: false,
+            mode: Stream {
+                argument_index: 1,
+            },
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_stream_sink_at_3",
+            inputs: [
+                IrField {
+                    ty: Primitive(
+                        U32,
+                    ),
+                    name: IrIdent {
+                        raw: "key",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Primitive(
+                        U32,
+                    ),
+                    name: IrIdent {
+                        raw: "max",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: StructRef(
+                IrTypeStructRef {
+                    name: "Log",
+                    freezed: false,
+                },
+            ),
+            fallible: false,
+            mode: Stream {
+                argument_index: 0,
+            },
+            comments: [],
+        },
+        IrFunc {
+            name: "get_sum_struct",
+            inputs: [],
+            output: StructRef(
+                IrTypeStructRef {
+                    name: "SumWith",
+                    freezed: false,
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "get_sum_array",
+            inputs: [
+                IrField {
+                    ty: Primitive(
+                        U32,
+                    ),
+                    name: IrIdent {
+                        raw: "a",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Primitive(
+                        U32,
+                    ),
+                    name: IrIdent {
+                        raw: "b",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Primitive(
+                        U32,
+                    ),
+                    name: IrIdent {
+                        raw: "c",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Delegate(
+                Array(
+                    GeneralArray {
+                        length: 3,
+                        general: StructRef(
+                            IrTypeStructRef {
+                                name: "SumWith",
+                                freezed: false,
+                            },
+                        ),
+                    },
+                ),
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "multiply_by_ten",
+            inputs: [
+                IrField {
+                    ty: EnumRef(
+                        IrTypeEnumRef {
+                            name: "Measure",
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "measure",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Optional(
+                IrTypeOptional {
+                    inner: EnumRef(
+                        IrTypeEnumRef {
+                            name: "Measure",
+                        },
+                    ),
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "call_old_module_system",
+            inputs: [],
+            output: StructRef(
+                IrTypeStructRef {
+                    name: "OldSimpleStruct",
+                    freezed: false,
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "call_new_module_system",
+            inputs: [],
+            output: StructRef(
+                IrTypeStructRef {
+                    name: "NewSimpleStruct",
+                    freezed: false,
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_big_buffers",
+            inputs: [],
+            output: StructRef(
+                IrTypeStructRef {
+                    name: "BigBuffers",
+                    freezed: false,
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "datetime_utc",
+            inputs: [
+                IrField {
+                    ty: Delegate(
+                        Time(
+                            Utc,
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "d",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Delegate(
+                Time(
+                    Utc,
+                ),
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "datetime_local",
+            inputs: [
+                IrField {
+                    ty: Delegate(
+                        Time(
+                            Local,
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "d",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Delegate(
+                Time(
+                    Local,
+                ),
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "naivedatetime",
+            inputs: [
+                IrField {
+                    ty: Delegate(
+                        Time(
+                            Naive,
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "d",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Delegate(
+                Time(
+                    Naive,
+                ),
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "duration",
+            inputs: [
+                IrField {
+                    ty: Delegate(
+                        Time(
+                            Duration,
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "d",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Delegate(
+                Time(
+                    Duration,
+                ),
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "how_long_does_it_take",
+            inputs: [
+                IrField {
+                    ty: StructRef(
+                        IrTypeStructRef {
+                            name: "FeatureChrono",
+                            freezed: false,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "mine",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Delegate(
+                Time(
+                    Duration,
+                ),
+            ),
+            fallible: true,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "new_msgid",
+            inputs: [
+                IrField {
+                    ty: Delegate(
+                        Array(
+                            PrimitiveArray {
+                                length: 32,
+                                primitive: U8,
+                            },
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "id",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: StructRef(
+                IrTypeStructRef {
+                    name: "MessageId",
+                    freezed: false,
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "use_msgid",
+            inputs: [
+                IrField {
+                    ty: StructRef(
+                        IrTypeStructRef {
+                            name: "MessageId",
+                            freezed: false,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "id",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Delegate(
+                Array(
+                    PrimitiveArray {
+                        length: 32,
+                        primitive: U8,
+                    },
+                ),
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "boxed_blob",
+            inputs: [
+                IrField {
+                    ty: Boxed(
+                        IrTypeBoxed {
+                            exist_in_real_api: true,
+                            inner: Delegate(
+                                Array(
+                                    PrimitiveArray {
+                                        length: 1600,
+                                        primitive: U8,
+                                    },
+                                ),
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "blob",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: StructRef(
+                IrTypeStructRef {
+                    name: "Blob",
+                    freezed: false,
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "use_boxed_blob",
+            inputs: [
+                IrField {
+                    ty: Boxed(
+                        IrTypeBoxed {
+                            exist_in_real_api: true,
+                            inner: StructRef(
+                                IrTypeStructRef {
+                                    name: "Blob",
+                                    freezed: false,
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "blob",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Delegate(
+                Array(
+                    PrimitiveArray {
+                        length: 1600,
+                        primitive: U8,
+                    },
+                ),
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "return_boxed_feed_id",
+            inputs: [
+                IrField {
+                    ty: Delegate(
+                        Array(
+                            PrimitiveArray {
+                                length: 8,
+                                primitive: U8,
+                            },
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "id",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Boxed(
+                IrTypeBoxed {
+                    exist_in_real_api: true,
+                    inner: StructRef(
+                        IrTypeStructRef {
+                            name: "FeedId",
+                            freezed: false,
+                        },
+                    ),
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "return_boxed_raw_feed_id",
+            inputs: [
+                IrField {
+                    ty: StructRef(
+                        IrTypeStructRef {
+                            name: "FeedId",
+                            freezed: false,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "id",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Boxed(
+                IrTypeBoxed {
+                    exist_in_real_api: true,
+                    inner: Delegate(
+                        Array(
+                            PrimitiveArray {
+                                length: 8,
+                                primitive: U8,
+                            },
+                        ),
+                    ),
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "test_id",
+            inputs: [
+                IrField {
+                    ty: StructRef(
+                        IrTypeStructRef {
+                            name: "TestId",
+                            freezed: false,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "id",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: StructRef(
+                IrTypeStructRef {
+                    name: "TestId",
+                    freezed: false,
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "last_number",
+            inputs: [
+                IrField {
+                    ty: Delegate(
+                        Array(
+                            PrimitiveArray {
+                                length: 16,
+                                primitive: F64,
+                            },
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "array",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Primitive(
+                F64,
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "nested_id",
+            inputs: [
+                IrField {
+                    ty: Delegate(
+                        Array(
+                            GeneralArray {
+                                length: 4,
+                                general: StructRef(
+                                    IrTypeStructRef {
+                                        name: "TestId",
+                                        freezed: false,
+                                    },
+                                ),
+                            },
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "id",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Delegate(
+                Array(
+                    GeneralArray {
+                        length: 2,
+                        general: StructRef(
+                            IrTypeStructRef {
+                                name: "TestId",
+                                freezed: false,
+                            },
+                        ),
+                    },
+                ),
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "create_opaque",
+            inputs: [],
+            output: Opaque(
+                IrTypeOpaque {
+                    inner_rust: "HideData",
+                    inner_dart: "HideData",
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "create_array_opaque_enum",
+            inputs: [],
+            output: Delegate(
+                Array(
+                    GeneralArray {
+                        length: 5,
+                        general: EnumRef(
+                            IrTypeEnumRef {
+                                name: "EnumOpaque",
+                            },
+                        ),
+                    },
+                ),
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "run_enum_opaque",
+            inputs: [
+                IrField {
+                    ty: EnumRef(
+                        IrTypeEnumRef {
+                            name: "EnumOpaque",
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "opaque",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Delegate(
+                String,
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "run_opaque",
+            inputs: [
+                IrField {
+                    ty: Opaque(
+                        IrTypeOpaque {
+                            inner_rust: "HideData",
+                            inner_dart: "HideData",
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "opaque",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Delegate(
+                String,
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "run_opaque_with_delay",
+            inputs: [
+                IrField {
+                    ty: Opaque(
+                        IrTypeOpaque {
+                            inner_rust: "HideData",
+                            inner_dart: "HideData",
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "opaque",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Delegate(
+                String,
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "opaque_array",
+            inputs: [],
+            output: Delegate(
+                Array(
+                    GeneralArray {
+                        length: 2,
+                        general: Opaque(
+                            IrTypeOpaque {
+                                inner_rust: "HideData",
+                                inner_dart: "HideData",
+                            },
+                        ),
+                    },
+                ),
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "opaque_array_run",
+            inputs: [
+                IrField {
+                    ty: Delegate(
+                        Array(
+                            GeneralArray {
+                                length: 2,
+                                general: Opaque(
+                                    IrTypeOpaque {
+                                        inner_rust: "HideData",
+                                        inner_dart: "HideData",
+                                    },
+                                ),
+                            },
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "data",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Primitive(
+                Unit,
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "opaque_vec",
+            inputs: [],
+            output: GeneralList(
+                IrTypeGeneralList {
+                    inner: Opaque(
+                        IrTypeOpaque {
+                            inner_rust: "HideData",
+                            inner_dart: "HideData",
+                        },
+                    ),
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "opaque_vec_run",
+            inputs: [
+                IrField {
+                    ty: GeneralList(
+                        IrTypeGeneralList {
+                            inner: Opaque(
+                                IrTypeOpaque {
+                                    inner_rust: "HideData",
+                                    inner_dart: "HideData",
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "data",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Primitive(
+                Unit,
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "create_nested_opaque",
+            inputs: [],
+            output: StructRef(
+                IrTypeStructRef {
+                    name: "OpaqueNested",
+                    freezed: false,
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "run_nested_opaque",
+            inputs: [
+                IrField {
+                    ty: StructRef(
+                        IrTypeStructRef {
+                            name: "OpaqueNested",
+                            freezed: false,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "opaque",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Primitive(
+                Unit,
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "sum__method__SumWith",
+            inputs: [
+                IrField {
+                    ty: StructRef(
+                        IrTypeStructRef {
+                            name: "SumWith",
+                            freezed: false,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "that",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Primitive(
+                        U32,
+                    ),
+                    name: IrIdent {
+                        raw: "y",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Primitive(
+                        U32,
+                    ),
+                    name: IrIdent {
+                        raw: "z",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Primitive(
+                U32,
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "new__static_method__ConcatenateWith",
+            inputs: [
+                IrField {
+                    ty: Delegate(
+                        String,
+                    ),
+                    name: IrIdent {
+                        raw: "a",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: StructRef(
+                IrTypeStructRef {
+                    name: "ConcatenateWith",
+                    freezed: false,
+                },
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "concatenate__method__ConcatenateWith",
+            inputs: [
+                IrField {
+                    ty: StructRef(
+                        IrTypeStructRef {
+                            name: "ConcatenateWith",
+                            freezed: false,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "that",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Delegate(
+                        String,
+                    ),
+                    name: IrIdent {
+                        raw: "b",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Delegate(
+                String,
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "concatenate_static__static_method__ConcatenateWith",
+            inputs: [
+                IrField {
+                    ty: Delegate(
+                        String,
+                    ),
+                    name: IrIdent {
+                        raw: "a",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Delegate(
+                        String,
+                    ),
+                    name: IrIdent {
+                        raw: "b",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Delegate(
+                String,
+            ),
+            fallible: false,
+            mode: Normal,
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_some_stream_sink__method__ConcatenateWith",
+            inputs: [
+                IrField {
+                    ty: StructRef(
+                        IrTypeStructRef {
+                            name: "ConcatenateWith",
+                            freezed: false,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "that",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Primitive(
+                        U32,
+                    ),
+                    name: IrIdent {
+                        raw: "key",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Primitive(
+                        U32,
+                    ),
+                    name: IrIdent {
+                        raw: "max",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: StructRef(
+                IrTypeStructRef {
+                    name: "Log2",
+                    freezed: false,
+                },
+            ),
+            fallible: false,
+            mode: Stream {
+                argument_index: 3,
+            },
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_some_stream_sink_at_1__method__ConcatenateWith",
+            inputs: [
+                IrField {
+                    ty: StructRef(
+                        IrTypeStructRef {
+                            name: "ConcatenateWith",
+                            freezed: false,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "that",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: Primitive(
+                U32,
+            ),
+            fallible: false,
+            mode: Stream {
+                argument_index: 1,
+            },
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_some_static_stream_sink__static_method__ConcatenateWith",
+            inputs: [
+                IrField {
+                    ty: Primitive(
+                        U32,
+                    ),
+                    name: IrIdent {
+                        raw: "key",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Primitive(
+                        U32,
+                    ),
+                    name: IrIdent {
+                        raw: "max",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            output: StructRef(
+                IrTypeStructRef {
+                    name: "Log2",
+                    freezed: false,
+                },
+            ),
+            fallible: false,
+            mode: Stream {
+                argument_index: 2,
+            },
+            comments: [],
+        },
+        IrFunc {
+            name: "handle_some_static_stream_sink_single_arg__static_method__ConcatenateWith",
+            inputs: [],
+            output: Primitive(
+                U32,
+            ),
+            fallible: false,
+            mode: Stream {
+                argument_index: 0,
+            },
+            comments: [],
+        },
+    ],
+    struct_pool: {
+        "Note": IrStruct {
+            name: "Note",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "Note",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Boxed(
+                        IrTypeBoxed {
+                            exist_in_real_api: true,
+                            inner: Delegate(
+                                PrimitiveEnum {
+                                    ir: IrTypeEnumRef {
+                                        name: "Weekdays",
+                                    },
+                                    repr: I32,
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "day",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Delegate(
+                        String,
+                    ),
+                    name: IrIdent {
+                        raw: "body",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "Element": IrStruct {
+            name: "Element",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "Element",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: Delegate(
+                                String,
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "tag",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: Delegate(
+                                String,
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "text",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: GeneralList(
+                                IrTypeGeneralList {
+                                    inner: StructRef(
+                                        IrTypeStructRef {
+                                            name: "Attribute",
+                                            freezed: false,
+                                        },
+                                    ),
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "attributes",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: GeneralList(
+                                IrTypeGeneralList {
+                                    inner: StructRef(
+                                        IrTypeStructRef {
+                                            name: "Element",
+                                            freezed: false,
+                                        },
+                                    ),
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "children",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "Sequences": IrStruct {
+            name: "Sequences",
+            wrapper_name: Some(
+                "mirror_Sequences",
+            ),
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "Sequences",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: I32,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "field0",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: false,
+            dart_metadata: [],
+            comments: [],
+        },
+        "UserId": IrStruct {
+            name: "UserId",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "UserId",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Primitive(
+                        U32,
+                    ),
+                    name: IrIdent {
+                        raw: "value",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [
+                IrDartAnnotation {
+                    content: "freezed",
+                    library: None,
+                },
+                IrDartAnnotation {
+                    content: "immutable",
+                    library: Some(
+                        IrDartImport {
+                            uri: "package:meta/meta.dart",
+                            alias: Some(
+                                "meta",
+                            ),
+                        },
+                    ),
+                },
+            ],
+            comments: [
+                IrComment(
+                    "/// Example for @freezed and @meta.immutable",
+                ),
+            ],
+        },
+        "BigBuffers": IrStruct {
+            name: "BigBuffers",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "BigBuffers",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: I64,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "int64",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: U64,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "uint64",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "TestId": IrStruct {
+            name: "TestId",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "TestId",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Delegate(
+                        Array(
+                            PrimitiveArray {
+                                length: 2,
+                                primitive: I32,
+                            },
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "field0",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: false,
+            dart_metadata: [],
+            comments: [],
+        },
+        "MessageId": IrStruct {
+            name: "MessageId",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "MessageId",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Delegate(
+                        Array(
+                            PrimitiveArray {
+                                length: 32,
+                                primitive: U8,
+                            },
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "field0",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: false,
+            dart_metadata: [],
+            comments: [],
+        },
+        "SumWith": IrStruct {
+            name: "SumWith",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "SumWith",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Primitive(
+                        U32,
+                    ),
+                    name: IrIdent {
+                        raw: "x",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "OpaqueNested": IrStruct {
+            name: "OpaqueNested",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "OpaqueNested",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Opaque(
+                        IrTypeOpaque {
+                            inner_rust: "HideData",
+                            inner_dart: "HideData",
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "first",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Opaque(
+                        IrTypeOpaque {
+                            inner_rust: "HideData",
+                            inner_dart: "HideData",
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "second",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [
+                IrComment(
+                    "/// [`HideData`] has private fields.",
+                ),
+            ],
+        },
+        "MySize": IrStruct {
+            name: "MySize",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "MySize",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Primitive(
+                        I32,
+                    ),
+                    name: IrIdent {
+                        raw: "width",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Primitive(
+                        I32,
+                    ),
+                    name: IrIdent {
+                        raw: "height",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "ConcatenateWith": IrStruct {
+            name: "ConcatenateWith",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "ConcatenateWith",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Delegate(
+                        String,
+                    ),
+                    name: IrIdent {
+                        raw: "a",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "ApplicationEnvVar": IrStruct {
+            name: "ApplicationEnvVar",
+            wrapper_name: Some(
+                "mirror_ApplicationEnvVar",
+            ),
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "ApplicationEnvVar",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Delegate(
+                        String,
+                    ),
+                    name: IrIdent {
+                        raw: "field0",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Primitive(
+                        Bool,
+                    ),
+                    name: IrIdent {
+                        raw: "field1",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: false,
+            dart_metadata: [],
+            comments: [],
+        },
+        "Customized": IrStruct {
+            name: "Customized",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "Customized",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Delegate(
+                        String,
+                    ),
+                    name: IrIdent {
+                        raw: "final_field",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: Delegate(
+                                String,
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "non_final_field",
+                    },
+                    is_final: false,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "Event": IrStruct {
+            name: "Event",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "Event",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Delegate(
+                        String,
+                    ),
+                    name: IrIdent {
+                        raw: "address",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Delegate(
+                        String,
+                    ),
+                    name: IrIdent {
+                        raw: "payload",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [
+                IrDartAnnotation {
+                    content: "freezed",
+                    library: None,
+                },
+            ],
+            comments: [],
+        },
+        "Attribute": IrStruct {
+            name: "Attribute",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "Attribute",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Delegate(
+                        String,
+                    ),
+                    name: IrIdent {
+                        raw: "key",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Delegate(
+                        String,
+                    ),
+                    name: IrIdent {
+                        raw: "value",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "VecOfPrimitivePack": IrStruct {
+            name: "VecOfPrimitivePack",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "VecOfPrimitivePack",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: I8,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "int8list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: U8,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "uint8list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: I16,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "int16list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: U16,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "uint16list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: U32,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "uint32list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: I32,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "int32list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: U64,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "uint64list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: I64,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "int64list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: F32,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "float32list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: F64,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "float64list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "Numbers": IrStruct {
+            name: "Numbers",
+            wrapper_name: Some(
+                "mirror_Numbers",
+            ),
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "Numbers",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: I32,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "field0",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: false,
+            dart_metadata: [],
+            comments: [],
+        },
+        "Blob": IrStruct {
+            name: "Blob",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "Blob",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Delegate(
+                        Array(
+                            PrimitiveArray {
+                                length: 1600,
+                                primitive: U8,
+                            },
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "field0",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: false,
+            dart_metadata: [],
+            comments: [],
+        },
+        "ZeroCopyVecOfPrimitivePack": IrStruct {
+            name: "ZeroCopyVecOfPrimitivePack",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "ZeroCopyVecOfPrimitivePack",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Delegate(
+                        ZeroCopyBufferVecPrimitive(
+                            I8,
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "int8list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Delegate(
+                        ZeroCopyBufferVecPrimitive(
+                            U8,
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "uint8list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Delegate(
+                        ZeroCopyBufferVecPrimitive(
+                            I16,
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "int16list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Delegate(
+                        ZeroCopyBufferVecPrimitive(
+                            U16,
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "uint16list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Delegate(
+                        ZeroCopyBufferVecPrimitive(
+                            U32,
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "uint32list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Delegate(
+                        ZeroCopyBufferVecPrimitive(
+                            I32,
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "int32list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Delegate(
+                        ZeroCopyBufferVecPrimitive(
+                            U64,
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "uint64list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Delegate(
+                        ZeroCopyBufferVecPrimitive(
+                            I64,
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "int64list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Delegate(
+                        ZeroCopyBufferVecPrimitive(
+                            F32,
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "float32list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Delegate(
+                        ZeroCopyBufferVecPrimitive(
+                            F64,
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "float64list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "MyStruct": IrStruct {
+            name: "MyStruct",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "data",
+                    "MyStruct",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Primitive(
+                        Bool,
+                    ),
+                    name: IrIdent {
+                        raw: "content",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "FeatureChrono": IrStruct {
+            name: "FeatureChrono",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "FeatureChrono",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Delegate(
+                        Time(
+                            Utc,
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "utc",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Delegate(
+                        Time(
+                            Local,
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "local",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Delegate(
+                        Time(
+                            Duration,
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "duration",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Delegate(
+                        Time(
+                            Naive,
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "naive",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "Log": IrStruct {
+            name: "Log",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "Log",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Primitive(
+                        U32,
+                    ),
+                    name: IrIdent {
+                        raw: "key",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Primitive(
+                        U32,
+                    ),
+                    name: IrIdent {
+                        raw: "value",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "FeedId": IrStruct {
+            name: "FeedId",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "FeedId",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Delegate(
+                        Array(
+                            PrimitiveArray {
+                                length: 8,
+                                primitive: U8,
+                            },
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "field0",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: false,
+            dart_metadata: [],
+            comments: [],
+        },
+        "ApplicationSettings": IrStruct {
+            name: "ApplicationSettings",
+            wrapper_name: Some(
+                "mirror_ApplicationSettings",
+            ),
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "ApplicationSettings",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Delegate(
+                        String,
+                    ),
+                    name: IrIdent {
+                        raw: "name",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Delegate(
+                        String,
+                    ),
+                    name: IrIdent {
+                        raw: "version",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Delegate(
+                        PrimitiveEnum {
+                            ir: IrTypeEnumRef {
+                                name: "ApplicationMode",
+                            },
+                            repr: I32,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "mode",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Boxed(
+                        IrTypeBoxed {
+                            exist_in_real_api: true,
+                            inner: StructRef(
+                                IrTypeStructRef {
+                                    name: "ApplicationEnv",
+                                    freezed: false,
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "env",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "NewTypeInt": IrStruct {
+            name: "NewTypeInt",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "NewTypeInt",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Primitive(
+                        I64,
+                    ),
+                    name: IrIdent {
+                        raw: "field0",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: false,
+            dart_metadata: [],
+            comments: [],
+        },
+        "NewSimpleStruct": IrStruct {
+            name: "NewSimpleStruct",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "new_module_system",
+                    "sub_module",
+                    "NewSimpleStruct",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Primitive(
+                        I32,
+                    ),
+                    name: IrIdent {
+                        raw: "field",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "OldSimpleStruct": IrStruct {
+            name: "OldSimpleStruct",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "old_module_system",
+                    "sub_module",
+                    "OldSimpleStruct",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Primitive(
+                        I32,
+                    ),
+                    name: IrIdent {
+                        raw: "field",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "Log2": IrStruct {
+            name: "Log2",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "Log2",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Primitive(
+                        U32,
+                    ),
+                    name: IrIdent {
+                        raw: "key",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Delegate(
+                        String,
+                    ),
+                    name: IrIdent {
+                        raw: "value",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "ApplicationEnv": IrStruct {
+            name: "ApplicationEnv",
+            wrapper_name: Some(
+                "mirror_ApplicationEnv",
+            ),
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "ApplicationEnv",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: GeneralList(
+                        IrTypeGeneralList {
+                            inner: StructRef(
+                                IrTypeStructRef {
+                                    name: "ApplicationEnvVar",
+                                    freezed: false,
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "vars",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "MyTreeNode": IrStruct {
+            name: "MyTreeNode",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "MyTreeNode",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Primitive(
+                        I32,
+                    ),
+                    name: IrIdent {
+                        raw: "value_i32",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: U8,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "value_vec_u8",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Primitive(
+                        Bool,
+                    ),
+                    name: IrIdent {
+                        raw: "value_boolean",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: GeneralList(
+                        IrTypeGeneralList {
+                            inner: StructRef(
+                                IrTypeStructRef {
+                                    name: "MyTreeNode",
+                                    freezed: false,
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "children",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "Point": IrStruct {
+            name: "Point",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "Point",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Primitive(
+                        F32,
+                    ),
+                    name: IrIdent {
+                        raw: "x",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Primitive(
+                        F32,
+                    ),
+                    name: IrIdent {
+                        raw: "y",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "ExoticOptionals": IrStruct {
+            name: "ExoticOptionals",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "ExoticOptionals",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: Boxed(
+                                IrTypeBoxed {
+                                    exist_in_real_api: false,
+                                    inner: Primitive(
+                                        I32,
+                                    ),
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "int32",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: Boxed(
+                                IrTypeBoxed {
+                                    exist_in_real_api: false,
+                                    inner: Primitive(
+                                        I64,
+                                    ),
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "int64",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: Boxed(
+                                IrTypeBoxed {
+                                    exist_in_real_api: false,
+                                    inner: Primitive(
+                                        F64,
+                                    ),
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "float64",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: Boxed(
+                                IrTypeBoxed {
+                                    exist_in_real_api: false,
+                                    inner: Primitive(
+                                        Bool,
+                                    ),
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "boolean",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: Delegate(
+                                ZeroCopyBufferVecPrimitive(
+                                    U8,
+                                ),
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "zerocopy",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: PrimitiveList(
+                                IrTypePrimitiveList {
+                                    primitive: I8,
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "int8list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: PrimitiveList(
+                                IrTypePrimitiveList {
+                                    primitive: U8,
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "uint8list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: PrimitiveList(
+                                IrTypePrimitiveList {
+                                    primitive: I32,
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "int32list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: PrimitiveList(
+                                IrTypePrimitiveList {
+                                    primitive: F32,
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "float32list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: PrimitiveList(
+                                IrTypePrimitiveList {
+                                    primitive: F64,
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "float64list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: GeneralList(
+                                IrTypeGeneralList {
+                                    inner: StructRef(
+                                        IrTypeStructRef {
+                                            name: "Attribute",
+                                            freezed: false,
+                                        },
+                                    ),
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "attributes",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: GeneralList(
+                        IrTypeGeneralList {
+                            inner: Optional(
+                                IrTypeOptional {
+                                    inner: Boxed(
+                                        IrTypeBoxed {
+                                            exist_in_real_api: false,
+                                            inner: StructRef(
+                                                IrTypeStructRef {
+                                                    name: "Attribute",
+                                                    freezed: false,
+                                                },
+                                            ),
+                                        },
+                                    ),
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "attributes_nullable",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: GeneralList(
+                                IrTypeGeneralList {
+                                    inner: Optional(
+                                        IrTypeOptional {
+                                            inner: Boxed(
+                                                IrTypeBoxed {
+                                                    exist_in_real_api: false,
+                                                    inner: StructRef(
+                                                        IrTypeStructRef {
+                                                            name: "Attribute",
+                                                            freezed: false,
+                                                        },
+                                                    ),
+                                                },
+                                            ),
+                                        },
+                                    ),
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "nullable_attributes",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: Boxed(
+                                IrTypeBoxed {
+                                    exist_in_real_api: false,
+                                    inner: StructRef(
+                                        IrTypeStructRef {
+                                            name: "NewTypeInt",
+                                            freezed: false,
+                                        },
+                                    ),
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "newtypeint",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+    },
+    enum_pool: {
+        "KitchenSink": IrEnum {
+            name: "KitchenSink",
+            wrapper_name: None,
+            path: [
+                "crate",
+                "api",
+                "KitchenSink",
+            ],
+            comments: [],
+            _variants: [
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Empty",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "KitchenSink_Empty",
+                    },
+                    comments: [
+                        IrComment(
+                            "/// Comment on variant",
+                        ),
+                    ],
+                    kind: Value,
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Primitives",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "KitchenSink_Primitives",
+                    },
+                    comments: [],
+                    kind: Struct(
+                        IrStruct {
+                            name: "Primitives",
+                            wrapper_name: None,
+                            path: None,
+                            fields: [
+                                IrField {
+                                    ty: Primitive(
+                                        I32,
+                                    ),
+                                    name: IrIdent {
+                                        raw: "int32",
+                                    },
+                                    is_final: true,
+                                    comments: [
+                                        IrComment(
+                                            "/// Dart field comment",
+                                        ),
+                                    ],
+                                },
+                                IrField {
+                                    ty: Primitive(
+                                        F64,
+                                    ),
+                                    name: IrIdent {
+                                        raw: "float64",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                                IrField {
+                                    ty: Primitive(
+                                        Bool,
+                                    ),
+                                    name: IrIdent {
+                                        raw: "boolean",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                            ],
+                            is_fields_named: true,
+                            dart_metadata: [],
+                            comments: [
+                                IrComment(
+                                    "/// Dart field comment",
+                                ),
+                            ],
+                        },
+                    ),
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Nested",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "KitchenSink_Nested",
+                    },
+                    comments: [],
+                    kind: Struct(
+                        IrStruct {
+                            name: "Nested",
+                            wrapper_name: None,
+                            path: None,
+                            fields: [
+                                IrField {
+                                    ty: Boxed(
+                                        IrTypeBoxed {
+                                            exist_in_real_api: true,
+                                            inner: EnumRef(
+                                                IrTypeEnumRef {
+                                                    name: "KitchenSink",
+                                                },
+                                            ),
+                                        },
+                                    ),
+                                    name: IrIdent {
+                                        raw: "field0",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                                IrField {
+                                    ty: Primitive(
+                                        I32,
+                                    ),
+                                    name: IrIdent {
+                                        raw: "field1",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                            ],
+                            is_fields_named: false,
+                            dart_metadata: [],
+                            comments: [],
+                        },
+                    ),
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Optional",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "KitchenSink_Optional",
+                    },
+                    comments: [],
+                    kind: Struct(
+                        IrStruct {
+                            name: "Optional",
+                            wrapper_name: None,
+                            path: None,
+                            fields: [
+                                IrField {
+                                    ty: Optional(
+                                        IrTypeOptional {
+                                            inner: Boxed(
+                                                IrTypeBoxed {
+                                                    exist_in_real_api: false,
+                                                    inner: Primitive(
+                                                        I32,
+                                                    ),
+                                                },
+                                            ),
+                                        },
+                                    ),
+                                    name: IrIdent {
+                                        raw: "field0",
+                                    },
+                                    is_final: true,
+                                    comments: [
+                                        IrComment(
+                                            "/// Comment on anonymous field",
+                                        ),
+                                    ],
+                                },
+                                IrField {
+                                    ty: Optional(
+                                        IrTypeOptional {
+                                            inner: Boxed(
+                                                IrTypeBoxed {
+                                                    exist_in_real_api: false,
+                                                    inner: Primitive(
+                                                        I32,
+                                                    ),
+                                                },
+                                            ),
+                                        },
+                                    ),
+                                    name: IrIdent {
+                                        raw: "field1",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                            ],
+                            is_fields_named: false,
+                            dart_metadata: [],
+                            comments: [
+                                IrComment(
+                                    "/// Comment on anonymous field",
+                                ),
+                            ],
+                        },
+                    ),
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Buffer",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "KitchenSink_Buffer",
+                    },
+                    comments: [],
+                    kind: Struct(
+                        IrStruct {
+                            name: "Buffer",
+                            wrapper_name: None,
+                            path: None,
+                            fields: [
+                                IrField {
+                                    ty: Delegate(
+                                        ZeroCopyBufferVecPrimitive(
+                                            U8,
+                                        ),
+                                    ),
+                                    name: IrIdent {
+                                        raw: "field0",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                            ],
+                            is_fields_named: false,
+                            dart_metadata: [],
+                            comments: [],
+                        },
+                    ),
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Enums",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "KitchenSink_Enums",
+                    },
+                    comments: [],
+                    kind: Struct(
+                        IrStruct {
+                            name: "Enums",
+                            wrapper_name: None,
+                            path: None,
+                            fields: [
+                                IrField {
+                                    ty: Delegate(
+                                        PrimitiveEnum {
+                                            ir: IrTypeEnumRef {
+                                                name: "Weekdays",
+                                            },
+                                            repr: I32,
+                                        },
+                                    ),
+                                    name: IrIdent {
+                                        raw: "field0",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                            ],
+                            is_fields_named: false,
+                            dart_metadata: [],
+                            comments: [],
+                        },
+                    ),
+                },
+            ],
+            _is_struct: true,
+        },
+        "Weekdays": IrEnum {
+            name: "Weekdays",
+            wrapper_name: None,
+            path: [
+                "crate",
+                "api",
+                "Weekdays",
+            ],
+            comments: [
+                IrComment(
+                    "/// Simple enums.",
+                ),
+            ],
+            _variants: [
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Monday",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "Weekdays_Monday",
+                    },
+                    comments: [],
+                    kind: Value,
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Tuesday",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "Weekdays_Tuesday",
+                    },
+                    comments: [],
+                    kind: Value,
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Wednesday",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "Weekdays_Wednesday",
+                    },
+                    comments: [],
+                    kind: Value,
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Thursday",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "Weekdays_Thursday",
+                    },
+                    comments: [],
+                    kind: Value,
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Friday",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "Weekdays_Friday",
+                    },
+                    comments: [],
+                    kind: Value,
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Saturday",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "Weekdays_Saturday",
+                    },
+                    comments: [
+                        IrComment(
+                            "/// Best day of the week.",
+                        ),
+                    ],
+                    kind: Value,
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Sunday",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "Weekdays_Sunday",
+                    },
+                    comments: [],
+                    kind: Value,
+                },
+            ],
+            _is_struct: false,
+        },
+        "Measure": IrEnum {
+            name: "Measure",
+            wrapper_name: None,
+            path: [
+                "crate",
+                "api",
+                "Measure",
+            ],
+            comments: [],
+            _variants: [
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Speed",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "Measure_Speed",
+                    },
+                    comments: [],
+                    kind: Struct(
+                        IrStruct {
+                            name: "Speed",
+                            wrapper_name: None,
+                            path: None,
+                            fields: [
+                                IrField {
+                                    ty: Boxed(
+                                        IrTypeBoxed {
+                                            exist_in_real_api: true,
+                                            inner: EnumRef(
+                                                IrTypeEnumRef {
+                                                    name: "Speed",
+                                                },
+                                            ),
+                                        },
+                                    ),
+                                    name: IrIdent {
+                                        raw: "field0",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                            ],
+                            is_fields_named: false,
+                            dart_metadata: [],
+                            comments: [],
+                        },
+                    ),
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Distance",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "Measure_Distance",
+                    },
+                    comments: [],
+                    kind: Struct(
+                        IrStruct {
+                            name: "Distance",
+                            wrapper_name: None,
+                            path: None,
+                            fields: [
+                                IrField {
+                                    ty: Boxed(
+                                        IrTypeBoxed {
+                                            exist_in_real_api: true,
+                                            inner: EnumRef(
+                                                IrTypeEnumRef {
+                                                    name: "Distance",
+                                                },
+                                            ),
+                                        },
+                                    ),
+                                    name: IrIdent {
+                                        raw: "field0",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                            ],
+                            is_fields_named: false,
+                            dart_metadata: [],
+                            comments: [],
+                        },
+                    ),
+                },
+            ],
+            _is_struct: true,
+        },
+        "MyEnum": IrEnum {
+            name: "MyEnum",
+            wrapper_name: None,
+            path: [
+                "crate",
+                "data",
+                "MyEnum",
+            ],
+            comments: [],
+            _variants: [
+                IrVariant {
+                    name: IrIdent {
+                        raw: "False",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "MyEnum_False",
+                    },
+                    comments: [],
+                    kind: Value,
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "True",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "MyEnum_True",
+                    },
+                    comments: [],
+                    kind: Value,
+                },
+            ],
+            _is_struct: false,
+        },
+        "ApplicationMessage": IrEnum {
+            name: "ApplicationMessage",
+            wrapper_name: Some(
+                "mirror_ApplicationMessage",
+            ),
+            path: [
+                "crate",
+                "api",
+                "ApplicationMessage",
+            ],
+            comments: [],
+            _variants: [
+                IrVariant {
+                    name: IrIdent {
+                        raw: "DisplayMessage",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "ApplicationMessage_DisplayMessage",
+                    },
+                    comments: [],
+                    kind: Struct(
+                        IrStruct {
+                            name: "DisplayMessage",
+                            wrapper_name: None,
+                            path: None,
+                            fields: [
+                                IrField {
+                                    ty: Delegate(
+                                        String,
+                                    ),
+                                    name: IrIdent {
+                                        raw: "field0",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                            ],
+                            is_fields_named: false,
+                            dart_metadata: [],
+                            comments: [],
+                        },
+                    ),
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "RenderPixel",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "ApplicationMessage_RenderPixel",
+                    },
+                    comments: [],
+                    kind: Struct(
+                        IrStruct {
+                            name: "RenderPixel",
+                            wrapper_name: None,
+                            path: None,
+                            fields: [
+                                IrField {
+                                    ty: Primitive(
+                                        I32,
+                                    ),
+                                    name: IrIdent {
+                                        raw: "x",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                                IrField {
+                                    ty: Primitive(
+                                        I32,
+                                    ),
+                                    name: IrIdent {
+                                        raw: "y",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                            ],
+                            is_fields_named: true,
+                            dart_metadata: [],
+                            comments: [],
+                        },
+                    ),
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Exit",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "ApplicationMessage_Exit",
+                    },
+                    comments: [],
+                    kind: Value,
+                },
+            ],
+            _is_struct: true,
+        },
+        "EnumOpaque": IrEnum {
+            name: "EnumOpaque",
+            wrapper_name: None,
+            path: [
+                "crate",
+                "api",
+                "EnumOpaque",
+            ],
+            comments: [],
+            _variants: [
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Struct",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "EnumOpaque_Struct",
+                    },
+                    comments: [],
+                    kind: Struct(
+                        IrStruct {
+                            name: "Struct",
+                            wrapper_name: None,
+                            path: None,
+                            fields: [
+                                IrField {
+                                    ty: Opaque(
+                                        IrTypeOpaque {
+                                            inner_rust: "HideData",
+                                            inner_dart: "HideData",
+                                        },
+                                    ),
+                                    name: IrIdent {
+                                        raw: "field0",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                            ],
+                            is_fields_named: false,
+                            dart_metadata: [],
+                            comments: [],
+                        },
+                    ),
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Primitive",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "EnumOpaque_Primitive",
+                    },
+                    comments: [],
+                    kind: Struct(
+                        IrStruct {
+                            name: "Primitive",
+                            wrapper_name: None,
+                            path: None,
+                            fields: [
+                                IrField {
+                                    ty: Opaque(
+                                        IrTypeOpaque {
+                                            inner_rust: "i32",
+                                            inner_dart: "I32",
+                                        },
+                                    ),
+                                    name: IrIdent {
+                                        raw: "field0",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                            ],
+                            is_fields_named: false,
+                            dart_metadata: [],
+                            comments: [],
+                        },
+                    ),
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "TraitObj",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "EnumOpaque_TraitObj",
+                    },
+                    comments: [],
+                    kind: Struct(
+                        IrStruct {
+                            name: "TraitObj",
+                            wrapper_name: None,
+                            path: None,
+                            fields: [
+                                IrField {
+                                    ty: Opaque(
+                                        IrTypeOpaque {
+                                            inner_rust: "Box<dyn DartDebug>",
+                                            inner_dart: "BoxDartDebug",
+                                        },
+                                    ),
+                                    name: IrIdent {
+                                        raw: "field0",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                            ],
+                            is_fields_named: false,
+                            dart_metadata: [],
+                            comments: [],
+                        },
+                    ),
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Mutex",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "EnumOpaque_Mutex",
+                    },
+                    comments: [],
+                    kind: Struct(
+                        IrStruct {
+                            name: "Mutex",
+                            wrapper_name: None,
+                            path: None,
+                            fields: [
+                                IrField {
+                                    ty: Opaque(
+                                        IrTypeOpaque {
+                                            inner_rust: "Mutex<HideData>",
+                                            inner_dart: "MutexHideData",
+                                        },
+                                    ),
+                                    name: IrIdent {
+                                        raw: "field0",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                            ],
+                            is_fields_named: false,
+                            dart_metadata: [],
+                            comments: [],
+                        },
+                    ),
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "RwLock",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "EnumOpaque_RwLock",
+                    },
+                    comments: [],
+                    kind: Struct(
+                        IrStruct {
+                            name: "RwLock",
+                            wrapper_name: None,
+                            path: None,
+                            fields: [
+                                IrField {
+                                    ty: Opaque(
+                                        IrTypeOpaque {
+                                            inner_rust: "RwLock<HideData>",
+                                            inner_dart: "RwLockHideData",
+                                        },
+                                    ),
+                                    name: IrIdent {
+                                        raw: "field0",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                            ],
+                            is_fields_named: false,
+                            dart_metadata: [],
+                            comments: [],
+                        },
+                    ),
+                },
+            ],
+            _is_struct: true,
+        },
+        "Distance": IrEnum {
+            name: "Distance",
+            wrapper_name: None,
+            path: [
+                "crate",
+                "api",
+                "Distance",
+            ],
+            comments: [],
+            _variants: [
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Unknown",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "Distance_Unknown",
+                    },
+                    comments: [],
+                    kind: Value,
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Map",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "Distance_Map",
+                    },
+                    comments: [],
+                    kind: Struct(
+                        IrStruct {
+                            name: "Map",
+                            wrapper_name: None,
+                            path: None,
+                            fields: [
+                                IrField {
+                                    ty: Primitive(
+                                        F64,
+                                    ),
+                                    name: IrIdent {
+                                        raw: "field0",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                            ],
+                            is_fields_named: false,
+                            dart_metadata: [],
+                            comments: [],
+                        },
+                    ),
+                },
+            ],
+            _is_struct: true,
+        },
+        "ApplicationMode": IrEnum {
+            name: "ApplicationMode",
+            wrapper_name: Some(
+                "mirror_ApplicationMode",
+            ),
+            path: [
+                "crate",
+                "api",
+                "ApplicationMode",
+            ],
+            comments: [],
+            _variants: [
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Standalone",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "ApplicationMode_Standalone",
+                    },
+                    comments: [],
+                    kind: Value,
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Embedded",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "ApplicationMode_Embedded",
+                    },
+                    comments: [],
+                    kind: Value,
+                },
+            ],
+            _is_struct: false,
+        },
+        "Speed": IrEnum {
+            name: "Speed",
+            wrapper_name: None,
+            path: [
+                "crate",
+                "api",
+                "Speed",
+            ],
+            comments: [],
+            _variants: [
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Unknown",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "Speed_Unknown",
+                    },
+                    comments: [],
+                    kind: Value,
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "GPS",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "Speed_GPS",
+                    },
+                    comments: [],
+                    kind: Struct(
+                        IrStruct {
+                            name: "GPS",
+                            wrapper_name: None,
+                            path: None,
+                            fields: [
+                                IrField {
+                                    ty: Primitive(
+                                        F64,
+                                    ),
+                                    name: IrIdent {
+                                        raw: "field0",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                            ],
+                            is_fields_named: false,
+                            dart_metadata: [],
+                            comments: [],
+                        },
+                    ),
+                },
+            ],
+            _is_struct: true,
+        },
+    },
+    has_executor: false,
+}

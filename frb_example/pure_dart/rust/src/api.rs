@@ -249,9 +249,9 @@ pub struct MyStreamEntry {
 }
 
 // https://github.com/fzyzcjy/flutter_rust_bridge/issues/398 reports a compile error like this
-pub fn handle_stream_of_struct(sink: StreamSink<MyStreamEntry>) {
-    // Ok(())
-}
+// pub fn handle_stream_of_struct(sink: StreamSink<MyStreamEntry>) {
+//     // Ok(())
+// }
 
 pub fn return_err() -> Result<i32> {
     Err(anyhow!(
@@ -896,23 +896,23 @@ pub fn how_long_does_it_take(mine: FeatureChrono) -> anyhow::Result<chrono::Dura
     Ok(difference)
 }
 
-#[derive(Debug, Clone)]
-pub struct FeatureUuid {
-    pub one: uuid::Uuid,
-    pub many: Vec<uuid::Uuid>,
-}
+// #[derive(Debug, Clone)]
+// pub struct FeatureUuid {
+//     pub one: uuid::Uuid,
+//     pub many: Vec<uuid::Uuid>,
+// }
 
-pub fn handle_uuid(id: uuid::Uuid) -> anyhow::Result<uuid::Uuid> {
-    Ok(id)
-}
+// pub fn handle_uuid(id: uuid::Uuid) -> anyhow::Result<uuid::Uuid> {
+//     Ok(id)
+// }
 
-pub fn handle_uuids(ids: Vec<uuid::Uuid>) -> anyhow::Result<Vec<uuid::Uuid>> {
-    Ok(ids)
-}
+// pub fn handle_uuids(ids: Vec<uuid::Uuid>) -> anyhow::Result<Vec<uuid::Uuid>> {
+//     Ok(ids)
+// }
 
-pub fn handle_nested_uuids(ids: FeatureUuid) -> anyhow::Result<FeatureUuid> {
-    Ok(ids)
-}
+// pub fn handle_nested_uuids(ids: FeatureUuid) -> anyhow::Result<FeatureUuid> {
+//     Ok(ids)
+// }
 
 pub struct MessageId(pub [u8; 32]);
 
