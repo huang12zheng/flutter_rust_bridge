@@ -1,6 +1,6 @@
 #![cfg(test)]
 use lib_flutter_rust_bridge_codegen::{
-    config_parse, frb_codegen, get_symbols_if_no_duplicates, Opts, RawOpts,
+    config_parse, frb_codegen, get_symbols_if_no_duplicates, transformer, Opts, RawOpts,
 };
 
 pub fn get_opts() -> Vec<Opts> {
@@ -22,7 +22,14 @@ pub fn get_opt() -> Opts {
     get_opts().remove(0)
 }
 
+// `frb_codegen/src/lib.rs:54`
+#[test]
+fn get_raw_ir() {
+    insta::assert_debug_snapshot!(get_opt().get_ir_file());
+}
+
+// `frb_codegen/src/lib.rs:57`
 #[test]
 fn get_ir() {
-    insta::assert_debug_snapshot!(get_opt().get_ir_file());
+    insta::assert_debug_snapshot!(transformer::transform(get_opt().get_ir_file()));
 }

@@ -37,7 +37,7 @@ mod others;
 mod parser;
 mod source_graph;
 mod target;
-mod transformer;
+pub mod transformer;
 mod utils;
 use error::*;
 
