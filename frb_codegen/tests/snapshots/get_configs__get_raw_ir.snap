@@ -1,6 +1,5 @@
 ---
 source: frb_codegen/tests/get_configs.rs
-assertion_line: 27
 expression: get_opt().get_ir_file()
 ---
 IrFile {
@@ -2668,168 +2667,6 @@ IrFile {
         },
     ],
     struct_pool: {
-        "Note": IrStruct {
-            name: "Note",
-            wrapper_name: None,
-            path: Some(
-                [
-                    "crate",
-                    "api",
-                    "Note",
-                ],
-            ),
-            fields: [
-                IrField {
-                    ty: Boxed(
-                        IrTypeBoxed {
-                            exist_in_real_api: true,
-                            inner: Delegate(
-                                PrimitiveEnum {
-                                    ir: IrTypeEnumRef {
-                                        name: "Weekdays",
-                                    },
-                                    repr: I32,
-                                },
-                            ),
-                        },
-                    ),
-                    name: IrIdent {
-                        raw: "day",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-                IrField {
-                    ty: Delegate(
-                        String,
-                    ),
-                    name: IrIdent {
-                        raw: "body",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-            ],
-            is_fields_named: true,
-            dart_metadata: [],
-            comments: [],
-        },
-        "Element": IrStruct {
-            name: "Element",
-            wrapper_name: None,
-            path: Some(
-                [
-                    "crate",
-                    "api",
-                    "Element",
-                ],
-            ),
-            fields: [
-                IrField {
-                    ty: Optional(
-                        IrTypeOptional {
-                            inner: Delegate(
-                                String,
-                            ),
-                        },
-                    ),
-                    name: IrIdent {
-                        raw: "tag",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-                IrField {
-                    ty: Optional(
-                        IrTypeOptional {
-                            inner: Delegate(
-                                String,
-                            ),
-                        },
-                    ),
-                    name: IrIdent {
-                        raw: "text",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-                IrField {
-                    ty: Optional(
-                        IrTypeOptional {
-                            inner: GeneralList(
-                                IrTypeGeneralList {
-                                    inner: StructRef(
-                                        IrTypeStructRef {
-                                            name: "Attribute",
-                                            freezed: false,
-                                        },
-                                    ),
-                                },
-                            ),
-                        },
-                    ),
-                    name: IrIdent {
-                        raw: "attributes",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-                IrField {
-                    ty: Optional(
-                        IrTypeOptional {
-                            inner: GeneralList(
-                                IrTypeGeneralList {
-                                    inner: StructRef(
-                                        IrTypeStructRef {
-                                            name: "Element",
-                                            freezed: false,
-                                        },
-                                    ),
-                                },
-                            ),
-                        },
-                    ),
-                    name: IrIdent {
-                        raw: "children",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-            ],
-            is_fields_named: true,
-            dart_metadata: [],
-            comments: [],
-        },
-        "Sequences": IrStruct {
-            name: "Sequences",
-            wrapper_name: Some(
-                "mirror_Sequences",
-            ),
-            path: Some(
-                [
-                    "crate",
-                    "api",
-                    "Sequences",
-                ],
-            ),
-            fields: [
-                IrField {
-                    ty: PrimitiveList(
-                        IrTypePrimitiveList {
-                            primitive: I32,
-                        },
-                    ),
-                    name: IrIdent {
-                        raw: "field0",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-            ],
-            is_fields_named: false,
-            dart_metadata: [],
-            comments: [],
-        },
         "UserId": IrStruct {
             name: "UserId",
             wrapper_name: None,
@@ -2876,277 +2713,49 @@ IrFile {
                 ),
             ],
         },
-        "BigBuffers": IrStruct {
-            name: "BigBuffers",
+        "Note": IrStruct {
+            name: "Note",
             wrapper_name: None,
             path: Some(
                 [
                     "crate",
                     "api",
-                    "BigBuffers",
+                    "Note",
                 ],
             ),
             fields: [
                 IrField {
-                    ty: PrimitiveList(
-                        IrTypePrimitiveList {
-                            primitive: I64,
+                    ty: Boxed(
+                        IrTypeBoxed {
+                            exist_in_real_api: true,
+                            inner: Delegate(
+                                PrimitiveEnum {
+                                    ir: IrTypeEnumRef {
+                                        name: "Weekdays",
+                                    },
+                                    repr: I32,
+                                },
+                            ),
                         },
                     ),
                     name: IrIdent {
-                        raw: "int64",
+                        raw: "day",
                     },
                     is_final: true,
                     comments: [],
                 },
-                IrField {
-                    ty: PrimitiveList(
-                        IrTypePrimitiveList {
-                            primitive: U64,
-                        },
-                    ),
-                    name: IrIdent {
-                        raw: "uint64",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-            ],
-            is_fields_named: true,
-            dart_metadata: [],
-            comments: [],
-        },
-        "TestId": IrStruct {
-            name: "TestId",
-            wrapper_name: None,
-            path: Some(
-                [
-                    "crate",
-                    "api",
-                    "TestId",
-                ],
-            ),
-            fields: [
-                IrField {
-                    ty: Delegate(
-                        Array(
-                            PrimitiveArray {
-                                length: 2,
-                                primitive: I32,
-                            },
-                        ),
-                    ),
-                    name: IrIdent {
-                        raw: "field0",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-            ],
-            is_fields_named: false,
-            dart_metadata: [],
-            comments: [],
-        },
-        "MessageId": IrStruct {
-            name: "MessageId",
-            wrapper_name: None,
-            path: Some(
-                [
-                    "crate",
-                    "api",
-                    "MessageId",
-                ],
-            ),
-            fields: [
-                IrField {
-                    ty: Delegate(
-                        Array(
-                            PrimitiveArray {
-                                length: 32,
-                                primitive: U8,
-                            },
-                        ),
-                    ),
-                    name: IrIdent {
-                        raw: "field0",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-            ],
-            is_fields_named: false,
-            dart_metadata: [],
-            comments: [],
-        },
-        "SumWith": IrStruct {
-            name: "SumWith",
-            wrapper_name: None,
-            path: Some(
-                [
-                    "crate",
-                    "api",
-                    "SumWith",
-                ],
-            ),
-            fields: [
-                IrField {
-                    ty: Primitive(
-                        U32,
-                    ),
-                    name: IrIdent {
-                        raw: "x",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-            ],
-            is_fields_named: true,
-            dart_metadata: [],
-            comments: [],
-        },
-        "OpaqueNested": IrStruct {
-            name: "OpaqueNested",
-            wrapper_name: None,
-            path: Some(
-                [
-                    "crate",
-                    "api",
-                    "OpaqueNested",
-                ],
-            ),
-            fields: [
-                IrField {
-                    ty: Opaque(
-                        IrTypeOpaque {
-                            inner_rust: "HideData",
-                            inner_dart: "HideData",
-                        },
-                    ),
-                    name: IrIdent {
-                        raw: "first",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-                IrField {
-                    ty: Opaque(
-                        IrTypeOpaque {
-                            inner_rust: "HideData",
-                            inner_dart: "HideData",
-                        },
-                    ),
-                    name: IrIdent {
-                        raw: "second",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-            ],
-            is_fields_named: true,
-            dart_metadata: [],
-            comments: [
-                IrComment(
-                    "/// [`HideData`] has private fields.",
-                ),
-            ],
-        },
-        "MySize": IrStruct {
-            name: "MySize",
-            wrapper_name: None,
-            path: Some(
-                [
-                    "crate",
-                    "api",
-                    "MySize",
-                ],
-            ),
-            fields: [
-                IrField {
-                    ty: Primitive(
-                        I32,
-                    ),
-                    name: IrIdent {
-                        raw: "width",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-                IrField {
-                    ty: Primitive(
-                        I32,
-                    ),
-                    name: IrIdent {
-                        raw: "height",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-            ],
-            is_fields_named: true,
-            dart_metadata: [],
-            comments: [],
-        },
-        "ConcatenateWith": IrStruct {
-            name: "ConcatenateWith",
-            wrapper_name: None,
-            path: Some(
-                [
-                    "crate",
-                    "api",
-                    "ConcatenateWith",
-                ],
-            ),
-            fields: [
                 IrField {
                     ty: Delegate(
                         String,
                     ),
                     name: IrIdent {
-                        raw: "a",
+                        raw: "body",
                     },
                     is_final: true,
                     comments: [],
                 },
             ],
             is_fields_named: true,
-            dart_metadata: [],
-            comments: [],
-        },
-        "ApplicationEnvVar": IrStruct {
-            name: "ApplicationEnvVar",
-            wrapper_name: Some(
-                "mirror_ApplicationEnvVar",
-            ),
-            path: Some(
-                [
-                    "crate",
-                    "api",
-                    "ApplicationEnvVar",
-                ],
-            ),
-            fields: [
-                IrField {
-                    ty: Delegate(
-                        String,
-                    ),
-                    name: IrIdent {
-                        raw: "field0",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-                IrField {
-                    ty: Primitive(
-                        Bool,
-                    ),
-                    name: IrIdent {
-                        raw: "field1",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-            ],
-            is_fields_named: false,
             dart_metadata: [],
             comments: [],
         },
@@ -3231,236 +2840,39 @@ IrFile {
             ],
             comments: [],
         },
-        "Attribute": IrStruct {
-            name: "Attribute",
+        "MySize": IrStruct {
+            name: "MySize",
             wrapper_name: None,
             path: Some(
                 [
                     "crate",
                     "api",
-                    "Attribute",
+                    "MySize",
                 ],
             ),
             fields: [
                 IrField {
-                    ty: Delegate(
-                        String,
+                    ty: Primitive(
+                        I32,
                     ),
                     name: IrIdent {
-                        raw: "key",
+                        raw: "width",
                     },
                     is_final: true,
                     comments: [],
                 },
                 IrField {
-                    ty: Delegate(
-                        String,
+                    ty: Primitive(
+                        I32,
                     ),
                     name: IrIdent {
-                        raw: "value",
+                        raw: "height",
                     },
                     is_final: true,
                     comments: [],
                 },
             ],
             is_fields_named: true,
-            dart_metadata: [],
-            comments: [],
-        },
-        "VecOfPrimitivePack": IrStruct {
-            name: "VecOfPrimitivePack",
-            wrapper_name: None,
-            path: Some(
-                [
-                    "crate",
-                    "api",
-                    "VecOfPrimitivePack",
-                ],
-            ),
-            fields: [
-                IrField {
-                    ty: PrimitiveList(
-                        IrTypePrimitiveList {
-                            primitive: I8,
-                        },
-                    ),
-                    name: IrIdent {
-                        raw: "int8list",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-                IrField {
-                    ty: PrimitiveList(
-                        IrTypePrimitiveList {
-                            primitive: U8,
-                        },
-                    ),
-                    name: IrIdent {
-                        raw: "uint8list",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-                IrField {
-                    ty: PrimitiveList(
-                        IrTypePrimitiveList {
-                            primitive: I16,
-                        },
-                    ),
-                    name: IrIdent {
-                        raw: "int16list",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-                IrField {
-                    ty: PrimitiveList(
-                        IrTypePrimitiveList {
-                            primitive: U16,
-                        },
-                    ),
-                    name: IrIdent {
-                        raw: "uint16list",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-                IrField {
-                    ty: PrimitiveList(
-                        IrTypePrimitiveList {
-                            primitive: U32,
-                        },
-                    ),
-                    name: IrIdent {
-                        raw: "uint32list",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-                IrField {
-                    ty: PrimitiveList(
-                        IrTypePrimitiveList {
-                            primitive: I32,
-                        },
-                    ),
-                    name: IrIdent {
-                        raw: "int32list",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-                IrField {
-                    ty: PrimitiveList(
-                        IrTypePrimitiveList {
-                            primitive: U64,
-                        },
-                    ),
-                    name: IrIdent {
-                        raw: "uint64list",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-                IrField {
-                    ty: PrimitiveList(
-                        IrTypePrimitiveList {
-                            primitive: I64,
-                        },
-                    ),
-                    name: IrIdent {
-                        raw: "int64list",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-                IrField {
-                    ty: PrimitiveList(
-                        IrTypePrimitiveList {
-                            primitive: F32,
-                        },
-                    ),
-                    name: IrIdent {
-                        raw: "float32list",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-                IrField {
-                    ty: PrimitiveList(
-                        IrTypePrimitiveList {
-                            primitive: F64,
-                        },
-                    ),
-                    name: IrIdent {
-                        raw: "float64list",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-            ],
-            is_fields_named: true,
-            dart_metadata: [],
-            comments: [],
-        },
-        "Numbers": IrStruct {
-            name: "Numbers",
-            wrapper_name: Some(
-                "mirror_Numbers",
-            ),
-            path: Some(
-                [
-                    "crate",
-                    "api",
-                    "Numbers",
-                ],
-            ),
-            fields: [
-                IrField {
-                    ty: PrimitiveList(
-                        IrTypePrimitiveList {
-                            primitive: I32,
-                        },
-                    ),
-                    name: IrIdent {
-                        raw: "field0",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-            ],
-            is_fields_named: false,
-            dart_metadata: [],
-            comments: [],
-        },
-        "Blob": IrStruct {
-            name: "Blob",
-            wrapper_name: None,
-            path: Some(
-                [
-                    "crate",
-                    "api",
-                    "Blob",
-                ],
-            ),
-            fields: [
-                IrField {
-                    ty: Delegate(
-                        Array(
-                            PrimitiveArray {
-                                length: 1600,
-                                primitive: U8,
-                            },
-                        ),
-                    ),
-                    name: IrIdent {
-                        raw: "field0",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-            ],
-            is_fields_named: false,
             dart_metadata: [],
             comments: [],
         },
@@ -3600,23 +3012,24 @@ IrFile {
             dart_metadata: [],
             comments: [],
         },
-        "MyStruct": IrStruct {
-            name: "MyStruct",
+        "NewSimpleStruct": IrStruct {
+            name: "NewSimpleStruct",
             wrapper_name: None,
             path: Some(
                 [
                     "crate",
-                    "data",
-                    "MyStruct",
+                    "new_module_system",
+                    "sub_module",
+                    "NewSimpleStruct",
                 ],
             ),
             fields: [
                 IrField {
                     ty: Primitive(
-                        Bool,
+                        I32,
                     ),
                     name: IrIdent {
-                        raw: "content",
+                        raw: "field",
                     },
                     is_final: true,
                     comments: [],
@@ -3626,78 +3039,106 @@ IrFile {
             dart_metadata: [],
             comments: [],
         },
-        "FeatureChrono": IrStruct {
-            name: "FeatureChrono",
+        "MessageId": IrStruct {
+            name: "MessageId",
             wrapper_name: None,
             path: Some(
                 [
                     "crate",
                     "api",
-                    "FeatureChrono",
+                    "MessageId",
                 ],
             ),
             fields: [
                 IrField {
                     ty: Delegate(
-                        Time(
-                            Utc,
+                        Array(
+                            PrimitiveArray {
+                                length: 32,
+                                primitive: U8,
+                            },
                         ),
                     ),
                     name: IrIdent {
-                        raw: "utc",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-                IrField {
-                    ty: Delegate(
-                        Time(
-                            Local,
-                        ),
-                    ),
-                    name: IrIdent {
-                        raw: "local",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-                IrField {
-                    ty: Delegate(
-                        Time(
-                            Duration,
-                        ),
-                    ),
-                    name: IrIdent {
-                        raw: "duration",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-                IrField {
-                    ty: Delegate(
-                        Time(
-                            Naive,
-                        ),
-                    ),
-                    name: IrIdent {
-                        raw: "naive",
+                        raw: "field0",
                     },
                     is_final: true,
                     comments: [],
                 },
             ],
-            is_fields_named: true,
+            is_fields_named: false,
             dart_metadata: [],
             comments: [],
         },
-        "Log": IrStruct {
-            name: "Log",
+        "Blob": IrStruct {
+            name: "Blob",
             wrapper_name: None,
             path: Some(
                 [
                     "crate",
                     "api",
-                    "Log",
+                    "Blob",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Delegate(
+                        Array(
+                            PrimitiveArray {
+                                length: 1600,
+                                primitive: U8,
+                            },
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "field0",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: false,
+            dart_metadata: [],
+            comments: [],
+        },
+        "Numbers": IrStruct {
+            name: "Numbers",
+            wrapper_name: Some(
+                "mirror_Numbers",
+            ),
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "Numbers",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: I32,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "field0",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: false,
+            dart_metadata: [],
+            comments: [],
+        },
+        "SumWith": IrStruct {
+            name: "SumWith",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "SumWith",
                 ],
             ),
             fields: [
@@ -3706,17 +3147,7 @@ IrFile {
                         U32,
                     ),
                     name: IrIdent {
-                        raw: "key",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-                IrField {
-                    ty: Primitive(
-                        U32,
-                    ),
-                    name: IrIdent {
-                        raw: "value",
+                        raw: "x",
                     },
                     is_final: true,
                     comments: [],
@@ -3754,6 +3185,105 @@ IrFile {
                 },
             ],
             is_fields_named: false,
+            dart_metadata: [],
+            comments: [],
+        },
+        "Log2": IrStruct {
+            name: "Log2",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "Log2",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Primitive(
+                        U32,
+                    ),
+                    name: IrIdent {
+                        raw: "key",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Delegate(
+                        String,
+                    ),
+                    name: IrIdent {
+                        raw: "value",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "OldSimpleStruct": IrStruct {
+            name: "OldSimpleStruct",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "old_module_system",
+                    "sub_module",
+                    "OldSimpleStruct",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Primitive(
+                        I32,
+                    ),
+                    name: IrIdent {
+                        raw: "field",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "Point": IrStruct {
+            name: "Point",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "Point",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Primitive(
+                        F32,
+                    ),
+                    name: IrIdent {
+                        raw: "x",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Primitive(
+                        F32,
+                    ),
+                    name: IrIdent {
+                        raw: "y",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
             dart_metadata: [],
             comments: [],
         },
@@ -3828,174 +3358,25 @@ IrFile {
             dart_metadata: [],
             comments: [],
         },
-        "NewTypeInt": IrStruct {
-            name: "NewTypeInt",
+        "BigBuffers": IrStruct {
+            name: "BigBuffers",
             wrapper_name: None,
             path: Some(
                 [
                     "crate",
                     "api",
-                    "NewTypeInt",
+                    "BigBuffers",
                 ],
             ),
             fields: [
                 IrField {
-                    ty: Primitive(
-                        I64,
-                    ),
-                    name: IrIdent {
-                        raw: "field0",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-            ],
-            is_fields_named: false,
-            dart_metadata: [],
-            comments: [],
-        },
-        "NewSimpleStruct": IrStruct {
-            name: "NewSimpleStruct",
-            wrapper_name: None,
-            path: Some(
-                [
-                    "crate",
-                    "new_module_system",
-                    "sub_module",
-                    "NewSimpleStruct",
-                ],
-            ),
-            fields: [
-                IrField {
-                    ty: Primitive(
-                        I32,
-                    ),
-                    name: IrIdent {
-                        raw: "field",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-            ],
-            is_fields_named: true,
-            dart_metadata: [],
-            comments: [],
-        },
-        "OldSimpleStruct": IrStruct {
-            name: "OldSimpleStruct",
-            wrapper_name: None,
-            path: Some(
-                [
-                    "crate",
-                    "old_module_system",
-                    "sub_module",
-                    "OldSimpleStruct",
-                ],
-            ),
-            fields: [
-                IrField {
-                    ty: Primitive(
-                        I32,
-                    ),
-                    name: IrIdent {
-                        raw: "field",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-            ],
-            is_fields_named: true,
-            dart_metadata: [],
-            comments: [],
-        },
-        "Log2": IrStruct {
-            name: "Log2",
-            wrapper_name: None,
-            path: Some(
-                [
-                    "crate",
-                    "api",
-                    "Log2",
-                ],
-            ),
-            fields: [
-                IrField {
-                    ty: Primitive(
-                        U32,
-                    ),
-                    name: IrIdent {
-                        raw: "key",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-                IrField {
-                    ty: Delegate(
-                        String,
-                    ),
-                    name: IrIdent {
-                        raw: "value",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-            ],
-            is_fields_named: true,
-            dart_metadata: [],
-            comments: [],
-        },
-        "ApplicationEnv": IrStruct {
-            name: "ApplicationEnv",
-            wrapper_name: Some(
-                "mirror_ApplicationEnv",
-            ),
-            path: Some(
-                [
-                    "crate",
-                    "api",
-                    "ApplicationEnv",
-                ],
-            ),
-            fields: [
-                IrField {
-                    ty: GeneralList(
-                        IrTypeGeneralList {
-                            inner: StructRef(
-                                IrTypeStructRef {
-                                    name: "ApplicationEnvVar",
-                                    freezed: false,
-                                },
-                            ),
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: I64,
                         },
                     ),
                     name: IrIdent {
-                        raw: "vars",
-                    },
-                    is_final: true,
-                    comments: [],
-                },
-            ],
-            is_fields_named: true,
-            dart_metadata: [],
-            comments: [],
-        },
-        "MyTreeNode": IrStruct {
-            name: "MyTreeNode",
-            wrapper_name: None,
-            path: Some(
-                [
-                    "crate",
-                    "api",
-                    "MyTreeNode",
-                ],
-            ),
-            fields: [
-                IrField {
-                    ty: Primitive(
-                        I32,
-                    ),
-                    name: IrIdent {
-                        raw: "value_i32",
+                        raw: "int64",
                     },
                     is_final: true,
                     comments: [],
@@ -4003,32 +3384,117 @@ IrFile {
                 IrField {
                     ty: PrimitiveList(
                         IrTypePrimitiveList {
-                            primitive: U8,
+                            primitive: U64,
                         },
                     ),
                     name: IrIdent {
-                        raw: "value_vec_u8",
+                        raw: "uint64",
                     },
                     is_final: true,
                     comments: [],
                 },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "MyStruct": IrStruct {
+            name: "MyStruct",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "data",
+                    "MyStruct",
+                ],
+            ),
+            fields: [
                 IrField {
                     ty: Primitive(
                         Bool,
                     ),
                     name: IrIdent {
-                        raw: "value_boolean",
+                        raw: "content",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "Element": IrStruct {
+            name: "Element",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "Element",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: Delegate(
+                                String,
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "tag",
                     },
                     is_final: true,
                     comments: [],
                 },
                 IrField {
-                    ty: GeneralList(
-                        IrTypeGeneralList {
-                            inner: StructRef(
-                                IrTypeStructRef {
-                                    name: "MyTreeNode",
-                                    freezed: false,
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: Delegate(
+                                String,
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "text",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: GeneralList(
+                                IrTypeGeneralList {
+                                    inner: StructRef(
+                                        IrTypeStructRef {
+                                            name: "Attribute",
+                                            freezed: false,
+                                        },
+                                    ),
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "attributes",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Optional(
+                        IrTypeOptional {
+                            inner: GeneralList(
+                                IrTypeGeneralList {
+                                    inner: StructRef(
+                                        IrTypeStructRef {
+                                            name: "Element",
+                                            freezed: false,
+                                        },
+                                    ),
                                 },
                             ),
                         },
@@ -4044,33 +3510,33 @@ IrFile {
             dart_metadata: [],
             comments: [],
         },
-        "Point": IrStruct {
-            name: "Point",
+        "Attribute": IrStruct {
+            name: "Attribute",
             wrapper_name: None,
             path: Some(
                 [
                     "crate",
                     "api",
-                    "Point",
+                    "Attribute",
                 ],
             ),
             fields: [
                 IrField {
-                    ty: Primitive(
-                        F32,
+                    ty: Delegate(
+                        String,
                     ),
                     name: IrIdent {
-                        raw: "x",
+                        raw: "key",
                     },
                     is_final: true,
                     comments: [],
                 },
                 IrField {
-                    ty: Primitive(
-                        F32,
+                    ty: Delegate(
+                        String,
                     ),
                     name: IrIdent {
-                        raw: "y",
+                        raw: "value",
                     },
                     is_final: true,
                     comments: [],
@@ -4367,8 +3833,1142 @@ IrFile {
             dart_metadata: [],
             comments: [],
         },
+        "FeatureChrono": IrStruct {
+            name: "FeatureChrono",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "FeatureChrono",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Delegate(
+                        Time(
+                            Utc,
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "utc",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Delegate(
+                        Time(
+                            Local,
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "local",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Delegate(
+                        Time(
+                            Duration,
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "duration",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Delegate(
+                        Time(
+                            Naive,
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "naive",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "ConcatenateWith": IrStruct {
+            name: "ConcatenateWith",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "ConcatenateWith",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Delegate(
+                        String,
+                    ),
+                    name: IrIdent {
+                        raw: "a",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "Log": IrStruct {
+            name: "Log",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "Log",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Primitive(
+                        U32,
+                    ),
+                    name: IrIdent {
+                        raw: "key",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Primitive(
+                        U32,
+                    ),
+                    name: IrIdent {
+                        raw: "value",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "OpaqueNested": IrStruct {
+            name: "OpaqueNested",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "OpaqueNested",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Opaque(
+                        IrTypeOpaque {
+                            inner_rust: "HideData",
+                            inner_dart: "HideData",
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "first",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Opaque(
+                        IrTypeOpaque {
+                            inner_rust: "HideData",
+                            inner_dart: "HideData",
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "second",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [
+                IrComment(
+                    "/// [`HideData`] has private fields.",
+                ),
+            ],
+        },
+        "MyTreeNode": IrStruct {
+            name: "MyTreeNode",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "MyTreeNode",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Primitive(
+                        I32,
+                    ),
+                    name: IrIdent {
+                        raw: "value_i32",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: U8,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "value_vec_u8",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Primitive(
+                        Bool,
+                    ),
+                    name: IrIdent {
+                        raw: "value_boolean",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: GeneralList(
+                        IrTypeGeneralList {
+                            inner: StructRef(
+                                IrTypeStructRef {
+                                    name: "MyTreeNode",
+                                    freezed: false,
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "children",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "ApplicationEnv": IrStruct {
+            name: "ApplicationEnv",
+            wrapper_name: Some(
+                "mirror_ApplicationEnv",
+            ),
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "ApplicationEnv",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: GeneralList(
+                        IrTypeGeneralList {
+                            inner: StructRef(
+                                IrTypeStructRef {
+                                    name: "ApplicationEnvVar",
+                                    freezed: false,
+                                },
+                            ),
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "vars",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "VecOfPrimitivePack": IrStruct {
+            name: "VecOfPrimitivePack",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "VecOfPrimitivePack",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: I8,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "int8list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: U8,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "uint8list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: I16,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "int16list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: U16,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "uint16list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: U32,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "uint32list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: I32,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "int32list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: U64,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "uint64list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: I64,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "int64list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: F32,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "float32list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: F64,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "float64list",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: true,
+            dart_metadata: [],
+            comments: [],
+        },
+        "Sequences": IrStruct {
+            name: "Sequences",
+            wrapper_name: Some(
+                "mirror_Sequences",
+            ),
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "Sequences",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: PrimitiveList(
+                        IrTypePrimitiveList {
+                            primitive: I32,
+                        },
+                    ),
+                    name: IrIdent {
+                        raw: "field0",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: false,
+            dart_metadata: [],
+            comments: [],
+        },
+        "TestId": IrStruct {
+            name: "TestId",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "TestId",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Delegate(
+                        Array(
+                            PrimitiveArray {
+                                length: 2,
+                                primitive: I32,
+                            },
+                        ),
+                    ),
+                    name: IrIdent {
+                        raw: "field0",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: false,
+            dart_metadata: [],
+            comments: [],
+        },
+        "ApplicationEnvVar": IrStruct {
+            name: "ApplicationEnvVar",
+            wrapper_name: Some(
+                "mirror_ApplicationEnvVar",
+            ),
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "ApplicationEnvVar",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Delegate(
+                        String,
+                    ),
+                    name: IrIdent {
+                        raw: "field0",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+                IrField {
+                    ty: Primitive(
+                        Bool,
+                    ),
+                    name: IrIdent {
+                        raw: "field1",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: false,
+            dart_metadata: [],
+            comments: [],
+        },
+        "NewTypeInt": IrStruct {
+            name: "NewTypeInt",
+            wrapper_name: None,
+            path: Some(
+                [
+                    "crate",
+                    "api",
+                    "NewTypeInt",
+                ],
+            ),
+            fields: [
+                IrField {
+                    ty: Primitive(
+                        I64,
+                    ),
+                    name: IrIdent {
+                        raw: "field0",
+                    },
+                    is_final: true,
+                    comments: [],
+                },
+            ],
+            is_fields_named: false,
+            dart_metadata: [],
+            comments: [],
+        },
     },
     enum_pool: {
+        "MyEnum": IrEnum {
+            name: "MyEnum",
+            wrapper_name: None,
+            path: [
+                "crate",
+                "data",
+                "MyEnum",
+            ],
+            comments: [],
+            _variants: [
+                IrVariant {
+                    name: IrIdent {
+                        raw: "False",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "MyEnum_False",
+                    },
+                    comments: [],
+                    kind: Value,
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "True",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "MyEnum_True",
+                    },
+                    comments: [],
+                    kind: Value,
+                },
+            ],
+            _is_struct: false,
+        },
+        "ApplicationMessage": IrEnum {
+            name: "ApplicationMessage",
+            wrapper_name: Some(
+                "mirror_ApplicationMessage",
+            ),
+            path: [
+                "crate",
+                "api",
+                "ApplicationMessage",
+            ],
+            comments: [],
+            _variants: [
+                IrVariant {
+                    name: IrIdent {
+                        raw: "DisplayMessage",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "ApplicationMessage_DisplayMessage",
+                    },
+                    comments: [],
+                    kind: Struct(
+                        IrStruct {
+                            name: "DisplayMessage",
+                            wrapper_name: None,
+                            path: None,
+                            fields: [
+                                IrField {
+                                    ty: Delegate(
+                                        String,
+                                    ),
+                                    name: IrIdent {
+                                        raw: "field0",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                            ],
+                            is_fields_named: false,
+                            dart_metadata: [],
+                            comments: [],
+                        },
+                    ),
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "RenderPixel",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "ApplicationMessage_RenderPixel",
+                    },
+                    comments: [],
+                    kind: Struct(
+                        IrStruct {
+                            name: "RenderPixel",
+                            wrapper_name: None,
+                            path: None,
+                            fields: [
+                                IrField {
+                                    ty: Primitive(
+                                        I32,
+                                    ),
+                                    name: IrIdent {
+                                        raw: "x",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                                IrField {
+                                    ty: Primitive(
+                                        I32,
+                                    ),
+                                    name: IrIdent {
+                                        raw: "y",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                            ],
+                            is_fields_named: true,
+                            dart_metadata: [],
+                            comments: [],
+                        },
+                    ),
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Exit",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "ApplicationMessage_Exit",
+                    },
+                    comments: [],
+                    kind: Value,
+                },
+            ],
+            _is_struct: true,
+        },
+        "Distance": IrEnum {
+            name: "Distance",
+            wrapper_name: None,
+            path: [
+                "crate",
+                "api",
+                "Distance",
+            ],
+            comments: [],
+            _variants: [
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Unknown",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "Distance_Unknown",
+                    },
+                    comments: [],
+                    kind: Value,
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Map",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "Distance_Map",
+                    },
+                    comments: [],
+                    kind: Struct(
+                        IrStruct {
+                            name: "Map",
+                            wrapper_name: None,
+                            path: None,
+                            fields: [
+                                IrField {
+                                    ty: Primitive(
+                                        F64,
+                                    ),
+                                    name: IrIdent {
+                                        raw: "field0",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                            ],
+                            is_fields_named: false,
+                            dart_metadata: [],
+                            comments: [],
+                        },
+                    ),
+                },
+            ],
+            _is_struct: true,
+        },
+        "Speed": IrEnum {
+            name: "Speed",
+            wrapper_name: None,
+            path: [
+                "crate",
+                "api",
+                "Speed",
+            ],
+            comments: [],
+            _variants: [
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Unknown",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "Speed_Unknown",
+                    },
+                    comments: [],
+                    kind: Value,
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "GPS",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "Speed_GPS",
+                    },
+                    comments: [],
+                    kind: Struct(
+                        IrStruct {
+                            name: "GPS",
+                            wrapper_name: None,
+                            path: None,
+                            fields: [
+                                IrField {
+                                    ty: Primitive(
+                                        F64,
+                                    ),
+                                    name: IrIdent {
+                                        raw: "field0",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                            ],
+                            is_fields_named: false,
+                            dart_metadata: [],
+                            comments: [],
+                        },
+                    ),
+                },
+            ],
+            _is_struct: true,
+        },
+        "Weekdays": IrEnum {
+            name: "Weekdays",
+            wrapper_name: None,
+            path: [
+                "crate",
+                "api",
+                "Weekdays",
+            ],
+            comments: [
+                IrComment(
+                    "/// Simple enums.",
+                ),
+            ],
+            _variants: [
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Monday",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "Weekdays_Monday",
+                    },
+                    comments: [],
+                    kind: Value,
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Tuesday",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "Weekdays_Tuesday",
+                    },
+                    comments: [],
+                    kind: Value,
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Wednesday",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "Weekdays_Wednesday",
+                    },
+                    comments: [],
+                    kind: Value,
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Thursday",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "Weekdays_Thursday",
+                    },
+                    comments: [],
+                    kind: Value,
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Friday",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "Weekdays_Friday",
+                    },
+                    comments: [],
+                    kind: Value,
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Saturday",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "Weekdays_Saturday",
+                    },
+                    comments: [
+                        IrComment(
+                            "/// Best day of the week.",
+                        ),
+                    ],
+                    kind: Value,
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Sunday",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "Weekdays_Sunday",
+                    },
+                    comments: [],
+                    kind: Value,
+                },
+            ],
+            _is_struct: false,
+        },
+        "Measure": IrEnum {
+            name: "Measure",
+            wrapper_name: None,
+            path: [
+                "crate",
+                "api",
+                "Measure",
+            ],
+            comments: [],
+            _variants: [
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Speed",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "Measure_Speed",
+                    },
+                    comments: [],
+                    kind: Struct(
+                        IrStruct {
+                            name: "Speed",
+                            wrapper_name: None,
+                            path: None,
+                            fields: [
+                                IrField {
+                                    ty: Boxed(
+                                        IrTypeBoxed {
+                                            exist_in_real_api: true,
+                                            inner: EnumRef(
+                                                IrTypeEnumRef {
+                                                    name: "Speed",
+                                                },
+                                            ),
+                                        },
+                                    ),
+                                    name: IrIdent {
+                                        raw: "field0",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                            ],
+                            is_fields_named: false,
+                            dart_metadata: [],
+                            comments: [],
+                        },
+                    ),
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Distance",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "Measure_Distance",
+                    },
+                    comments: [],
+                    kind: Struct(
+                        IrStruct {
+                            name: "Distance",
+                            wrapper_name: None,
+                            path: None,
+                            fields: [
+                                IrField {
+                                    ty: Boxed(
+                                        IrTypeBoxed {
+                                            exist_in_real_api: true,
+                                            inner: EnumRef(
+                                                IrTypeEnumRef {
+                                                    name: "Distance",
+                                                },
+                                            ),
+                                        },
+                                    ),
+                                    name: IrIdent {
+                                        raw: "field0",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                            ],
+                            is_fields_named: false,
+                            dart_metadata: [],
+                            comments: [],
+                        },
+                    ),
+                },
+            ],
+            _is_struct: true,
+        },
+        "EnumOpaque": IrEnum {
+            name: "EnumOpaque",
+            wrapper_name: None,
+            path: [
+                "crate",
+                "api",
+                "EnumOpaque",
+            ],
+            comments: [],
+            _variants: [
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Struct",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "EnumOpaque_Struct",
+                    },
+                    comments: [],
+                    kind: Struct(
+                        IrStruct {
+                            name: "Struct",
+                            wrapper_name: None,
+                            path: None,
+                            fields: [
+                                IrField {
+                                    ty: Opaque(
+                                        IrTypeOpaque {
+                                            inner_rust: "HideData",
+                                            inner_dart: "HideData",
+                                        },
+                                    ),
+                                    name: IrIdent {
+                                        raw: "field0",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                            ],
+                            is_fields_named: false,
+                            dart_metadata: [],
+                            comments: [],
+                        },
+                    ),
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Primitive",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "EnumOpaque_Primitive",
+                    },
+                    comments: [],
+                    kind: Struct(
+                        IrStruct {
+                            name: "Primitive",
+                            wrapper_name: None,
+                            path: None,
+                            fields: [
+                                IrField {
+                                    ty: Opaque(
+                                        IrTypeOpaque {
+                                            inner_rust: "i32",
+                                            inner_dart: "I32",
+                                        },
+                                    ),
+                                    name: IrIdent {
+                                        raw: "field0",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                            ],
+                            is_fields_named: false,
+                            dart_metadata: [],
+                            comments: [],
+                        },
+                    ),
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "TraitObj",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "EnumOpaque_TraitObj",
+                    },
+                    comments: [],
+                    kind: Struct(
+                        IrStruct {
+                            name: "TraitObj",
+                            wrapper_name: None,
+                            path: None,
+                            fields: [
+                                IrField {
+                                    ty: Opaque(
+                                        IrTypeOpaque {
+                                            inner_rust: "Box<dyn DartDebug>",
+                                            inner_dart: "BoxDartDebug",
+                                        },
+                                    ),
+                                    name: IrIdent {
+                                        raw: "field0",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                            ],
+                            is_fields_named: false,
+                            dart_metadata: [],
+                            comments: [],
+                        },
+                    ),
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "Mutex",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "EnumOpaque_Mutex",
+                    },
+                    comments: [],
+                    kind: Struct(
+                        IrStruct {
+                            name: "Mutex",
+                            wrapper_name: None,
+                            path: None,
+                            fields: [
+                                IrField {
+                                    ty: Opaque(
+                                        IrTypeOpaque {
+                                            inner_rust: "Mutex<HideData>",
+                                            inner_dart: "MutexHideData",
+                                        },
+                                    ),
+                                    name: IrIdent {
+                                        raw: "field0",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                            ],
+                            is_fields_named: false,
+                            dart_metadata: [],
+                            comments: [],
+                        },
+                    ),
+                },
+                IrVariant {
+                    name: IrIdent {
+                        raw: "RwLock",
+                    },
+                    wrapper_name: IrIdent {
+                        raw: "EnumOpaque_RwLock",
+                    },
+                    comments: [],
+                    kind: Struct(
+                        IrStruct {
+                            name: "RwLock",
+                            wrapper_name: None,
+                            path: None,
+                            fields: [
+                                IrField {
+                                    ty: Opaque(
+                                        IrTypeOpaque {
+                                            inner_rust: "RwLock<HideData>",
+                                            inner_dart: "RwLockHideData",
+                                        },
+                                    ),
+                                    name: IrIdent {
+                                        raw: "field0",
+                                    },
+                                    is_final: true,
+                                    comments: [],
+                                },
+                            ],
+                            is_fields_named: false,
+                            dart_metadata: [],
+                            comments: [],
+                        },
+                    ),
+                },
+            ],
+            _is_struct: true,
+        },
         "KitchenSink": IrEnum {
             name: "KitchenSink",
             wrapper_name: None,
@@ -4639,553 +5239,6 @@ IrFile {
             ],
             _is_struct: true,
         },
-        "Weekdays": IrEnum {
-            name: "Weekdays",
-            wrapper_name: None,
-            path: [
-                "crate",
-                "api",
-                "Weekdays",
-            ],
-            comments: [
-                IrComment(
-                    "/// Simple enums.",
-                ),
-            ],
-            _variants: [
-                IrVariant {
-                    name: IrIdent {
-                        raw: "Monday",
-                    },
-                    wrapper_name: IrIdent {
-                        raw: "Weekdays_Monday",
-                    },
-                    comments: [],
-                    kind: Value,
-                },
-                IrVariant {
-                    name: IrIdent {
-                        raw: "Tuesday",
-                    },
-                    wrapper_name: IrIdent {
-                        raw: "Weekdays_Tuesday",
-                    },
-                    comments: [],
-                    kind: Value,
-                },
-                IrVariant {
-                    name: IrIdent {
-                        raw: "Wednesday",
-                    },
-                    wrapper_name: IrIdent {
-                        raw: "Weekdays_Wednesday",
-                    },
-                    comments: [],
-                    kind: Value,
-                },
-                IrVariant {
-                    name: IrIdent {
-                        raw: "Thursday",
-                    },
-                    wrapper_name: IrIdent {
-                        raw: "Weekdays_Thursday",
-                    },
-                    comments: [],
-                    kind: Value,
-                },
-                IrVariant {
-                    name: IrIdent {
-                        raw: "Friday",
-                    },
-                    wrapper_name: IrIdent {
-                        raw: "Weekdays_Friday",
-                    },
-                    comments: [],
-                    kind: Value,
-                },
-                IrVariant {
-                    name: IrIdent {
-                        raw: "Saturday",
-                    },
-                    wrapper_name: IrIdent {
-                        raw: "Weekdays_Saturday",
-                    },
-                    comments: [
-                        IrComment(
-                            "/// Best day of the week.",
-                        ),
-                    ],
-                    kind: Value,
-                },
-                IrVariant {
-                    name: IrIdent {
-                        raw: "Sunday",
-                    },
-                    wrapper_name: IrIdent {
-                        raw: "Weekdays_Sunday",
-                    },
-                    comments: [],
-                    kind: Value,
-                },
-            ],
-            _is_struct: false,
-        },
-        "Measure": IrEnum {
-            name: "Measure",
-            wrapper_name: None,
-            path: [
-                "crate",
-                "api",
-                "Measure",
-            ],
-            comments: [],
-            _variants: [
-                IrVariant {
-                    name: IrIdent {
-                        raw: "Speed",
-                    },
-                    wrapper_name: IrIdent {
-                        raw: "Measure_Speed",
-                    },
-                    comments: [],
-                    kind: Struct(
-                        IrStruct {
-                            name: "Speed",
-                            wrapper_name: None,
-                            path: None,
-                            fields: [
-                                IrField {
-                                    ty: Boxed(
-                                        IrTypeBoxed {
-                                            exist_in_real_api: true,
-                                            inner: EnumRef(
-                                                IrTypeEnumRef {
-                                                    name: "Speed",
-                                                },
-                                            ),
-                                        },
-                                    ),
-                                    name: IrIdent {
-                                        raw: "field0",
-                                    },
-                                    is_final: true,
-                                    comments: [],
-                                },
-                            ],
-                            is_fields_named: false,
-                            dart_metadata: [],
-                            comments: [],
-                        },
-                    ),
-                },
-                IrVariant {
-                    name: IrIdent {
-                        raw: "Distance",
-                    },
-                    wrapper_name: IrIdent {
-                        raw: "Measure_Distance",
-                    },
-                    comments: [],
-                    kind: Struct(
-                        IrStruct {
-                            name: "Distance",
-                            wrapper_name: None,
-                            path: None,
-                            fields: [
-                                IrField {
-                                    ty: Boxed(
-                                        IrTypeBoxed {
-                                            exist_in_real_api: true,
-                                            inner: EnumRef(
-                                                IrTypeEnumRef {
-                                                    name: "Distance",
-                                                },
-                                            ),
-                                        },
-                                    ),
-                                    name: IrIdent {
-                                        raw: "field0",
-                                    },
-                                    is_final: true,
-                                    comments: [],
-                                },
-                            ],
-                            is_fields_named: false,
-                            dart_metadata: [],
-                            comments: [],
-                        },
-                    ),
-                },
-            ],
-            _is_struct: true,
-        },
-        "MyEnum": IrEnum {
-            name: "MyEnum",
-            wrapper_name: None,
-            path: [
-                "crate",
-                "data",
-                "MyEnum",
-            ],
-            comments: [],
-            _variants: [
-                IrVariant {
-                    name: IrIdent {
-                        raw: "False",
-                    },
-                    wrapper_name: IrIdent {
-                        raw: "MyEnum_False",
-                    },
-                    comments: [],
-                    kind: Value,
-                },
-                IrVariant {
-                    name: IrIdent {
-                        raw: "True",
-                    },
-                    wrapper_name: IrIdent {
-                        raw: "MyEnum_True",
-                    },
-                    comments: [],
-                    kind: Value,
-                },
-            ],
-            _is_struct: false,
-        },
-        "ApplicationMessage": IrEnum {
-            name: "ApplicationMessage",
-            wrapper_name: Some(
-                "mirror_ApplicationMessage",
-            ),
-            path: [
-                "crate",
-                "api",
-                "ApplicationMessage",
-            ],
-            comments: [],
-            _variants: [
-                IrVariant {
-                    name: IrIdent {
-                        raw: "DisplayMessage",
-                    },
-                    wrapper_name: IrIdent {
-                        raw: "ApplicationMessage_DisplayMessage",
-                    },
-                    comments: [],
-                    kind: Struct(
-                        IrStruct {
-                            name: "DisplayMessage",
-                            wrapper_name: None,
-                            path: None,
-                            fields: [
-                                IrField {
-                                    ty: Delegate(
-                                        String,
-                                    ),
-                                    name: IrIdent {
-                                        raw: "field0",
-                                    },
-                                    is_final: true,
-                                    comments: [],
-                                },
-                            ],
-                            is_fields_named: false,
-                            dart_metadata: [],
-                            comments: [],
-                        },
-                    ),
-                },
-                IrVariant {
-                    name: IrIdent {
-                        raw: "RenderPixel",
-                    },
-                    wrapper_name: IrIdent {
-                        raw: "ApplicationMessage_RenderPixel",
-                    },
-                    comments: [],
-                    kind: Struct(
-                        IrStruct {
-                            name: "RenderPixel",
-                            wrapper_name: None,
-                            path: None,
-                            fields: [
-                                IrField {
-                                    ty: Primitive(
-                                        I32,
-                                    ),
-                                    name: IrIdent {
-                                        raw: "x",
-                                    },
-                                    is_final: true,
-                                    comments: [],
-                                },
-                                IrField {
-                                    ty: Primitive(
-                                        I32,
-                                    ),
-                                    name: IrIdent {
-                                        raw: "y",
-                                    },
-                                    is_final: true,
-                                    comments: [],
-                                },
-                            ],
-                            is_fields_named: true,
-                            dart_metadata: [],
-                            comments: [],
-                        },
-                    ),
-                },
-                IrVariant {
-                    name: IrIdent {
-                        raw: "Exit",
-                    },
-                    wrapper_name: IrIdent {
-                        raw: "ApplicationMessage_Exit",
-                    },
-                    comments: [],
-                    kind: Value,
-                },
-            ],
-            _is_struct: true,
-        },
-        "EnumOpaque": IrEnum {
-            name: "EnumOpaque",
-            wrapper_name: None,
-            path: [
-                "crate",
-                "api",
-                "EnumOpaque",
-            ],
-            comments: [],
-            _variants: [
-                IrVariant {
-                    name: IrIdent {
-                        raw: "Struct",
-                    },
-                    wrapper_name: IrIdent {
-                        raw: "EnumOpaque_Struct",
-                    },
-                    comments: [],
-                    kind: Struct(
-                        IrStruct {
-                            name: "Struct",
-                            wrapper_name: None,
-                            path: None,
-                            fields: [
-                                IrField {
-                                    ty: Opaque(
-                                        IrTypeOpaque {
-                                            inner_rust: "HideData",
-                                            inner_dart: "HideData",
-                                        },
-                                    ),
-                                    name: IrIdent {
-                                        raw: "field0",
-                                    },
-                                    is_final: true,
-                                    comments: [],
-                                },
-                            ],
-                            is_fields_named: false,
-                            dart_metadata: [],
-                            comments: [],
-                        },
-                    ),
-                },
-                IrVariant {
-                    name: IrIdent {
-                        raw: "Primitive",
-                    },
-                    wrapper_name: IrIdent {
-                        raw: "EnumOpaque_Primitive",
-                    },
-                    comments: [],
-                    kind: Struct(
-                        IrStruct {
-                            name: "Primitive",
-                            wrapper_name: None,
-                            path: None,
-                            fields: [
-                                IrField {
-                                    ty: Opaque(
-                                        IrTypeOpaque {
-                                            inner_rust: "i32",
-                                            inner_dart: "I32",
-                                        },
-                                    ),
-                                    name: IrIdent {
-                                        raw: "field0",
-                                    },
-                                    is_final: true,
-                                    comments: [],
-                                },
-                            ],
-                            is_fields_named: false,
-                            dart_metadata: [],
-                            comments: [],
-                        },
-                    ),
-                },
-                IrVariant {
-                    name: IrIdent {
-                        raw: "TraitObj",
-                    },
-                    wrapper_name: IrIdent {
-                        raw: "EnumOpaque_TraitObj",
-                    },
-                    comments: [],
-                    kind: Struct(
-                        IrStruct {
-                            name: "TraitObj",
-                            wrapper_name: None,
-                            path: None,
-                            fields: [
-                                IrField {
-                                    ty: Opaque(
-                                        IrTypeOpaque {
-                                            inner_rust: "Box<dyn DartDebug>",
-                                            inner_dart: "BoxDartDebug",
-                                        },
-                                    ),
-                                    name: IrIdent {
-                                        raw: "field0",
-                                    },
-                                    is_final: true,
-                                    comments: [],
-                                },
-                            ],
-                            is_fields_named: false,
-                            dart_metadata: [],
-                            comments: [],
-                        },
-                    ),
-                },
-                IrVariant {
-                    name: IrIdent {
-                        raw: "Mutex",
-                    },
-                    wrapper_name: IrIdent {
-                        raw: "EnumOpaque_Mutex",
-                    },
-                    comments: [],
-                    kind: Struct(
-                        IrStruct {
-                            name: "Mutex",
-                            wrapper_name: None,
-                            path: None,
-                            fields: [
-                                IrField {
-                                    ty: Opaque(
-                                        IrTypeOpaque {
-                                            inner_rust: "Mutex<HideData>",
-                                            inner_dart: "MutexHideData",
-                                        },
-                                    ),
-                                    name: IrIdent {
-                                        raw: "field0",
-                                    },
-                                    is_final: true,
-                                    comments: [],
-                                },
-                            ],
-                            is_fields_named: false,
-                            dart_metadata: [],
-                            comments: [],
-                        },
-                    ),
-                },
-                IrVariant {
-                    name: IrIdent {
-                        raw: "RwLock",
-                    },
-                    wrapper_name: IrIdent {
-                        raw: "EnumOpaque_RwLock",
-                    },
-                    comments: [],
-                    kind: Struct(
-                        IrStruct {
-                            name: "RwLock",
-                            wrapper_name: None,
-                            path: None,
-                            fields: [
-                                IrField {
-                                    ty: Opaque(
-                                        IrTypeOpaque {
-                                            inner_rust: "RwLock<HideData>",
-                                            inner_dart: "RwLockHideData",
-                                        },
-                                    ),
-                                    name: IrIdent {
-                                        raw: "field0",
-                                    },
-                                    is_final: true,
-                                    comments: [],
-                                },
-                            ],
-                            is_fields_named: false,
-                            dart_metadata: [],
-                            comments: [],
-                        },
-                    ),
-                },
-            ],
-            _is_struct: true,
-        },
-        "Distance": IrEnum {
-            name: "Distance",
-            wrapper_name: None,
-            path: [
-                "crate",
-                "api",
-                "Distance",
-            ],
-            comments: [],
-            _variants: [
-                IrVariant {
-                    name: IrIdent {
-                        raw: "Unknown",
-                    },
-                    wrapper_name: IrIdent {
-                        raw: "Distance_Unknown",
-                    },
-                    comments: [],
-                    kind: Value,
-                },
-                IrVariant {
-                    name: IrIdent {
-                        raw: "Map",
-                    },
-                    wrapper_name: IrIdent {
-                        raw: "Distance_Map",
-                    },
-                    comments: [],
-                    kind: Struct(
-                        IrStruct {
-                            name: "Map",
-                            wrapper_name: None,
-                            path: None,
-                            fields: [
-                                IrField {
-                                    ty: Primitive(
-                                        F64,
-                                    ),
-                                    name: IrIdent {
-                                        raw: "field0",
-                                    },
-                                    is_final: true,
-                                    comments: [],
-                                },
-                            ],
-                            is_fields_named: false,
-                            dart_metadata: [],
-                            comments: [],
-                        },
-                    ),
-                },
-            ],
-            _is_struct: true,
-        },
         "ApplicationMode": IrEnum {
             name: "ApplicationMode",
             wrapper_name: Some(
@@ -5220,60 +5273,6 @@ IrFile {
                 },
             ],
             _is_struct: false,
-        },
-        "Speed": IrEnum {
-            name: "Speed",
-            wrapper_name: None,
-            path: [
-                "crate",
-                "api",
-                "Speed",
-            ],
-            comments: [],
-            _variants: [
-                IrVariant {
-                    name: IrIdent {
-                        raw: "Unknown",
-                    },
-                    wrapper_name: IrIdent {
-                        raw: "Speed_Unknown",
-                    },
-                    comments: [],
-                    kind: Value,
-                },
-                IrVariant {
-                    name: IrIdent {
-                        raw: "GPS",
-                    },
-                    wrapper_name: IrIdent {
-                        raw: "Speed_GPS",
-                    },
-                    comments: [],
-                    kind: Struct(
-                        IrStruct {
-                            name: "GPS",
-                            wrapper_name: None,
-                            path: None,
-                            fields: [
-                                IrField {
-                                    ty: Primitive(
-                                        F64,
-                                    ),
-                                    name: IrIdent {
-                                        raw: "field0",
-                                    },
-                                    is_final: true,
-                                    comments: [],
-                                },
-                            ],
-                            is_fields_named: false,
-                            dart_metadata: [],
-                            comments: [],
-                        },
-                    ),
-                },
-            ],
-            _is_struct: true,
         },
     },
     has_executor: false,

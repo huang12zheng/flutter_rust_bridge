@@ -18,6 +18,7 @@ pub enum IrType {
     EnumRef(IrTypeEnumRef),
     SyncReturn(IrTypeSyncReturn),
     Opaque(IrTypeOpaque),
+    ImplTrait(IrTypeImplTrait),
 }
 
 impl IrType {

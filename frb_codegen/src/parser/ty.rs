@@ -1,6 +1,7 @@
 use std::collections::{HashMap, HashSet};
 use std::string::String;
 
+use itertools::Itertools;
 use syn::*;
 
 use crate::ir::IrType::*;
@@ -8,38 +9,53 @@ use crate::ir::*;
 
 use crate::markers;
 
-use crate::source_graph::{Enum, Struct};
+use crate::source_graph::{Enum, Impl, ImplTrait, Struct};
 
 use crate::parser::{extract_comments, extract_metadata, type_to_string};
 
 pub struct TypeParser<'a> {
     src_structs: HashMap<String, &'a Struct>,
     src_enums: HashMap<String, &'a Enum>,
+    src_impls: HashMap<String, Vec<Impl>>,
 
     parsing_or_parsed_struct_names: HashSet<String>,
     struct_pool: IrStructPool,
 
     parsed_enums: HashSet<String>,
     enum_pool: IrEnumPool,
+
+    parsed_impls: HashSet<String>,
+    parsed_trait_bounds: HashSet<String>,
+    impl_trait_pool: IrImplTraitPool,
 }
 
 impl<'a> TypeParser<'a> {
     pub fn new(
         src_structs: HashMap<String, &'a Struct>,
         src_enums: HashMap<String, &'a Enum>,
+        src_impls: HashMap<String, Vec<Impl>>,
     ) -> Self {
         TypeParser {
             src_structs,
             src_enums,
+            src_impls,
             struct_pool: HashMap::new(),
             enum_pool: HashMap::new(),
+            impl_trait_pool: HashMap::new(),
             parsing_or_parsed_struct_names: HashSet::new(),
             parsed_enums: HashSet::new(),
+            parsed_impls: HashSet::new(),
+            parsed_trait_bounds: HashSet::new(),
         }
     }
 
-    pub fn consume(self) -> (IrStructPool, IrEnumPool) {
-        (self.struct_pool, self.enum_pool)
+    pub fn consume(self) -> (IrStructPool, IrEnumPool, IrImplPool, IrImplTraitPool) {
+        (
+            self.struct_pool,
+            self.enum_pool,
+            self.parsed_impls,
+            self.impl_trait_pool,
+        )
     }
 }
 
@@ -52,6 +68,8 @@ pub enum SupportedInnerType {
     Path(SupportedPathType),
     /// Array type
     Array(Box<Self>, usize),
+    /// ImplTrait type
+    ImplTrait(syn::TypeImplTrait),
     /// Unparsed type, only useful for Opaque.
     Verbatim(Box<syn::Type>),
     /// The unit type `()`.
@@ -63,6 +81,7 @@ impl std::fmt::Display for SupportedInnerType {
         match self {
             Self::Path(p) => write!(f, "{}", p),
             Self::Array(u, len) => write!(f, "[{}; {}]", u, len),
+            Self::ImplTrait(i) => write!(f, "{}", quote::quote!(i)),
             Self::Verbatim(ver) => write!(f, "{}", quote::quote!(#ver)),
             Self::Unit => write!(f, "()"),
         }
@@ -131,6 +150,7 @@ impl SupportedInnerType {
             syn::Type::Tuple(syn::TypeTuple { elems, .. }) if elems.is_empty() => {
                 Some(SupportedInnerType::Unit)
             }
+            syn::Type::ImplTrait(i) => Some(SupportedInnerType::ImplTrait(i.clone())),
             _ => Some(SupportedInnerType::Verbatim(Box::new(ty.clone()))),
         }
     }
@@ -150,9 +170,47 @@ impl<'a> TypeParser<'a> {
         match ty {
             SupportedInnerType::Path(p) => self.convert_path_to_ir_type(p),
             SupportedInnerType::Array(p, len) => self.convert_array_to_ir_type(*p, len),
+            SupportedInnerType::ImplTrait(p) => self.convert_impl_trait_to_ir_type(p),
+
             SupportedInnerType::Unit => Some(IrType::Primitive(IrTypePrimitive::Unit)),
             SupportedInnerType::Verbatim(_) => None,
         }
+    }
+
+    /// Converts an impl trait type into an `IrType` if possible.
+    /// a litter like [convert_path_to_ir_type]
+    pub fn convert_impl_trait_to_ir_type(
+        &mut self,
+        type_impl_trait: TypeImplTrait,
+    ) -> Option<IrType> {
+        // Some(
+        let raw: Vec<String> = type_impl_trait
+            .bounds
+            .iter()
+            .filter_map(|e| match e {
+                TypeParamBound::Trait(t) => {
+                    Some(t.path.segments.first().unwrap().ident.clone().to_string())
+                }
+                TypeParamBound::Lifetime(_) => None,
+            })
+            .sorted()
+            .collect();
+        for ty_impl_trait in raw.iter() {
+            // Check whether the trait bound is capable of being used
+            // return None if param unoffical
+            if self.src_impls.contains_key(ty_impl_trait) {
+                self.parsed_impls.insert(ty_impl_trait.clone());
+            } else {
+                panic!("loss impl {} for some self_ty", ty_impl_trait);
+            }
+        }
+        let k = raw.join("_");
+        if self.parsed_trait_bounds.insert(k) {
+            self.impl_trait_pool
+                .insert(raw.join("_"), IrTypeImplTrait::new2(raw.clone()));
+        }
+
+        Some(IrType::ImplTrait(IrTypeImplTrait::new2(raw)))
     }
 
     /// Converts an array type into an `IrType` if possible.
@@ -234,6 +292,7 @@ impl<'a> TypeParser<'a> {
                         Some(IrType::Opaque(IrTypeOpaque::from(path.to_string())))
                     }
                     SupportedInnerType::Unit => Some(IrType::Opaque(IrTypeOpaque::new_unit())),
+                    SupportedInnerType::ImplTrait(_) => None,
                 },
                 "Box" => self.convert_to_ir_type(*generic).map(|inner| {
                     Boxed(IrTypeBoxed {
