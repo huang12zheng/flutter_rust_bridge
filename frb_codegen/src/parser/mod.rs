@@ -1,5 +1,6 @@
 pub(crate) mod ty;
 
+use std::collections::HashMap;
 use std::string::String;
 
 use log::debug;
@@ -21,13 +22,13 @@ const RESULT_IDENT: &str = "Result";
 
 pub fn parse(source_rust_content: &str, file: File, manifest_path: &str) -> IrFile {
     let crate_map = Crate::new(manifest_path);
-
     let mut src_fns = extract_fns_from_file(&file);
     src_fns.extend(extract_methods_from_file(&file));
     let src_structs = crate_map.root_module.collect_structs_to_vec();
     let src_enums = crate_map.root_module.collect_enums_to_vec();
+    let src_impls = crate_map.root_module.collect_impls_to_vec();
 
-    let parser = Parser::new(TypeParser::new(src_structs, src_enums));
+    let parser = Parser::new(TypeParser::new(src_structs, src_enums, src_impls));
     parser.parse(source_rust_content, src_fns)
 }
 
@@ -47,12 +48,14 @@ impl<'a> Parser<'a> {
 
         let has_executor = source_rust_content.contains(HANDLER_NAME);
 
-        let (struct_pool, enum_pool) = self.type_parser.consume();
+        let (struct_pool, enum_pool, impl_set, impl_trait_pool) = self.type_parser.consume();
 
         IrFile {
             funcs,
             struct_pool,
             enum_pool,
+            impl_set,
+            impl_trait_pool,
             has_executor,
         }
     }
@@ -100,7 +103,9 @@ impl<'a> Parser<'a> {
                     Some(IrFuncArg::Type(self.type_parser.parse_type(ty)))
                 }
             }
-            syn::Type::Array(_) => Some(IrFuncArg::Type(self.type_parser.parse_type(ty))),
+            syn::Type::Array(_) | syn::Type::ImplTrait(_) => {
+                Some(IrFuncArg::Type(self.type_parser.parse_type(ty)))
+            }
             _ => None,
         }
     }
@@ -125,8 +130,8 @@ impl<'a> Parser<'a> {
                 };
                 match self.try_parse_fn_arg_type(&pat_type.ty).unwrap_or_else(|| {
                     panic!(
-                        "Failed to parse function argument type `{}`",
-                        type_to_string(&pat_type.ty)
+                        "Failed to parse function argument type `{:?}`",
+                        &pat_type.ty
                     )
                 }) {
                     IrFuncArg::StreamSinkType(ty) => {
@@ -209,7 +214,6 @@ fn extract_fns_from_file(file: &File) -> Vec<ItemFn> {
 
 fn extract_methods_from_file(file: &File) -> Vec<ItemFn> {
     let mut src_fns = Vec::new();
-
     for item in file.items.iter() {
         if let Item::Impl(ref item_impl) = item {
             for item in &item_impl.items {
@@ -226,11 +230,46 @@ fn extract_methods_from_file(file: &File) -> Vec<ItemFn> {
 
     src_fns
 }
+// get impl args
+fn extract_impl_args_from_fns(src_fns: &Vec<ItemFn>) {
+    for item in src_fns.iter() {
+        // item.sig.inputs
+    }
+}
+fn extract_trait_struct_map_from_file(file: &File) -> HashMap<String, Vec<String>> {
+    let mut trait_struct_map: HashMap<String, Vec<String>> = HashMap::new();
+    for item in file.items.iter() {
+        if let Item::Impl(ref item_impl) = item {
+            if let Some(ref t) = item_impl.trait_ {
+                let self_triat = if let Some(PathSegment {
+                    ident,
+                    arguments: _,
+                }) = t.1.segments.first()
+                {
+                    Some(ident.to_string())
+                } else {
+                    None
+                };
+                if let Some(t) = self_triat {
+                    if let Type::Path(p) = item_impl.self_ty.as_ref() {
+                        let struct_name = p.path.segments.first().unwrap().ident.to_string();
+                        if let Some(mut value) = trait_struct_map.remove(&t) {
+                            value.push(struct_name);
+                            trait_struct_map.insert(t, value);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    trait_struct_map
+}
 
 // Converts an item implementation (something like fn(&self, ...)) into a function where `&self` is a named parameter to `&Self`
 fn item_method_to_function(item_impl: &ItemImpl, item_method: &ImplItemMethod) -> Option<ItemFn> {
     if let Type::Path(p) = item_impl.self_ty.as_ref() {
         let struct_name = p.path.segments.first().unwrap().ident.to_string();
+
         let span = item_method.sig.ident.span();
         let is_static_method = {
             let Signature { inputs, .. } = &item_method.sig;

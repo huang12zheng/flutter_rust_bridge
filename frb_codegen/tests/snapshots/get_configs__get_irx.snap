@@ -1,0 +1,858 @@
+---
+source: frb_codegen/tests/get_configs.rs
+expression: output
+---
+Module {
+    visibility: Public,
+    module_path: [
+        "crate",
+    ],
+    file_path: "/Users/huangzheng/rusts/flutter_rust_bridge/frb_example/pure_dart/rust/src/lib.rs",
+    source: "omitted",
+    scope: Some(
+        ModuleScope {
+            modules: [
+                Module {
+                    visibility: Inherited,
+                    module_path: [
+                        "crate",
+                        "api",
+                    ],
+                    file_path: "/Users/huangzheng/rusts/flutter_rust_bridge/frb_example/pure_dart/rust/src/api.rs",
+                    source: "omitted",
+                    scope: Some(
+                        ModuleScope {
+                            modules: [],
+                            enums: [
+                                Enum {
+                                    ident: Ident(
+                                        SerEnum,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "SerEnum",
+                                    ],
+                                    mirror: false,
+                                },
+                                Enum {
+                                    ident: Ident(
+                                        Weekdays,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "Weekdays",
+                                    ],
+                                    mirror: false,
+                                },
+                                Enum {
+                                    ident: Ident(
+                                        KitchenSink,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "KitchenSink",
+                                    ],
+                                    mirror: false,
+                                },
+                                Enum {
+                                    ident: Ident(
+                                        ApplicationMode,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "ApplicationMode",
+                                    ],
+                                    mirror: true,
+                                },
+                                Enum {
+                                    ident: Ident(
+                                        ApplicationMessage,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "ApplicationMessage",
+                                    ],
+                                    mirror: true,
+                                },
+                                Enum {
+                                    ident: Ident(
+                                        Speed,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "Speed",
+                                    ],
+                                    mirror: false,
+                                },
+                                Enum {
+                                    ident: Ident(
+                                        Distance,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "Distance",
+                                    ],
+                                    mirror: false,
+                                },
+                                Enum {
+                                    ident: Ident(
+                                        Measure,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "Measure",
+                                    ],
+                                    mirror: false,
+                                },
+                                Enum {
+                                    ident: Ident(
+                                        EnumOpaque,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "EnumOpaque",
+                                    ],
+                                    mirror: false,
+                                },
+                            ],
+                            impl_traits: [],
+                            impls: [],
+                            structs: [
+                                Struct {
+                                    ident: Ident(
+                                        Record,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "Record",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        VecOfPrimitivePack,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "VecOfPrimitivePack",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        ZeroCopyVecOfPrimitivePack,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "ZeroCopyVecOfPrimitivePack",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        MySize,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "MySize",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        NewTypeInt,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "NewTypeInt",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        MyTreeNode,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "MyTreeNode",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        MyStreamEntry,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "MyStreamEntry",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        Element,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "Element",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        Attribute,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "Attribute",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        ExoticOptionals,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "ExoticOptionals",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        Note,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "Note",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        Customized,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "Customized",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        ApplicationSettings,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "ApplicationSettings",
+                                    ],
+                                    mirror: true,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        ApplicationEnvVar,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "ApplicationEnvVar",
+                                    ],
+                                    mirror: true,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        ApplicationEnv,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "ApplicationEnv",
+                                    ],
+                                    mirror: true,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        Numbers,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "Numbers",
+                                    ],
+                                    mirror: true,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        Sequences,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "Sequences",
+                                    ],
+                                    mirror: true,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        Point,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "Point",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        UserId,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "UserId",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        Event,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "Event",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        Log,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "Log",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        SumWith,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "SumWith",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        ConcatenateWith,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "ConcatenateWith",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        Log2,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "Log2",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        BigBuffers,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "BigBuffers",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        FeatureChrono,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "FeatureChrono",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        MessageId,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "MessageId",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        Blob,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "Blob",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        FeedId,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "FeedId",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        TestId,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "TestId",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        OpaqueNested,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "api",
+                                        "OpaqueNested",
+                                    ],
+                                    mirror: false,
+                                },
+                            ],
+                            imports: [],
+                        },
+                    ),
+                },
+                Module {
+                    visibility: Inherited,
+                    module_path: [
+                        "crate",
+                        "bridge_generated",
+                    ],
+                    file_path: "/Users/huangzheng/rusts/flutter_rust_bridge/frb_example/pure_dart/rust/src/bridge_generated.rs",
+                    source: "omitted",
+                    scope: Some(
+                        ModuleScope {
+                            modules: [],
+                            enums: [],
+                            impl_traits: [],
+                            impls: [],
+                            structs: [
+                                Struct {
+                                    ident: Ident(
+                                        mirror_ApplicationEnv,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Inherited,
+                                    path: [
+                                        "crate",
+                                        "bridge_generated",
+                                        "mirror_ApplicationEnv",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        mirror_ApplicationEnvVar,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Inherited,
+                                    path: [
+                                        "crate",
+                                        "bridge_generated",
+                                        "mirror_ApplicationEnvVar",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        mirror_ApplicationMessage,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Inherited,
+                                    path: [
+                                        "crate",
+                                        "bridge_generated",
+                                        "mirror_ApplicationMessage",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        mirror_ApplicationMode,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Inherited,
+                                    path: [
+                                        "crate",
+                                        "bridge_generated",
+                                        "mirror_ApplicationMode",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        mirror_ApplicationSettings,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Inherited,
+                                    path: [
+                                        "crate",
+                                        "bridge_generated",
+                                        "mirror_ApplicationSettings",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        mirror_Numbers,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Inherited,
+                                    path: [
+                                        "crate",
+                                        "bridge_generated",
+                                        "mirror_Numbers",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        mirror_Sequences,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Inherited,
+                                    path: [
+                                        "crate",
+                                        "bridge_generated",
+                                        "mirror_Sequences",
+                                    ],
+                                    mirror: false,
+                                },
+                            ],
+                            imports: [],
+                        },
+                    ),
+                },
+                Module {
+                    visibility: Inherited,
+                    module_path: [
+                        "crate",
+                        "data",
+                    ],
+                    file_path: "/Users/huangzheng/rusts/flutter_rust_bridge/frb_example/pure_dart/rust/src/data.rs",
+                    source: "omitted",
+                    scope: Some(
+                        ModuleScope {
+                            modules: [],
+                            enums: [
+                                Enum {
+                                    ident: Ident(
+                                        MyEnum,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "data",
+                                        "MyEnum",
+                                    ],
+                                    mirror: false,
+                                },
+                            ],
+                            impl_traits: [],
+                            impls: [],
+                            structs: [
+                                Struct {
+                                    ident: Ident(
+                                        MyStruct,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "data",
+                                        "MyStruct",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        PrivateData,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Inherited,
+                                    path: [
+                                        "crate",
+                                        "data",
+                                        "PrivateData",
+                                    ],
+                                    mirror: false,
+                                },
+                                Struct {
+                                    ident: Ident(
+                                        HideData,
+                                    ),
+                                    src: "omitted",
+                                    visibility: Public,
+                                    path: [
+                                        "crate",
+                                        "data",
+                                        "HideData",
+                                    ],
+                                    mirror: false,
+                                },
+                            ],
+                            imports: [],
+                        },
+                    ),
+                },
+                Module {
+                    visibility: Inherited,
+                    module_path: [
+                        "crate",
+                        "new_module_system",
+                    ],
+                    file_path: "/Users/huangzheng/rusts/flutter_rust_bridge/frb_example/pure_dart/rust/src/new_module_system.rs",
+                    source: "omitted",
+                    scope: Some(
+                        ModuleScope {
+                            modules: [
+                                Module {
+                                    visibility: Public,
+                                    module_path: [
+                                        "crate",
+                                        "new_module_system",
+                                        "sub_module",
+                                    ],
+                                    file_path: "/Users/huangzheng/rusts/flutter_rust_bridge/frb_example/pure_dart/rust/src/new_module_system/sub_module.rs",
+                                    source: "omitted",
+                                    scope: Some(
+                                        ModuleScope {
+                                            modules: [],
+                                            enums: [],
+                                            impl_traits: [],
+                                            impls: [],
+                                            structs: [
+                                                Struct {
+                                                    ident: Ident(
+                                                        NewSimpleStruct,
+                                                    ),
+                                                    src: "omitted",
+                                                    visibility: Public,
+                                                    path: [
+                                                        "crate",
+                                                        "new_module_system",
+                                                        "sub_module",
+                                                        "NewSimpleStruct",
+                                                    ],
+                                                    mirror: false,
+                                                },
+                                            ],
+                                            imports: [],
+                                        },
+                                    ),
+                                },
+                            ],
+                            enums: [],
+                            impl_traits: [],
+                            impls: [],
+                            structs: [],
+                            imports: [],
+                        },
+                    ),
+                },
+                Module {
+                    visibility: Inherited,
+                    module_path: [
+                        "crate",
+                        "old_module_system",
+                    ],
+                    file_path: "/Users/huangzheng/rusts/flutter_rust_bridge/frb_example/pure_dart/rust/src/old_module_system/mod.rs",
+                    source: "omitted",
+                    scope: Some(
+                        ModuleScope {
+                            modules: [
+                                Module {
+                                    visibility: Public,
+                                    module_path: [
+                                        "crate",
+                                        "old_module_system",
+                                        "sub_module",
+                                    ],
+                                    file_path: "/Users/huangzheng/rusts/flutter_rust_bridge/frb_example/pure_dart/rust/src/old_module_system/sub_module.rs",
+                                    source: "omitted",
+                                    scope: Some(
+                                        ModuleScope {
+                                            modules: [],
+                                            enums: [],
+                                            impl_traits: [],
+                                            impls: [],
+                                            structs: [
+                                                Struct {
+                                                    ident: Ident(
+                                                        OldSimpleStruct,
+                                                    ),
+                                                    src: "omitted",
+                                                    visibility: Public,
+                                                    path: [
+                                                        "crate",
+                                                        "old_module_system",
+                                                        "sub_module",
+                                                        "OldSimpleStruct",
+                                                    ],
+                                                    mirror: false,
+                                                },
+                                            ],
+                                            imports: [],
+                                        },
+                                    ),
+                                },
+                            ],
+                            enums: [],
+                            impl_traits: [],
+                            impls: [],
+                            structs: [],
+                            imports: [],
+                        },
+                    ),
+                },
+            ],
+            enums: [],
+            impl_traits: [],
+            impls: [],
+            structs: [],
+            imports: [],
+        },
+    ),
+}

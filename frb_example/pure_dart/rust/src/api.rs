@@ -12,11 +12,39 @@ use anyhow::{anyhow, Result};
 
 use flutter_rust_bridge::*;
 use lazy_static::lazy_static;
+use serde::{Serialize, Serializer};
 
 pub use crate::data::HideData;
 use crate::data::{MyEnum, MyStruct};
 use crate::new_module_system::{use_new_module_system, NewSimpleStruct};
 use crate::old_module_system::{use_old_module_system, OldSimpleStruct};
+/// Debug
+#[derive(Serialize)]
+pub struct Record {
+    pub name: String,
+}
+
+pub enum SerEnum {}
+
+impl Serialize for SerEnum {
+    fn serialize<S>(&self, __serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        __serializer.serialize_newtype_struct("Root", "1")
+    }
+}
+
+pub fn tt(t: impl Serialize) {}
+
+pub fn do_record2(a: usize) -> Record {
+    Record {
+        name: "aaa".to_owned(),
+    }
+}
+// pub fn do_record(a: Record) -> Record {
+//     a
+// }
 
 /// Documentation on a simple adder function.
 pub fn simple_adder(a: i32, b: i32) -> i32 {

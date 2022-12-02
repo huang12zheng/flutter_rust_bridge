@@ -1,0 +1,326 @@
+Impl(
+        ItemImpl {
+            attrs: [],
+            defaultness: None,
+            unsafety: None,
+            impl_token: Impl,
+            generics: Generics {
+                lt_token: None,
+                params: [],
+                gt_token: None,
+                where_clause: None,
+            },
+            trait_: Some(
+                (
+                    None,
+                    Path {
+                        leading_colon: None,
+                        segments: [
+                            PathSegment {
+                                ident: Ident(
+                                    Serialize,
+                                ),
+                                arguments: None,
+                            },
+                        ],
+                    },
+                    For,
+                ),
+            ),
+            self_ty: Path(
+                TypePath {
+                    qself: None,
+                    path: Path {
+                        leading_colon: None,
+                        segments: [
+                            PathSegment {
+                                ident: Ident(
+                                    SerEnum,
+                                ),
+                                arguments: None,
+                            },
+                        ],
+                    },
+                },
+            ),
+            brace_token: Brace,
+            items: [
+                Method(
+                    ImplItemMethod {
+                        attrs: [],
+                        vis: Inherited,
+                        defaultness: None,
+                        sig: Signature {
+                            constness: None,
+                            asyncness: None,
+                            unsafety: None,
+                            abi: None,
+                            fn_token: Fn,
+                            ident: Ident(
+                                serialize,
+                            ),
+                            generics: Generics {
+                                lt_token: Some(
+                                    Lt,
+                                ),
+                                params: [
+                                    Type(
+                                        TypeParam {
+                                            attrs: [],
+                                            ident: Ident(
+                                                S,
+                                            ),
+                                            colon_token: None,
+                                            bounds: [],
+                                            eq_token: None,
+                                            default: None,
+                                        },
+                                    ),
+                                ],
+                                gt_token: Some(
+                                    Gt,
+                                ),
+                                where_clause: Some(
+                                    WhereClause {
+                                        where_token: Where,
+                                        predicates: [
+                                            Type(
+                                                PredicateType {
+                                                    lifetimes: None,
+                                                    bounded_ty: Path(
+                                                        TypePath {
+                                                            qself: None,
+                                                            path: Path {
+                                                                leading_colon: None,
+                                                                segments: [
+                                                                    PathSegment {
+                                                                        ident: Ident(
+                                                                            S,
+                                                                        ),
+                                                                        arguments: None,
+                                                                    },
+                                                                ],
+                                                            },
+                                                        },
+                                                    ),
+                                                    colon_token: Colon,
+                                                    bounds: [
+                                                        Trait(
+                                                            TraitBound {
+                                                                paren_token: None,
+                                                                modifier: None,
+                                                                lifetimes: None,
+                                                                path: Path {
+                                                                    leading_colon: None,
+                                                                    segments: [
+                                                                        PathSegment {
+                                                                            ident: Ident(
+                                                                                Serializer,
+                                                                            ),
+                                                                            arguments: None,
+                                                                        },
+                                                                    ],
+                                                                },
+                                                            },
+                                                        ),
+                                                    ],
+                                                },
+                                            ),
+                                            Comma,
+                                        ],
+                                    },
+                                ),
+                            },
+                            paren_token: Paren,
+                            inputs: [
+                                Receiver(
+                                    Receiver {
+                                        attrs: [],
+                                        reference: Some(
+                                            (
+                                                And,
+                                                None,
+                                            ),
+                                        ),
+                                        mutability: None,
+                                        self_token: SelfValue,
+                                    },
+                                ),
+                                Comma,
+                                Typed(
+                                    PatType {
+                                        attrs: [],
+                                        pat: Ident(
+                                            PatIdent {
+                                                attrs: [],
+                                                by_ref: None,
+                                                mutability: None,
+                                                ident: Ident(
+                                                    __serializer,
+                                                ),
+                                                subpat: None,
+                                            },
+                                        ),
+                                        colon_token: Colon,
+                                        ty: Path(
+                                            TypePath {
+                                                qself: None,
+                                                path: Path {
+                                                    leading_colon: None,
+                                                    segments: [
+                                                        PathSegment {
+                                                            ident: Ident(
+                                                                S,
+                                                            ),
+                                                            arguments: None,
+                                                        },
+                                                    ],
+                                                },
+                                            },
+                                        ),
+                                    },
+                                ),
+                            ],
+                            variadic: None,
+                            output: Type(
+                                RArrow,
+                                Path(
+                                    TypePath {
+                                        qself: None,
+                                        path: Path {
+                                            leading_colon: None,
+                                            segments: [
+                                                PathSegment {
+                                                    ident: Ident(
+                                                        Result,
+                                                    ),
+                                                    arguments: AngleBracketed(
+                                                        AngleBracketedGenericArguments {
+                                                            colon2_token: None,
+                                                            lt_token: Lt,
+                                                            args: [
+                                                                Type(
+                                                                    Path(
+                                                                        TypePath {
+                                                                            qself: None,
+                                                                            path: Path {
+                                                                                leading_colon: None,
+                                                                                segments: [
+                                                                                    PathSegment {
+                                                                                        ident: Ident(
+                                                                                            S,
+                                                                                        ),
+                                                                                        arguments: None,
+                                                                                    },
+                                                                                    Colon2,
+                                                                                    PathSegment {
+                                                                                        ident: Ident(
+                                                                                            Ok,
+                                                                                        ),
+                                                                                        arguments: None,
+                                                                                    },
+                                                                                ],
+                                                                            },
+                                                                        },
+                                                                    ),
+                                                                ),
+                                                                Comma,
+                                                                Type(
+                                                                    Path(
+                                                                        TypePath {
+                                                                            qself: None,
+                                                                            path: Path {
+                                                                                leading_colon: None,
+                                                                                segments: [
+                                                                                    PathSegment {
+                                                                                        ident: Ident(
+                                                                                            S,
+                                                                                        ),
+                                                                                        arguments: None,
+                                                                                    },
+                                                                                    Colon2,
+                                                                                    PathSegment {
+                                                                                        ident: Ident(
+                                                                                            Error,
+                                                                                        ),
+                                                                                        arguments: None,
+                                                                                    },
+                                                                                ],
+                                                                            },
+                                                                        },
+                                                                    ),
+                                                                ),
+                                                            ],
+                                                            gt_token: Gt,
+                                                        },
+                                                    ),
+                                                },
+                                            ],
+                                        },
+                                    },
+                                ),
+                            ),
+                        },
+                        block: Block {
+                            brace_token: Brace,
+                            stmts: [
+                                Expr(
+                                    MethodCall(
+                                        ExprMethodCall {
+                                            attrs: [],
+                                            receiver: Path(
+                                                ExprPath {
+                                                    attrs: [],
+                                                    qself: None,
+                                                    path: Path {
+                                                        leading_colon: None,
+                                                        segments: [
+                                                            PathSegment {
+                                                                ident: Ident(
+                                                                    __serializer,
+                                                                ),
+                                                                arguments: None,
+                                                            },
+                                                        ],
+                                                    },
+                                                },
+                                            ),
+                                            dot_token: Dot,
+                                            method: Ident(
+                                                serialize_newtype_struct,
+                                            ),
+                                            turbofish: None,
+                                            paren_token: Paren,
+                                            args: [
+                                                Lit(
+                                                    ExprLit {
+                                                        attrs: [],
+                                                        lit: Str(
+                                                            LitStr {
+                                                                token: "Root",
+                                                            },
+                                                        ),
+                                                    },
+                                                ),
+                                                Comma,
+                                                Lit(
+                                                    ExprLit {
+                                                        attrs: [],
+                                                        lit: Str(
+                                                            LitStr {
+                                                                token: "1",
+                                                            },
+                                                        ),
+                                                    },
+                                                ),
+                                            ],
+                                        },
+                                    ),
+                                ),
+                            ],
+                        },
+                    },
+                ),
+            ],
+        },
+    ),

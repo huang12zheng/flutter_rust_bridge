@@ -35,7 +35,7 @@ mod markers;
 mod method_utils;
 mod others;
 mod parser;
-mod source_graph;
+pub mod source_graph;
 mod target;
 pub mod transformer;
 mod utils;

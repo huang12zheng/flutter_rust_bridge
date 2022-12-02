@@ -1,0 +1,113 @@
+Struct(
+        ItemStruct {
+            attrs: [
+                Attribute {
+                    pound_token: Pound,
+                    style: Outer,
+                    bracket_token: Bracket,
+                    path: Path {
+                        leading_colon: None,
+                        segments: [
+                            PathSegment {
+                                ident: Ident(
+                                    doc,
+                                ),
+                                arguments: None,
+                            },
+                        ],
+                    },
+                    tokens: TokenStream [
+                        Punct {
+                            char: '=',
+                            spacing: Alone,
+                        },
+                        Literal {
+                            lit: " Debug",
+                        },
+                    ],
+                },
+                Attribute {
+                    pound_token: Pound,
+                    style: Outer,
+                    bracket_token: Bracket,
+                    path: Path {
+                        leading_colon: None,
+                        segments: [
+                            PathSegment {
+                                ident: Ident(
+                                    derive,
+                                ),
+                                arguments: None,
+                            },
+                        ],
+                    },
+                    tokens: TokenStream [
+                        Group {
+                            delimiter: Parenthesis,
+                            stream: TokenStream [
+                                Ident {
+                                    sym: Serialize,
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+            vis: Public(
+                VisPublic {
+                    pub_token: Pub,
+                },
+            ),
+            struct_token: Struct,
+            ident: Ident(
+                Record,
+            ),
+            generics: Generics {
+                lt_token: None,
+                params: [],
+                gt_token: None,
+                where_clause: None,
+            },
+            fields: Named(
+                FieldsNamed {
+                    brace_token: Brace,
+                    named: [
+                        Field {
+                            attrs: [],
+                            vis: Public(
+                                VisPublic {
+                                    pub_token: Pub,
+                                },
+                            ),
+                            ident: Some(
+                                Ident(
+                                    name,
+                                ),
+                            ),
+                            colon_token: Some(
+                                Colon,
+                            ),
+                            ty: Path(
+                                TypePath {
+                                    qself: None,
+                                    path: Path {
+                                        leading_colon: None,
+                                        segments: [
+                                            PathSegment {
+                                                ident: Ident(
+                                                    String,
+                                                ),
+                                                arguments: None,
+                                            },
+                                        ],
+                                    },
+                                },
+                            ),
+                        },
+                        Comma,
+                    ],
+                },
+            ),
+            semi_token: None,
+        },
+    ),
