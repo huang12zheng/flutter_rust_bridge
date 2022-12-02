@@ -16,14 +16,8 @@ pub struct IrTypeImplTrait {
 
 impl IrTypeImplTrait {
     pub fn join(&self) -> String {
-        self.trait_bounds.join("")
+        self.trait_bounds.join("_")
     }
-    //     pub fn get<'a>(&self, file: &'a IrFile) -> &'a IrTypeImplTrait {
-    //         &IrTypeImplTrait {
-    //             trait_: self,
-    //             structs: file.impl_pool[&self.trait_bounds],
-    //         }
-    //     }
 }
 
 impl std::fmt::Display for IrTypeImplTrait {
@@ -40,14 +34,6 @@ impl IrTypeImplTrait {
     }
     pub fn new2(raw: Vec<String>) -> IrTypeImplTrait {
         IrTypeImplTrait { trait_bounds: raw }
-    }
-
-    // pub fn rust_style(&self) -> &str {
-    //     self.join().as
-    // }
-
-    pub fn dart_style(&self) -> String {
-        self.join().to_case(Case::Camel)
     }
 }
 

@@ -5,7 +5,8 @@ use std::collections::{HashMap, HashSet};
 
 pub type IrStructPool = HashMap<String, IrStruct>;
 pub type IrEnumPool = HashMap<String, IrEnum>;
-pub type IrImplTraitPool = HashMap<String, IrTypeImplTrait>;
+pub type IrImplTraitPool = HashMap<String, Vec<String>>;
+// pub type IrImplTraitPool = HashMap<String, IrTypeImplTrait>;
 pub type IrImplPool = HashSet<String>;
 
 #[derive(Debug, Clone)]
@@ -13,7 +14,6 @@ pub struct IrFile {
     pub funcs: Vec<IrFunc>,
     pub struct_pool: IrStructPool,
     pub enum_pool: IrEnumPool,
-    pub impl_set: IrImplPool,
     pub impl_trait_pool: IrImplTraitPool,
 
     pub has_executor: bool,
