@@ -9,14 +9,14 @@ use syn::{Ident, TypeImplTrait};
 pub struct IrTypeImplTrait {
     pub trait_bounds: Vec<String>,
 }
-// pub struct IrTypeImplTrait<'a> {
-//     pub trait_: &'a IrTypeImplTrait,
-//     pub structs: Vec<&'a IrStruct>,
-// }
 
 impl IrTypeImplTrait {
     pub fn join(&self) -> String {
         self.trait_bounds.join("_")
+    }
+
+    pub fn to_enum(&self) -> String {
+        format!("{}Enum", self.join()).to_case(Case::Pascal)
     }
 }
 
@@ -46,11 +46,11 @@ impl IrTypeTrait for IrTypeImplTrait {
     }
 
     fn safe_ident(&self) -> String {
-        self.join().to_case(Case::Snake)
+        self.join()
     }
 
     fn dart_api_type(&self) -> String {
-        self.join()
+        self.rust_api_type()
     }
 
     fn dart_wire_type(&self, target: crate::target::Target) -> String {
@@ -62,14 +62,14 @@ impl IrTypeTrait for IrTypeImplTrait {
     }
 
     fn rust_api_type(&self) -> String {
-        self.join()
+        self.to_enum()
     }
 
     fn rust_wire_type(&self, target: crate::target::Target) -> String {
         if let Target::Wasm = target {
             "JsValue".into()
         } else {
-            format!("wire_{}", self.join())
+            format!("wire_{}", self.to_enum())
         }
     }
 }
