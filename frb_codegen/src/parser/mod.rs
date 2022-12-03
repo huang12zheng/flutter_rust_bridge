@@ -48,14 +48,16 @@ impl<'a> Parser<'a> {
 
         let has_executor = source_rust_content.contains(HANDLER_NAME);
 
-        let (struct_pool, enum_pool, impl_trait_pool) = self.type_parser.consume();
+        let (struct_pool, enum_pool, src_impl_pool, parsed_impl_traits) =
+            self.type_parser.consume();
 
         IrFile {
             funcs,
             struct_pool,
             enum_pool,
 
-            impl_trait_pool,
+            src_impl_pool,
+            parsed_impl_traits,
             has_executor,
         }
     }

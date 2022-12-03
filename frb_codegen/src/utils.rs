@@ -1,11 +1,16 @@
-use std::collections::HashSet;
+use std::collections::{HashMap, HashSet};
 use std::ffi::OsStr;
 use std::fmt::Display;
 use std::fs;
 use std::hash::Hash;
+use std::iter::FromIterator;
 use std::path::Path;
+use std::process::Command;
 
 use anyhow::anyhow;
+
+use crate::ir::IrTypeImplTrait;
+use crate::source_graph::Impl;
 
 pub fn mod_from_rust_path(code_path: &str, crate_path: &str) -> String {
     Path::new(code_path)
@@ -45,17 +50,48 @@ where
 /// check api defined by users, if no duplicates, then generate all symbols (api function name),
 /// including those generated implicitily by frb
 pub fn get_symbols_if_no_duplicates(configs: &[crate::Opts]) -> Result<Vec<String>, anyhow::Error> {
+    Command::new("sh")
+        .args([
+            "-c",
+            format!("sed -i '' '/.*mod bridge_generated.*/d' src/lib.rs").as_str(),
+        ])
+        .spawn()
+        .ok();
     let mut explicit_raw_symbols = Vec::new();
     let mut all_symbols = Vec::new();
+
+    let mut explicit_src_impl_pool: HashMap<String, Vec<Impl>> = HashMap::new();
+    let mut explicit_parsed_impl_traits: HashSet<IrTypeImplTrait> = HashSet::new();
+    let mut explicit_api_path: HashSet<String> = HashSet::new();
     for config in configs {
         let raw_ir_file = config.get_ir_file();
 
         // for checking explicit api duplication
         explicit_raw_symbols.extend(raw_ir_file.funcs.iter().map(|f| f.name.clone()));
 
+        collect_impl_trait(
+            &raw_ir_file,
+            &mut explicit_src_impl_pool,
+            &mut explicit_parsed_impl_traits,
+        );
+
+        explicit_api_path.insert(
+            config
+                .rust_input_path
+                .split('/')
+                .last()
+                .map(|s| s.split('.').next())
+                .unwrap()
+                .unwrap()
+                .to_owned(),
+        );
+
         // for avoiding redundant generation in dart
         all_symbols.extend(raw_ir_file.get_all_symbols(config));
     }
+    let bound_oject_pool =
+        get_bound_oject_pool(explicit_src_impl_pool, explicit_parsed_impl_traits);
+    generate_impl_file(explicit_api_path, bound_oject_pool);
     let duplicates = find_all_duplicates(&explicit_raw_symbols);
     if !duplicates.is_empty() {
         let duplicated_symbols = duplicates.join(",");
@@ -74,6 +110,82 @@ pub fn get_symbols_if_no_duplicates(configs: &[crate::Opts]) -> Result<Vec<Strin
     }
 
     Ok(all_symbols)
+}
+
+fn generate_impl_file(
+    explicit_api_path: HashSet<String>,
+    bound_oject_pool: HashMap<Vec<String>, HashSet<String>>,
+) {
+    let mut lines = format!("");
+    for super_ in explicit_api_path.iter() {
+        lines += format!("use crate::{super_}::*;").as_str();
+    }
+    for (k, v) in bound_oject_pool.iter() {
+        lines += format!("pub enum {}Enum {{", k.join("")).as_str();
+        for struct_ in v.iter() {
+            lines += format!("{}({}),", struct_, struct_).as_str();
+        }
+        lines += format!("}}").as_str();
+    }
+    fs::write("src/bridge_generated_bound.rs", lines).unwrap();
+    Command::new("sh")
+        .args([
+            "-c",
+            format!("echo 'mod bridge_generated_bound;' >> src/lib.rs").as_str(),
+        ])
+        .spawn()
+        .ok();
+}
+
+fn collect_impl_trait(
+    raw_ir_file: &crate::ir::IrFile,
+    explicit_src_impl_pool: &mut HashMap<String, Vec<Impl>>,
+    explicit_parsed_impl_traits: &mut HashSet<IrTypeImplTrait>,
+) {
+    // for checking relationship between trait and self_ty with all files
+    for impl_ in raw_ir_file.src_impl_pool.iter().clone() {
+        if let Some(v) = explicit_src_impl_pool.get_mut(impl_.0) {
+            v.extend(impl_.1.to_owned());
+        } else {
+            explicit_src_impl_pool.insert(impl_.0.to_owned(), impl_.1.to_owned());
+        }
+    }
+    // for getting all trait bound defined in func
+    explicit_parsed_impl_traits.extend(raw_ir_file.parsed_impl_traits.clone());
+}
+
+fn get_bound_oject_pool(
+    explicit_src_impl_pool: HashMap<String, Vec<Impl>>,
+    explicit_parsed_impl_traits: HashSet<IrTypeImplTrait>,
+) -> HashMap<Vec<String>, HashSet<String>> {
+    // get a map from bound to all struct meet
+    let mut bound_oject_pool = HashMap::new();
+    for type_impl_trait in explicit_parsed_impl_traits.into_iter() {
+        let raw = type_impl_trait.trait_bounds;
+
+        raw.iter().for_each(|bound| {
+            // Check whether the trait bound is capable of being used
+            // ~~return None if param unoffical~~
+            if !explicit_src_impl_pool.contains_key(bound) {
+                panic!("loss impl {} for some self_ty", bound);
+            }
+        });
+
+        let sets = raw.iter().map(|bound| {
+            let impls = explicit_src_impl_pool.get(bound).unwrap();
+            let iter = impls.iter().map(|impl_| impl_.self_ty.to_string());
+            HashSet::from_iter(iter)
+        });
+
+        let mut iter = sets;
+
+        let intersection_set = iter
+            .next()
+            .map(|set: HashSet<String>| iter.fold(set, |set1, set2| &set1 & &set2))
+            .unwrap();
+        bound_oject_pool.insert(raw, intersection_set);
+    }
+    bound_oject_pool
 }
 
 #[derive(PartialEq, Eq, Debug, Clone, Copy)]

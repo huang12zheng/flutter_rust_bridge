@@ -1,3 +1,4 @@
+use crate::source_graph::Impl;
 use crate::target::Target;
 use crate::utils::mod_from_rust_path;
 use crate::{generator, ir::*, Opts};
@@ -5,16 +6,16 @@ use std::collections::{HashMap, HashSet};
 
 pub type IrStructPool = HashMap<String, IrStruct>;
 pub type IrEnumPool = HashMap<String, IrEnum>;
-pub type IrImplTraitPool = HashMap<String, Vec<String>>;
-// pub type IrImplTraitPool = HashMap<String, IrTypeImplTrait>;
-pub type IrImplPool = HashSet<String>;
+pub type IrImplTraitPool = HashSet<IrTypeImplTrait>;
+pub type SrcImplPool = HashMap<String, Vec<Impl>>;
 
 #[derive(Debug, Clone)]
 pub struct IrFile {
     pub funcs: Vec<IrFunc>,
     pub struct_pool: IrStructPool,
     pub enum_pool: IrEnumPool,
-    pub impl_trait_pool: IrImplTraitPool,
+    pub src_impl_pool: SrcImplPool,
+    pub parsed_impl_traits: IrImplTraitPool,
 
     pub has_executor: bool,
 }

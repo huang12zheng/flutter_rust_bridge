@@ -350,12 +350,14 @@ impl Module {
                 }
                 syn::Item::Impl(item_impl) => {
                     if let Some((_b, ref path, _f)) = item_impl.trait_ {
-                        let trait_ = path.get_ident().unwrap();
-                        if let Type::Path(ref type_path) = *(item_impl.self_ty) {
-                            scope_impls.push(Impl {
-                                self_ty: type_path.path.get_ident().unwrap().to_owned(),
-                                trait_: trait_.to_owned(),
-                            })
+                        // To rule out segments[0].arguments have values
+                        if let Some(trait_) = path.get_ident() {
+                            if let Type::Path(ref type_path) = *(item_impl.self_ty) {
+                                scope_impls.push(Impl {
+                                    self_ty: type_path.path.get_ident().unwrap().to_owned(),
+                                    trait_: trait_.to_owned(),
+                                })
+                            }
                         }
                     }
                 }

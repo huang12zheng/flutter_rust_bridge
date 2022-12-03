@@ -18,7 +18,7 @@ use crate::parser::{extract_comments, extract_metadata, type_to_string};
 pub struct TypeParser<'a> {
     src_structs: HashMap<String, &'a Struct>,
     src_enums: HashMap<String, &'a Enum>,
-    src_impls: HashMap<String, Vec<Impl>>,
+    src_impls: SrcImplPool,
 
     parsing_or_parsed_struct_names: HashSet<String>,
     struct_pool: IrStructPool,
@@ -26,7 +26,7 @@ pub struct TypeParser<'a> {
     parsed_enums: HashSet<String>,
     enum_pool: IrEnumPool,
 
-    impl_trait_pool: IrImplTraitPool,
+    parsed_impl_traits: IrImplTraitPool,
 }
 
 impl<'a> TypeParser<'a> {
@@ -41,14 +41,19 @@ impl<'a> TypeParser<'a> {
             src_impls,
             struct_pool: HashMap::new(),
             enum_pool: HashMap::new(),
-            impl_trait_pool: HashMap::new(),
+            parsed_impl_traits: HashSet::new(),
             parsing_or_parsed_struct_names: HashSet::new(),
             parsed_enums: HashSet::new(),
         }
     }
 
-    pub fn consume(self) -> (IrStructPool, IrEnumPool, IrImplTraitPool) {
-        (self.struct_pool, self.enum_pool, self.impl_trait_pool)
+    pub fn consume(self) -> (IrStructPool, IrEnumPool, SrcImplPool, IrImplTraitPool) {
+        (
+            self.struct_pool,
+            self.enum_pool,
+            self.src_impls,
+            self.parsed_impl_traits,
+        )
     }
 }
 
@@ -170,8 +175,6 @@ impl<'a> TypeParser<'a> {
         }
     }
 
-    /// Converts an impl trait type into an `IrType` if possible.
-    /// a litter like [convert_path_to_ir_type]
     pub fn convert_impl_trait_to_ir_type(
         &mut self,
         type_impl_trait: TypeImplTrait,
@@ -187,38 +190,11 @@ impl<'a> TypeParser<'a> {
             })
             .sorted()
             .collect();
-
-        raw.iter().for_each(|ty_impl_trait| {
-            // Check whether the trait bound is capable of being used
-            // ~~return None if param unoffical~~
-            if !self.src_impls.contains_key(ty_impl_trait) {
-                panic!("loss impl {} for some self_ty", ty_impl_trait);
-            }
+        self.parsed_impl_traits.insert(IrTypeImplTrait {
+            trait_bounds: raw.clone(),
         });
 
-        let sets = raw.iter().map(|ty_impl_trait| {
-            let impls = self.src_impls.get(ty_impl_trait).unwrap();
-            let iter = impls.iter().map(|impl_| impl_.self_ty.to_string());
-            HashSet::from_iter(iter)
-        });
-
-        let mut iter = sets;
-
-        let intersection_set = iter
-            .next()
-            .map(|set: HashSet<String>| iter.fold(set, |set1, set2| &set1 & &set2))
-            .unwrap();
-
-        if intersection_set.is_empty() {
-            panic!("error happen when intersection {:?} is empty", raw);
-        } else {
-            let type_impl_trait = IrTypeImplTrait::new2(raw);
-            self.impl_trait_pool.insert(
-                type_impl_trait.join(),
-                Vec::from_iter(intersection_set.into_iter()),
-            );
-            Some(IrType::ImplTrait(type_impl_trait))
-        }
+        Some(IrType::ImplTrait(IrTypeImplTrait::new2(raw)))
     }
 
     /// Converts an array type into an `IrType` if possible.
