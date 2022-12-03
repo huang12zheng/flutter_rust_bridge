@@ -26,6 +26,32 @@ use crate::old_module_system::sub_module::OldSimpleStruct;
 
 // Section: wire functions
 
+fn wire_tt_impl(port_: MessagePort, t: impl Wire2Api<Serialize> + UnwindSafe) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap(
+        WrapInfo {
+            debug_name: "tt",
+            port: Some(port_),
+            mode: FfiCallMode::Normal,
+        },
+        move || {
+            let api_t = t.wire2api();
+            move |task_callback| Ok(tt(api_t))
+        },
+    )
+}
+fn wire_do_record2_impl(port_: MessagePort, a: impl Wire2Api<usize> + UnwindSafe) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap(
+        WrapInfo {
+            debug_name: "do_record2",
+            port: Some(port_),
+            mode: FfiCallMode::Normal,
+        },
+        move || {
+            let api_a = a.wire2api();
+            move |task_callback| Ok(do_record2(api_a))
+        },
+    )
+}
 fn wire_simple_adder_impl(
     port_: MessagePort,
     a: impl Wire2Api<i32> + UnwindSafe,
@@ -432,16 +458,6 @@ fn wire_handle_stream_impl(port_: MessagePort, arg: impl Wire2Api<String> + Unwi
         },
     )
 }
-// fn wire_handle_stream_of_struct_impl(port_: MessagePort) {
-//     FLUTTER_RUST_BRIDGE_HANDLER.wrap(
-//         WrapInfo {
-//             debug_name: "handle_stream_of_struct",
-//             port: Some(port_),
-//             mode: FfiCallMode::Stream,
-//         },
-//         move || move |task_callback| Ok(handle_stream_of_struct(task_callback.stream_sink())),
-//     )
-// }
 fn wire_return_err_impl(port_: MessagePort) {
     FLUTTER_RUST_BRIDGE_HANDLER.wrap(
         WrapInfo {
@@ -1070,45 +1086,6 @@ fn wire_how_long_does_it_take_impl(
         },
     )
 }
-// fn wire_handle_uuid_impl(port_: MessagePort, id: impl Wire2Api<uuid::Uuid> + UnwindSafe) {
-//     FLUTTER_RUST_BRIDGE_HANDLER.wrap(
-//         WrapInfo {
-//             debug_name: "handle_uuid",
-//             port: Some(port_),
-//             mode: FfiCallMode::Normal,
-//         },
-//         move || {
-//             let api_id = id.wire2api();
-//             move |task_callback| handle_uuid(api_id)
-//         },
-//     )
-// }
-// fn wire_handle_uuids_impl(port_: MessagePort, ids: impl Wire2Api<Vec<uuid::Uuid>> + UnwindSafe) {
-//     FLUTTER_RUST_BRIDGE_HANDLER.wrap(
-//         WrapInfo {
-//             debug_name: "handle_uuids",
-//             port: Some(port_),
-//             mode: FfiCallMode::Normal,
-//         },
-//         move || {
-//             let api_ids = ids.wire2api();
-//             move |task_callback| handle_uuids(api_ids)
-//         },
-//     )
-// }
-// fn wire_handle_nested_uuids_impl(port_: MessagePort, ids: impl Wire2Api<FeatureUuid> + UnwindSafe) {
-//     FLUTTER_RUST_BRIDGE_HANDLER.wrap(
-//         WrapInfo {
-//             debug_name: "handle_nested_uuids",
-//             port: Some(port_),
-//             mode: FfiCallMode::Normal,
-//         },
-//         move || {
-//             let api_ids = ids.wire2api();
-//             move |task_callback| handle_nested_uuids(api_ids)
-//         },
-//     )
-// }
 fn wire_new_msgid_impl(port_: MessagePort, id: impl Wire2Api<[u8; 32]> + UnwindSafe) {
     FLUTTER_RUST_BRIDGE_HANDLER.wrap(
         WrapInfo {
@@ -1919,13 +1896,6 @@ impl support::IntoDart for ExoticOptionals {
 }
 impl support::IntoDartExceptPrimitive for ExoticOptionals {}
 
-// impl support::IntoDart for FeatureUuid {
-//     fn into_dart(self) -> support::DartAbi {
-//         vec![self.one.into_dart(), self.many.into_dart()].into_dart()
-//     }
-// }
-// impl support::IntoDartExceptPrimitive for FeatureUuid {}
-
 impl support::IntoDart for FeedId {
     fn into_dart(self) -> support::DartAbi {
         vec![self.0.into_dart()].into_dart()
@@ -1999,13 +1969,6 @@ impl support::IntoDart for MySize {
 }
 impl support::IntoDartExceptPrimitive for MySize {}
 
-impl support::IntoDart for MyStreamEntry {
-    fn into_dart(self) -> support::DartAbi {
-        vec![self.hello.into_dart()].into_dart()
-    }
-}
-impl support::IntoDartExceptPrimitive for MyStreamEntry {}
-
 impl support::IntoDart for MyTreeNode {
     fn into_dart(self) -> support::DartAbi {
         vec![
@@ -2060,6 +2023,13 @@ impl support::IntoDart for Point {
     }
 }
 impl support::IntoDartExceptPrimitive for Point {}
+
+impl support::IntoDart for Record {
+    fn into_dart(self) -> support::DartAbi {
+        vec![self.name.into_dart()].into_dart()
+    }
+}
+impl support::IntoDartExceptPrimitive for Record {}
 
 impl support::IntoDart for mirror_Sequences {
     fn into_dart(self) -> support::DartAbi {
@@ -2164,8 +2134,8 @@ mod web;
 #[cfg(target_family = "wasm")]
 pub use web::*;
 
-// #[cfg(not(target_family = "wasm"))]
-// #[path = "bridge_generated.io.rs"]
-// mod io;
-// #[cfg(not(target_family = "wasm"))]
-// pub use io::*;
+#[cfg(not(target_family = "wasm"))]
+#[path = "bridge_generated.io.rs"]
+mod io;
+#[cfg(not(target_family = "wasm"))]
+pub use io::*;

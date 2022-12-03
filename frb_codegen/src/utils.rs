@@ -8,10 +8,13 @@ use std::path::Path;
 use std::process::Command;
 
 use anyhow::anyhow;
+use syn::ItemFn;
 
 use crate::ir::IrTypeImplTrait;
-use crate::source_graph::Impl;
+use crate::source_graph::{Crate, Impl};
 
+use self::parse_sig_from_lib::CallFn;
+mod parse_sig_from_lib;
 pub fn mod_from_rust_path(code_path: &str, crate_path: &str) -> String {
     Path::new(code_path)
         .strip_prefix(Path::new(crate_path).join("src"))
@@ -63,6 +66,11 @@ pub fn get_symbols_if_no_duplicates(configs: &[crate::Opts]) -> Result<Vec<Strin
     let mut explicit_src_impl_pool: HashMap<String, Vec<Impl>> = HashMap::new();
     let mut explicit_parsed_impl_traits: HashSet<IrTypeImplTrait> = HashSet::new();
     let mut explicit_api_path: HashSet<String> = HashSet::new();
+
+    let root_src_file = Crate::new(&configs[0].manifest_path).root_src_file;
+    let source_rust_content = fs::read_to_string(&root_src_file).unwrap();
+    let trait_sig_pool = parse_sig_from_lib::parse_file(&source_rust_content);
+
     for config in configs {
         let raw_ir_file = config.get_ir_file();
 
@@ -91,7 +99,8 @@ pub fn get_symbols_if_no_duplicates(configs: &[crate::Opts]) -> Result<Vec<Strin
     }
     let bound_oject_pool =
         get_bound_oject_pool(explicit_src_impl_pool, explicit_parsed_impl_traits);
-    generate_impl_file(explicit_api_path, bound_oject_pool);
+
+    generate_impl_file(trait_sig_pool, explicit_api_path, bound_oject_pool);
     let duplicates = find_all_duplicates(&explicit_raw_symbols);
     if !duplicates.is_empty() {
         let duplicated_symbols = duplicates.join(",");
@@ -113,12 +122,17 @@ pub fn get_symbols_if_no_duplicates(configs: &[crate::Opts]) -> Result<Vec<Strin
 }
 
 fn generate_impl_file(
+    trait_sig_pool: HashMap<String, CallFn>,
     explicit_api_path: HashSet<String>,
     bound_oject_pool: HashMap<Vec<String>, HashSet<String>>,
 ) {
     let mut lines = format!("");
     for super_ in explicit_api_path.iter() {
         lines += format!("use crate::{super_}::*;").as_str();
+    }
+    for (_, call_fn) in trait_sig_pool.iter() {
+        let impl_ = call_fn.impl_.clone();
+        lines += format!("{impl_}").as_str();
     }
     for (k, v) in bound_oject_pool.iter() {
         lines += format!("pub enum {}Enum {{", k.join("")).as_str();
@@ -127,6 +141,30 @@ fn generate_impl_file(
         }
         lines += format!("}}").as_str();
     }
+
+    for (k, v) in bound_oject_pool.iter() {
+        let enum_ = format!("{}Enum", k.join(""));
+        for trait_ in k.iter() {
+            lines += format!("impl {trait_} for {enum_} {{").as_str();
+            let call_fn = trait_sig_pool
+                .get(trait_)
+                .expect(&format!("Error: {:?} with {:?}", trait_sig_pool, trait_));
+
+            lines += format!("{}{{", call_fn.sig).as_str();
+            lines += format!("match *self {{").as_str();
+            for sub_enum in v.iter() {
+                lines += format!(
+                    "{enum_}::{sub_enum}(ref __field0) => __field0.{}({}),",
+                    call_fn.fn_name, call_fn.args
+                )
+                .as_str();
+            }
+            lines += format!("}}").as_str();
+            lines += format!("}}").as_str();
+            lines += format!("}}").as_str();
+        }
+    }
+
     fs::write("src/bridge_generated_bound.rs", lines).unwrap();
     Command::new("sh")
         .args([
