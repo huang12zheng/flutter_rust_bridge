@@ -46,7 +46,7 @@ impl IrTypeTrait for IrTypeImplTrait {
     }
 
     fn safe_ident(&self) -> String {
-        self.join()
+        self.to_enum().to_case(Case::Snake)
     }
 
     fn dart_api_type(&self) -> String {

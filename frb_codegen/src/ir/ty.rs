@@ -39,9 +39,16 @@ impl IrType {
                 let contains = seen_idents.contains(&ident);
                 if !contains {
                     seen_idents.insert(ident);
-                    ans.push(ty.clone());
+                    ans.push(match ty {
+                        IrType::ImplTrait(i) => IrType::EnumRef(IrTypeEnumRef {
+                            name: i.clone().to_enum(),
+                        }),
+
+                        any => any.clone(),
+                    });
                 }
                 contains
+                // }
             },
             ir_file,
         );
@@ -85,8 +92,8 @@ impl IrType {
     }
 
     #[inline]
-    pub fn is_struct(&self) -> bool {
-        matches!(self, StructRef(_) | EnumRef(_))
+    pub fn is_need_wrap_box(&self) -> bool {
+        matches!(self, StructRef(_) | EnumRef(_) | ImplTrait(_))
     }
 
     #[inline]
