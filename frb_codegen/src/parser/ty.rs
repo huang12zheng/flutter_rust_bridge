@@ -4,6 +4,7 @@ use std::iter::FromIterator;
 use std::string::String;
 
 use itertools::Itertools;
+use quote::__private::Span;
 use syn::*;
 
 use crate::ir::IrType::*;
@@ -174,7 +175,7 @@ impl<'a> TypeParser<'a> {
             SupportedInnerType::Verbatim(_) => None,
         }
     }
-
+    // todo(maybe need to switch impltrait into enum) for auto gen enum_arg code
     pub fn convert_impl_trait_to_ir_type(
         &mut self,
         type_impl_trait: TypeImplTrait,
@@ -190,11 +191,16 @@ impl<'a> TypeParser<'a> {
             })
             .sorted()
             .collect();
-        self.parsed_impl_traits.insert(IrTypeImplTrait {
-            trait_bounds: raw.clone(),
-        });
+        let value = IrTypeImplTrait::new2(raw);
+        if self.parsed_impl_traits.insert(value.clone()) {
+            let ident_string = value.to_enum();
+            if self.parsed_enums.insert(ident_string.to_owned()) {
+                let enu = self.parse_enum_core(&Ident::new(&ident_string, Span::call_site()));
+                self.enum_pool.insert(ident_string.to_owned(), enu);
+            }
+        };
 
-        Some(IrType::ImplTrait(IrTypeImplTrait::new2(raw)))
+        Some(IrType::ImplTrait(value))
     }
 
     /// Converts an array type into an `IrType` if possible.

@@ -68,7 +68,11 @@ impl IrFile {
                 let contains = seen_idents.contains(&ident);
                 if !contains {
                     seen_idents.insert(ident);
-                    ans.push(ty.clone());
+                    ans.push(match ty {
+                        IrType::ImplTrait(i) => i.clone().to_enum_ir_type(),
+
+                        any => any.clone(),
+                    });
                 }
                 contains
             },

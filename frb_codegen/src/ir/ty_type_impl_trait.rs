@@ -18,6 +18,12 @@ impl IrTypeImplTrait {
     pub fn to_enum(&self) -> String {
         format!("{}Enum", self.join()).to_case(Case::Pascal)
     }
+
+    pub fn to_enum_ir_type(&self) -> IrType {
+        IrType::EnumRef(IrTypeEnumRef {
+            name: self.to_enum(),
+        })
+    }
 }
 
 impl std::fmt::Display for IrTypeImplTrait {
@@ -43,6 +49,10 @@ impl IrTypeTrait for IrTypeImplTrait {
         f: &mut F,
         ir_file: &super::IrFile,
     ) {
+        IrTypeEnumRef {
+            name: self.to_enum(),
+        }
+        .visit_children_types(f, ir_file)
     }
 
     fn safe_ident(&self) -> String {

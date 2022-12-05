@@ -40,15 +40,12 @@ impl IrType {
                 if !contains {
                     seen_idents.insert(ident);
                     ans.push(match ty {
-                        IrType::ImplTrait(i) => IrType::EnumRef(IrTypeEnumRef {
-                            name: i.clone().to_enum(),
-                        }),
+                        IrType::ImplTrait(i) => i.clone().to_enum_ir_type(),
 
                         any => any.clone(),
                     });
                 }
                 contains
-                // }
             },
             ir_file,
         );
