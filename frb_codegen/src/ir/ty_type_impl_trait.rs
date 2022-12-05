@@ -49,10 +49,13 @@ impl IrTypeTrait for IrTypeImplTrait {
         f: &mut F,
         ir_file: &super::IrFile,
     ) {
-        IrTypeEnumRef {
-            name: self.to_enum(),
+        // due to I would remove `mod bridge_generated` in lib.rs, first get ir file, can't find ImplTraitEnum
+        if ir_file.enum_pool.contains_key(&self.to_enum()) {
+            IrTypeEnumRef {
+                name: self.to_enum(),
+            }
+            .visit_children_types(f, ir_file)
         }
-        .visit_children_types(f, ir_file)
     }
 
     fn safe_ident(&self) -> String {

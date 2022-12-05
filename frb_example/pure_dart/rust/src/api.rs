@@ -12,7 +12,7 @@ use anyhow::{anyhow, Result};
 
 use flutter_rust_bridge::*;
 use lazy_static::lazy_static;
-use serde::{Serialize, Serializer};
+pub use serde::{Serialize, Serializer};
 
 pub use crate::data::HideData;
 use crate::data::{MyEnum, MyStruct};
@@ -24,7 +24,9 @@ pub struct Record {
     pub name: String,
 }
 
-pub enum SerEnum {}
+pub enum SerEnum {
+    Abc,
+}
 
 impl Serialize for SerEnum {
     fn serialize<S>(&self, __serializer: S) -> Result<S::Ok, S::Error>
@@ -1073,3 +1075,21 @@ pub fn run_nested_opaque(opaque: OpaqueNested) {
     opaque.first.hide_data();
     opaque.second.hide_data();
 }
+// pub fn inject_enum_SerializeEnum(t: SerializeEnum) {}
+
+// pub enum SerializeEnum {
+//     Record(Record),
+//     SerEnum(SerEnum),
+// }
+// impl Serialize for SerializeEnum {
+//     fn serialize<S>(&self, __serializer: S) -> Result<S::Ok, S::Error>
+//     where
+//         S: Serializer,
+//     {
+//         match *self {
+//             SerializeEnum::Record(ref __field0) => __field0.serialize(__serializer),
+//             SerializeEnum::SerEnum(ref __field0) => __field0.serialize(__serializer),
+//         }
+//     }
+// }
+pub use crate::bridge_generated_bound::*;

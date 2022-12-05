@@ -34,7 +34,7 @@ pub struct Crate {
 }
 
 impl Crate {
-    pub fn new(manifest_path: &str) -> Self {
+    pub fn pre_new(manifest_path: &str) -> (String, PathBuf) {
         let mut cmd = MetadataCommand::new();
         cmd.manifest_path(manifest_path);
 
@@ -61,12 +61,21 @@ impl Crate {
                 panic!("No src/lib.rs or src/main.rs found for this Cargo.toml file");
             }
         };
+        (root_package.name.to_owned(), root_src_file)
+    }
+    pub fn new(manifest_path: &str) -> Self {
+        let mut result = Crate::new_withoud_resolve(manifest_path);
+        result.resolve();
+        result
+    }
+    pub fn new_withoud_resolve(manifest_path: &str) -> Self {
+        let (name, root_src_file) = Crate::pre_new(manifest_path);
 
         let source_rust_content = fs::read_to_string(&root_src_file).unwrap();
         let file_ast = syn::parse_file(&source_rust_content).unwrap();
 
-        let mut result = Crate {
-            name: root_package.name.clone(),
+        let result = Crate {
+            name: name,
             manifest_path: fs::canonicalize(manifest_path).unwrap(),
             root_src_file: root_src_file.clone(),
             root_module: Module {
@@ -77,8 +86,6 @@ impl Crate {
                 scope: None,
             },
         };
-
-        result.resolve();
 
         result
     }

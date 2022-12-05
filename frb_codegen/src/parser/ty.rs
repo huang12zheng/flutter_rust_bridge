@@ -175,7 +175,6 @@ impl<'a> TypeParser<'a> {
             SupportedInnerType::Verbatim(_) => None,
         }
     }
-    // todo(maybe need to switch impltrait into enum) for auto gen enum_arg code
     pub fn convert_impl_trait_to_ir_type(
         &mut self,
         type_impl_trait: TypeImplTrait,
@@ -194,7 +193,10 @@ impl<'a> TypeParser<'a> {
         let value = IrTypeImplTrait::new2(raw);
         if self.parsed_impl_traits.insert(value.clone()) {
             let ident_string = value.to_enum();
-            if self.parsed_enums.insert(ident_string.to_owned()) {
+            // due to I would remove `mod bridge_generated` in lib.rs, first get ir file, can't find ImplTraitEnum
+            if self.src_enums.contains_key(&ident_string)
+                && self.parsed_enums.insert(ident_string.to_owned())
+            {
                 let enu = self.parse_enum_core(&Ident::new(&ident_string, Span::call_site()));
                 self.enum_pool.insert(ident_string.to_owned(), enu);
             }
@@ -391,6 +393,10 @@ impl<'a> TypeParser<'a> {
 
 impl<'a> TypeParser<'a> {
     fn parse_enum_core(&mut self, ident: &syn::Ident) -> IrEnum {
+        let src_enum = self
+            .src_enums
+            .get(&ident.to_string())
+            .expect(format!("{} {:?}", ident, self.src_enums.clone()).as_str());
         let src_enum = self.src_enums[&ident.to_string()];
         let name = src_enum.ident.to_string();
         let wrapper_name = if src_enum.mirror {

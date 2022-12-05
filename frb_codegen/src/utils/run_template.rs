@@ -77,15 +77,14 @@ impl CollectBoundToStruct for OptArray {
 pub trait GenerateSourceTemplateTrait:
     PropTrait + GenerateDependenciesHook + GenerateSources
 {
-    fn run(&mut self) {
+    fn run_impl_trait_enum(&mut self) {
         // remove generate source dependencies
-        let root_src_file = Crate::new(&self.get_configs()[0].manifest_path)
+        let root_src_file = Crate::new_withoud_resolve(&self.get_configs()[0].manifest_path)
             .root_src_file
             .clone();
         let root_src_file = root_src_file.to_str().unwrap();
 
         self.remove_gen_mod(root_src_file);
-        self.remove_gen_use(root_src_file);
         for config in self.get_configs().iter() {
             let api_file = config.rust_input_path.clone();
             self.remove_gen_use(api_file);
@@ -94,13 +93,19 @@ pub trait GenerateSourceTemplateTrait:
         let irs = self.collect_irs();
         self.get_mut_irs().extend(irs);
         self.run_collect_bound_to_struct();
-        self.generate_impl_file();
+        if !self.get_bound_oject_pool().is_empty() {
+            self.generate_impl_file();
 
-        // generate source dependencies
-        self.gen_mod(root_src_file);
-        for config in self.get_configs().iter() {
-            let api_file = config.rust_input_path.clone();
-            self.gen_use(api_file);
+            // generate source dependencies
+            self.gen_mod(root_src_file);
+            for config in self.get_configs().iter() {
+                let api_file = config.rust_input_path.clone();
+                self.gen_use(api_file);
+            }
+
+            let irs = self.collect_irs();
+            self.get_mut_irs().clear();
+            self.get_mut_irs().extend(irs);
         }
     }
 
@@ -126,7 +131,7 @@ pub trait PropTrait {
     }
     fn get_sig_from_doc(&self) -> HashMap<String, CallFn> {
         let config = &self.get_configs()[0];
-        let root_src_file = Crate::new(config.manifest_path.as_str()).root_src_file;
+        let root_src_file = Crate::new_withoud_resolve(config.manifest_path.as_str()).root_src_file;
         let source_rust_content = fs::read_to_string(&root_src_file).unwrap();
         parse_sig_from_lib::parse_file(&source_rust_content)
     }
@@ -305,13 +310,14 @@ pub trait GenerateSources: CollectBoundToStruct {
         let trait_sig_pool = self.get_sig_from_doc();
         let explicit_api_path = self.get_api_paths();
         let bound_oject_pool = self.get_bound_oject_pool();
+
         let mut lines = format!("");
         for super_ in explicit_api_path.iter() {
             lines += format!("use crate::{super_}::*;").as_str();
         }
         for (_, call_fn) in trait_sig_pool.iter() {
-            let impl_ = call_fn.impl_.clone();
-            lines += format!("{impl_}").as_str();
+            let impl_dependencies = call_fn.impl_dependencies.clone();
+            lines += format!("{impl_dependencies}").as_str();
         }
         for (k, v) in bound_oject_pool.iter() {
             lines += format!("pub enum {}Enum {{", k.join("")).as_str();
@@ -329,17 +335,19 @@ pub trait GenerateSources: CollectBoundToStruct {
                     .get(trait_)
                     .expect(&format!("Error: {:?} with {:?}", trait_sig_pool, trait_));
 
-                lines += format!("{}{{", call_fn.sig).as_str();
-                lines += format!("match *self {{").as_str();
-                for sub_enum in v.iter() {
-                    lines += format!(
-                        "{enum_}::{sub_enum}(ref __field0) => __field0.{}({}),",
-                        call_fn.fn_name, call_fn.args
-                    )
-                    .as_str();
+                for idx in 0..call_fn.sig.len() {
+                    lines += format!("{}{{", call_fn.sig[idx]).as_str();
+                    lines += format!("match *self {{").as_str();
+                    for sub_enum in v.iter() {
+                        lines += format!(
+                            "{enum_}::{sub_enum}(ref __field0) => __field0.{}({}),",
+                            call_fn.fn_name[idx], call_fn.args[idx]
+                        )
+                        .as_str();
+                    }
+                    lines += format!("}}").as_str();
+                    lines += format!("}}").as_str();
                 }
-                lines += format!("}}").as_str();
-                lines += format!("}}").as_str();
                 lines += format!("}}").as_str();
             }
         }
