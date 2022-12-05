@@ -232,40 +232,6 @@ fn extract_methods_from_file(file: &File) -> Vec<ItemFn> {
 
     src_fns
 }
-// get impl args
-fn extract_impl_args_from_fns(src_fns: &Vec<ItemFn>) {
-    for item in src_fns.iter() {
-        // item.sig.inputs
-    }
-}
-fn extract_trait_struct_map_from_file(file: &File) -> HashMap<String, Vec<String>> {
-    let mut trait_struct_map: HashMap<String, Vec<String>> = HashMap::new();
-    for item in file.items.iter() {
-        if let Item::Impl(ref item_impl) = item {
-            if let Some(ref t) = item_impl.trait_ {
-                let self_triat = if let Some(PathSegment {
-                    ident,
-                    arguments: _,
-                }) = t.1.segments.first()
-                {
-                    Some(ident.to_string())
-                } else {
-                    None
-                };
-                if let Some(t) = self_triat {
-                    if let Type::Path(p) = item_impl.self_ty.as_ref() {
-                        let struct_name = p.path.segments.first().unwrap().ident.to_string();
-                        if let Some(mut value) = trait_struct_map.remove(&t) {
-                            value.push(struct_name);
-                            trait_struct_map.insert(t, value);
-                        }
-                    }
-                }
-            }
-        }
-    }
-    trait_struct_map
-}
 
 // Converts an item implementation (something like fn(&self, ...)) into a function where `&self` is a named parameter to `&Self`
 fn item_method_to_function(item_impl: &ItemImpl, item_method: &ImplItemMethod) -> Option<ItemFn> {
