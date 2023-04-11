@@ -45,6 +45,13 @@ class FlutterRustBridgeExamplePlatform extends FlutterRustBridgeBase<FlutterRust
   }
 
   @protected
+  ffi.Pointer<wire_SumWith> api2wire_box_autoadd_sum_with(SumWith raw) {
+    final ptr = inner.new_box_autoadd_sum_with_0();
+    _api_fill_to_wire_sum_with(raw, ptr.ref);
+    return ptr;
+  }
+
+  @protected
   ffi.Pointer<wire_TreeNode> api2wire_box_autoadd_tree_node(TreeNode raw) {
     final ptr = inner.new_box_autoadd_tree_node_0();
     _api_fill_to_wire_tree_node(raw, ptr.ref);
@@ -98,6 +105,10 @@ class FlutterRustBridgeExamplePlatform extends FlutterRustBridgeBase<FlutterRust
     _api_fill_to_wire_size(apiObj, wireObj.ref);
   }
 
+  void _api_fill_to_wire_box_autoadd_sum_with(SumWith apiObj, ffi.Pointer<wire_SumWith> wireObj) {
+    _api_fill_to_wire_sum_with(apiObj, wireObj.ref);
+  }
+
   void _api_fill_to_wire_box_autoadd_tree_node(TreeNode apiObj, ffi.Pointer<wire_TreeNode> wireObj) {
     _api_fill_to_wire_tree_node(apiObj, wireObj.ref);
   }
@@ -118,6 +129,10 @@ class FlutterRustBridgeExamplePlatform extends FlutterRustBridgeBase<FlutterRust
   void _api_fill_to_wire_size(Size apiObj, wire_Size wireObj) {
     wireObj.width = api2wire_i32(apiObj.width);
     wireObj.height = api2wire_i32(apiObj.height);
+  }
+
+  void _api_fill_to_wire_sum_with(SumWith apiObj, wire_SumWith wireObj) {
+    wireObj.x = api2wire_u32(apiObj.x);
   }
 
   void _api_fill_to_wire_tree_node(TreeNode apiObj, wire_TreeNode wireObj) {
@@ -409,6 +424,42 @@ class FlutterRustBridgeExampleWire implements FlutterRustBridgeWireBase {
   late final _wire_test_method__method__BoxedPoint =
       _wire_test_method__method__BoxedPointPtr.asFunction<void Function(int, ffi.Pointer<wire_BoxedPoint>)>();
 
+  void wire_sum__method__SumWith(
+    int port_,
+    ffi.Pointer<wire_SumWith> that,
+    int y,
+  ) {
+    return _wire_sum__method__SumWith(
+      port_,
+      that,
+      y,
+    );
+  }
+
+  late final _wire_sum__method__SumWithPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Pointer<wire_SumWith>, ffi.Uint32)>>(
+          'wire_sum__method__SumWith');
+  late final _wire_sum__method__SumWith =
+      _wire_sum__method__SumWithPtr.asFunction<void Function(int, ffi.Pointer<wire_SumWith>, int)>();
+
+  void wire_sum_static__static_method__SumWith(
+    int port_,
+    int x,
+    int y,
+  ) {
+    return _wire_sum_static__static_method__SumWith(
+      port_,
+      x,
+      y,
+    );
+  }
+
+  late final _wire_sum_static__static_method__SumWithPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Uint32, ffi.Uint32)>>(
+          'wire_sum_static__static_method__SumWith');
+  late final _wire_sum_static__static_method__SumWith =
+      _wire_sum_static__static_method__SumWithPtr.asFunction<void Function(int, int, int)>();
+
   ffi.Pointer<wire_BoxedPoint> new_box_autoadd_boxed_point_0() {
     return _new_box_autoadd_boxed_point_0();
   }
@@ -433,6 +484,15 @@ class FlutterRustBridgeExampleWire implements FlutterRustBridgeWireBase {
   late final _new_box_autoadd_size_0Ptr =
       _lookup<ffi.NativeFunction<ffi.Pointer<wire_Size> Function()>>('new_box_autoadd_size_0');
   late final _new_box_autoadd_size_0 = _new_box_autoadd_size_0Ptr.asFunction<ffi.Pointer<wire_Size> Function()>();
+
+  ffi.Pointer<wire_SumWith> new_box_autoadd_sum_with_0() {
+    return _new_box_autoadd_sum_with_0();
+  }
+
+  late final _new_box_autoadd_sum_with_0Ptr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<wire_SumWith> Function()>>('new_box_autoadd_sum_with_0');
+  late final _new_box_autoadd_sum_with_0 =
+      _new_box_autoadd_sum_with_0Ptr.asFunction<ffi.Pointer<wire_SumWith> Function()>();
 
   ffi.Pointer<wire_TreeNode> new_box_autoadd_tree_node_0() {
     return _new_box_autoadd_tree_node_0();
@@ -547,6 +607,11 @@ class wire_list_size extends ffi.Struct {
 
 class wire_BoxedPoint extends ffi.Struct {
   external ffi.Pointer<wire_Point> point;
+}
+
+class wire_SumWith extends ffi.Struct {
+  @ffi.Uint32()
+  external int x;
 }
 
 typedef DartPostCObjectFnType = ffi.Pointer<ffi.NativeFunction<ffi.Bool Function(DartPort, ffi.Pointer<ffi.Void>)>>;

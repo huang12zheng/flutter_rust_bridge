@@ -78,6 +78,16 @@ pub extern "C" fn wire_test_method__method__BoxedPoint(port_: i64, that: *mut wi
     wire_test_method__method__BoxedPoint_impl(port_, that)
 }
 
+#[no_mangle]
+pub extern "C" fn wire_sum__method__SumWith(port_: i64, that: *mut wire_SumWith, y: u32) {
+    wire_sum__method__SumWith_impl(port_, that, y)
+}
+
+#[no_mangle]
+pub extern "C" fn wire_sum_static__static_method__SumWith(port_: i64, x: u32, y: u32) {
+    wire_sum_static__static_method__SumWith_impl(port_, x, y)
+}
+
 // Section: allocate functions
 
 #[no_mangle]
@@ -93,6 +103,11 @@ pub extern "C" fn new_box_autoadd_point_0() -> *mut wire_Point {
 #[no_mangle]
 pub extern "C" fn new_box_autoadd_size_0() -> *mut wire_Size {
     support::new_leak_box_ptr(wire_Size::new_with_null_ptr())
+}
+
+#[no_mangle]
+pub extern "C" fn new_box_autoadd_sum_with_0() -> *mut wire_SumWith {
+    support::new_leak_box_ptr(wire_SumWith::new_with_null_ptr())
 }
 
 #[no_mangle]
@@ -160,6 +175,12 @@ impl Wire2Api<Size> for *mut wire_Size {
         Wire2Api::<Size>::wire2api(*wrap).into()
     }
 }
+impl Wire2Api<SumWith> for *mut wire_SumWith {
+    fn wire2api(self) -> SumWith {
+        let wrap = unsafe { support::box_from_leak_ptr(self) };
+        Wire2Api::<SumWith>::wire2api(*wrap).into()
+    }
+}
 impl Wire2Api<TreeNode> for *mut wire_TreeNode {
     fn wire2api(self) -> TreeNode {
         let wrap = unsafe { support::box_from_leak_ptr(self) };
@@ -214,6 +235,13 @@ impl Wire2Api<Size> for wire_Size {
         }
     }
 }
+impl Wire2Api<SumWith> for wire_SumWith {
+    fn wire2api(self) -> SumWith {
+        SumWith {
+            x: self.x.wire2api(),
+        }
+    }
+}
 impl Wire2Api<TreeNode> for wire_TreeNode {
     fn wire2api(self) -> TreeNode {
         TreeNode {
@@ -265,6 +293,12 @@ pub struct wire_Point {
 pub struct wire_Size {
     width: i32,
     height: i32,
+}
+
+#[repr(C)]
+#[derive(Clone)]
+pub struct wire_SumWith {
+    x: u32,
 }
 
 #[repr(C)]
@@ -332,6 +366,20 @@ impl NewWithNullPtr for wire_Size {
 }
 
 impl Default for wire_Size {
+    fn default() -> Self {
+        Self::new_with_null_ptr()
+    }
+}
+
+impl NewWithNullPtr for wire_SumWith {
+    fn new_with_null_ptr() -> Self {
+        Self {
+            x: Default::default(),
+        }
+    }
+}
+
+impl Default for wire_SumWith {
     fn default() -> Self {
         Self::new_with_null_ptr()
     }

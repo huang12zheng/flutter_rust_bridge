@@ -107,3 +107,16 @@ pub fn off_topic_deliberately_panic() -> i32 {
     std::env::set_var("RUST_BACKTRACE", "1"); // optional, just to see more info...
     panic!("deliberately panic!")
 }
+
+pub struct SumWith {
+    pub x: u32,
+}
+
+impl SumWith {
+    pub fn sum(&self, y: u32) -> u32 {
+        self.x + y
+    }
+    pub fn sum_static(x: u32, y: u32) -> u32 {
+        x + y
+    }
+}

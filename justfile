@@ -119,7 +119,8 @@ _generate_bridge_with_flutter:
     {{cargo_run_codegen}} \
         --rust-input frb_example/with_flutter/rust/src/api.rs \
         --dart-output frb_example/with_flutter/lib/bridge_generated.dart \
-        --c-output frb_example/with_flutter/ios/Runner/bridge_generated.h \
+        --c-output frb_example/with_flutter/ios/c_output_path/c_output.h \
+        --extra_c_output_path c_output_path_extra/
         --dart-decl-output frb_example/with_flutter/lib/bridge_definitions.dart \
         --dart-format-line-length 120 \
         --dart-enums-style \
