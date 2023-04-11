@@ -124,7 +124,7 @@ _generate_bridge_with_flutter:
         --dart-decl-output frb_example/with_flutter/lib/bridge_definitions.dart \
         --dart-format-line-length 120 \
         --dart-enums-style \
-        --no_use_bridge_in_method ture \
+        --no-use-bridge-in-method \
         --wasm
 
 # ============================ linters ============================
