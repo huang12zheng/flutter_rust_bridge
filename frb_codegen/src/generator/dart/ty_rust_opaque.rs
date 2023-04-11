@@ -32,7 +32,7 @@ impl TypeDartGeneratorTrait for TypeRustOpaqueGenerator<'_> {
 
     fn structs(&self) -> String {
         let field_bridge = if self.context.config.no_use_bridge_in_method {
-            format!("")
+            String::new()
         } else {
             format!(
                 "final {} bridge;",

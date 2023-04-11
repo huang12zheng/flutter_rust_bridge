@@ -144,7 +144,7 @@ impl TypeDartGeneratorTrait for TypeStructRefGenerator<'_> {
             "required this.bridge,".to_string()
         };
         let field_bridge = if self.context.config.no_use_bridge_in_method {
-            format!("")
+            String::new()
         } else {
             format!(
                 "final {} bridge;",

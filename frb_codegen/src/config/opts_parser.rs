@@ -5,7 +5,7 @@ use crate::utils::misc::{find_all_duplicates, BlockIndex};
 use anyhow::*;
 use clap::CommandFactory;
 use convert_case::{Case, Casing};
-use itertools::{concat, Itertools};
+use itertools::Itertools;
 use std::borrow::Cow;
 use std::ffi::OsString;
 use std::fs::File;
