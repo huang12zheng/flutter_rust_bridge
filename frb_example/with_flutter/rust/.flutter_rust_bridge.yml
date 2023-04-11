@@ -8,4 +8,5 @@ c_output: [c_output_path/c_output.h]
 extra_c_output_path:
   - c_output_path_extra/
 no_use_bridge_in_method: true
+wasm: true
 # dump: []
