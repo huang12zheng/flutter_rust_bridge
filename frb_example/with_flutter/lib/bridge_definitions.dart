@@ -63,6 +63,10 @@ abstract class FlutterRustBridgeExample {
   Future<int> offTopicDeliberatelyPanic({dynamic hint});
 
   FlutterRustBridgeTaskConstMeta get kOffTopicDeliberatelyPanicConstMeta;
+
+  Future<void> testMethodMethodBoxedPoint({required BoxedPoint that, dynamic hint});
+
+  FlutterRustBridgeTaskConstMeta get kTestMethodMethodBoxedPointConstMeta;
 }
 
 class BoxedPoint {
@@ -71,6 +75,10 @@ class BoxedPoint {
   const BoxedPoint({
     required this.point,
   });
+
+  Future<void> testMethod({dynamic hint}) => api.testMethodMethodBoxedPoint(
+        that: this,
+      );
 }
 
 class Point {

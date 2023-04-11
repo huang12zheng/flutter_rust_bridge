@@ -51,6 +51,10 @@ pub struct BoxedPoint {
     pub point: Box<Point>,
 }
 
+impl BoxedPoint {
+    pub fn test_method(&self) {}
+}
+
 // following are used only for memory tests. Readers of this example do not need to consider it.
 
 pub fn off_topic_memory_test_input_array(input: Vec<u8>) -> i32 {

@@ -24,6 +24,13 @@ class FlutterRustBridgeExamplePlatform extends FlutterRustBridgeBase<FlutterRust
   }
 
   @protected
+  ffi.Pointer<wire_BoxedPoint> api2wire_box_autoadd_boxed_point(BoxedPoint raw) {
+    final ptr = inner.new_box_autoadd_boxed_point_0();
+    _api_fill_to_wire_boxed_point(raw, ptr.ref);
+    return ptr;
+  }
+
+  @protected
   ffi.Pointer<wire_Point> api2wire_box_autoadd_point(Point raw) {
     final ptr = inner.new_box_autoadd_point_0();
     _api_fill_to_wire_point(raw, ptr.ref);
@@ -41,6 +48,13 @@ class FlutterRustBridgeExamplePlatform extends FlutterRustBridgeBase<FlutterRust
   ffi.Pointer<wire_TreeNode> api2wire_box_autoadd_tree_node(TreeNode raw) {
     final ptr = inner.new_box_autoadd_tree_node_0();
     _api_fill_to_wire_tree_node(raw, ptr.ref);
+    return ptr;
+  }
+
+  @protected
+  ffi.Pointer<wire_Point> api2wire_box_point(Point raw) {
+    final ptr = inner.new_box_point_0();
+    _api_fill_to_wire_point(raw, ptr.ref);
     return ptr;
   }
 
@@ -72,6 +86,10 @@ class FlutterRustBridgeExamplePlatform extends FlutterRustBridgeBase<FlutterRust
 
 // Section: api_fill_to_wire
 
+  void _api_fill_to_wire_box_autoadd_boxed_point(BoxedPoint apiObj, ffi.Pointer<wire_BoxedPoint> wireObj) {
+    _api_fill_to_wire_boxed_point(apiObj, wireObj.ref);
+  }
+
   void _api_fill_to_wire_box_autoadd_point(Point apiObj, ffi.Pointer<wire_Point> wireObj) {
     _api_fill_to_wire_point(apiObj, wireObj.ref);
   }
@@ -82,6 +100,14 @@ class FlutterRustBridgeExamplePlatform extends FlutterRustBridgeBase<FlutterRust
 
   void _api_fill_to_wire_box_autoadd_tree_node(TreeNode apiObj, ffi.Pointer<wire_TreeNode> wireObj) {
     _api_fill_to_wire_tree_node(apiObj, wireObj.ref);
+  }
+
+  void _api_fill_to_wire_box_point(Point apiObj, ffi.Pointer<wire_Point> wireObj) {
+    _api_fill_to_wire_point(apiObj, wireObj.ref);
+  }
+
+  void _api_fill_to_wire_boxed_point(BoxedPoint apiObj, wire_BoxedPoint wireObj) {
+    wireObj.point = api2wire_box_point(apiObj.point);
   }
 
   void _api_fill_to_wire_point(Point apiObj, wire_Point wireObj) {
@@ -367,6 +393,31 @@ class FlutterRustBridgeExampleWire implements FlutterRustBridgeWireBase {
   late final _wire_off_topic_deliberately_panic =
       _wire_off_topic_deliberately_panicPtr.asFunction<void Function(int)>();
 
+  void wire_test_method__method__BoxedPoint(
+    int port_,
+    ffi.Pointer<wire_BoxedPoint> that,
+  ) {
+    return _wire_test_method__method__BoxedPoint(
+      port_,
+      that,
+    );
+  }
+
+  late final _wire_test_method__method__BoxedPointPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Pointer<wire_BoxedPoint>)>>(
+          'wire_test_method__method__BoxedPoint');
+  late final _wire_test_method__method__BoxedPoint =
+      _wire_test_method__method__BoxedPointPtr.asFunction<void Function(int, ffi.Pointer<wire_BoxedPoint>)>();
+
+  ffi.Pointer<wire_BoxedPoint> new_box_autoadd_boxed_point_0() {
+    return _new_box_autoadd_boxed_point_0();
+  }
+
+  late final _new_box_autoadd_boxed_point_0Ptr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<wire_BoxedPoint> Function()>>('new_box_autoadd_boxed_point_0');
+  late final _new_box_autoadd_boxed_point_0 =
+      _new_box_autoadd_boxed_point_0Ptr.asFunction<ffi.Pointer<wire_BoxedPoint> Function()>();
+
   ffi.Pointer<wire_Point> new_box_autoadd_point_0() {
     return _new_box_autoadd_point_0();
   }
@@ -391,6 +442,13 @@ class FlutterRustBridgeExampleWire implements FlutterRustBridgeWireBase {
       _lookup<ffi.NativeFunction<ffi.Pointer<wire_TreeNode> Function()>>('new_box_autoadd_tree_node_0');
   late final _new_box_autoadd_tree_node_0 =
       _new_box_autoadd_tree_node_0Ptr.asFunction<ffi.Pointer<wire_TreeNode> Function()>();
+
+  ffi.Pointer<wire_Point> new_box_point_0() {
+    return _new_box_point_0();
+  }
+
+  late final _new_box_point_0Ptr = _lookup<ffi.NativeFunction<ffi.Pointer<wire_Point> Function()>>('new_box_point_0');
+  late final _new_box_point_0 = _new_box_point_0Ptr.asFunction<ffi.Pointer<wire_Point> Function()>();
 
   ffi.Pointer<wire_list_size> new_list_size_0(
     int len,
@@ -485,6 +543,10 @@ class wire_list_size extends ffi.Struct {
 
   @ffi.Int32()
   external int len;
+}
+
+class wire_BoxedPoint extends ffi.Struct {
+  external ffi.Pointer<wire_Point> point;
 }
 
 typedef DartPostCObjectFnType = ffi.Pointer<ffi.NativeFunction<ffi.Bool Function(DartPort, ffi.Pointer<ffi.Void>)>>;

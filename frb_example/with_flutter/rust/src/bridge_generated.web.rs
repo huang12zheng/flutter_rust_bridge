@@ -67,6 +67,11 @@ pub fn wire_off_topic_deliberately_panic(port_: MessagePort) {
     wire_off_topic_deliberately_panic_impl(port_)
 }
 
+#[wasm_bindgen]
+pub fn wire_test_method__method__BoxedPoint(port_: MessagePort, that: JsValue) {
+    wire_test_method__method__BoxedPoint_impl(port_, that)
+}
+
 // Section: allocate functions
 
 // Section: related functions
@@ -76,6 +81,21 @@ pub fn wire_off_topic_deliberately_panic(port_: MessagePort) {
 impl Wire2Api<String> for String {
     fn wire2api(self) -> String {
         self
+    }
+}
+
+impl Wire2Api<BoxedPoint> for JsValue {
+    fn wire2api(self) -> BoxedPoint {
+        let self_ = self.dyn_into::<JsArray>().unwrap();
+        assert_eq!(
+            self_.length(),
+            1,
+            "Expected 1 elements, got {}",
+            self_.length()
+        );
+        BoxedPoint {
+            point: self_.get(0).wire2api(),
+        }
     }
 }
 
@@ -153,6 +173,11 @@ impl Wire2Api<Vec<u8>> for Box<[u8]> {
 impl Wire2Api<String> for JsValue {
     fn wire2api(self) -> String {
         self.as_string().expect("non-UTF-8 string, or not a string")
+    }
+}
+impl Wire2Api<Box<Point>> for JsValue {
+    fn wire2api(self) -> Box<Point> {
+        Box::new(self.wire2api())
     }
 }
 impl Wire2Api<f64> for JsValue {

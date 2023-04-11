@@ -203,6 +203,22 @@ fn wire_off_topic_deliberately_panic_impl(port_: MessagePort) {
         move || move |task_callback| Ok(off_topic_deliberately_panic()),
     )
 }
+fn wire_test_method__method__BoxedPoint_impl(
+    port_: MessagePort,
+    that: impl Wire2Api<BoxedPoint> + UnwindSafe,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap(
+        WrapInfo {
+            debug_name: "test_method__method__BoxedPoint",
+            port: Some(port_),
+            mode: FfiCallMode::Normal,
+        },
+        move || {
+            let api_that = that.wire2api();
+            move |task_callback| Ok(BoxedPoint::test_method(&api_that))
+        },
+    )
+}
 // Section: wrapper structs
 
 // Section: static checks
