@@ -5,7 +5,7 @@ use crate::utils::misc::{find_all_duplicates, BlockIndex};
 use anyhow::*;
 use clap::CommandFactory;
 use convert_case::{Case, Casing};
-use itertools::Itertools;
+use itertools::{concat, Itertools};
 use std::borrow::Cow;
 use std::ffi::OsString;
 use std::fs::File;
@@ -130,6 +130,7 @@ pub fn config_parse(mut raw: RawOpts) -> Vec<Opts> {
     let llvm_compiler_opts = raw.llvm_compiler_opts.clone().unwrap_or_default();
     let skip_add_mod_to_lib = raw.skip_add_mod_to_lib;
     let build_runner = !raw.no_build_runner;
+    let no_use_bridge_in_method = raw.no_use_bridge_in_method;
     let wasm = raw.wasm;
     let inline_rust = raw.inline_rust;
 
@@ -155,6 +156,7 @@ pub fn config_parse(mut raw: RawOpts) -> Vec<Opts> {
                 skip_deps_check,
                 wasm_enabled: wasm,
                 inline_rust,
+                no_use_bridge_in_method,
             }
         })
         .collect()
@@ -266,6 +268,7 @@ fn anchor_config(config: RawOpts, config_path: &str) -> RawOpts {
         inline_rust: config.inline_rust,
         skip_deps_check: config.skip_deps_check,
         dump: config.dump,
+        no_use_bridge_in_method: config.no_use_bridge_in_method,
     }
 }
 
