@@ -37,6 +37,8 @@ fn main() -> anyhow::Result<()> {
 
 #[cfg(test)]
 mod tests {
+    use std::{fs, path::PathBuf};
+
     use lazy_static::lazy_static;
     use lib_flutter_rust_bridge_codegen::{
         config_parse, frb_codegen, frb_codegen_multi, get_symbols_if_no_duplicates, init_logger,
