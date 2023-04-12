@@ -103,6 +103,23 @@ mod tests {
             .expect("failed to wait for cargo to finish");
         assert!(status.success(), "cargo build failed");
 
+        let output_path = PathBuf::from(
+            #[cfg(target_os = "macos")]
+            "../target/debug/libflutter_rust_bridge_example_pure_dart.dylib",
+            #[cfg(target_os = "linux")]
+            "../target/debug/libflutter_rust_bridge_example_pure_dart.so",
+            #[cfg(target_os = "windows")]
+            "../target/debug/flutter_rust_bridge_example_pure_dart.dll",
+        );
+        let absolute_path = fs::canonicalize(&output_path).expect("Failed to get absolute path");
+        println!("Absolute path to output: {:?}", absolute_path);
+
+        if absolute_path.exists() {
+            println!("Output file exists");
+        } else {
+            println!("Output file does not exist");
+        }
+
         let status = Command::new("dart")
             .arg("../frb_example/pure_dart/dart/lib/main.dart")
             .arg(
