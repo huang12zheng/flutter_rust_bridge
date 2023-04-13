@@ -78,23 +78,17 @@ jobs:
         with:
           toolchain: 1.68.0
 
-      - uses: actions/cache@v3
-        id: cache-deps
+      - id: cache-deps
+        uses: ./.github/actions/setup
         with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            ./frb_example/with_flutter/rust/target
-          key: ${{ runner.os }}-cargo-integrate-ios-${{ hashFiles('**/Cargo.lock') }}-${{ steps.checkout.outputs.rustc_hash }}
+          cache-key: "steps.checkout.outputs.rustc_hash"
 
       - name: Add Rust targets
         run: rustup target add aarch64-apple-ios x86_64-apple-ios
 
       - name: Install `cargo-lipo`
         if: steps.cache-deps.outputs.cache-hit != 'true'
-        run: cargo install cargo-lipo --force
+        run: cargo install cargo-lipo
 
       - name: Install Flutter dependencies
         working-directory: ./frb_example/with_flutter
@@ -146,23 +140,17 @@ jobs:
 
           ANDROID_NDK_ROOT=${ANDROID_SDK_ROOT}/ndk-bundle
           ln -sfn $ANDROID_SDK_ROOT/ndk/21.4.7075529 $ANDROID_NDK_ROOT
-      - uses: actions/cache@v3
-        id: cache-deps
+      - id: cache-deps
+        uses: ./.github/actions/setup
         with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            ./frb_example/with_flutter/rust/target
-          key: ${{ runner.os }}-cargo-integrate-android-${{ hashFiles('**/Cargo.lock') }}-${{ steps.checkout.outputs.rustc_hash }}
+          cache-key: "steps.checkout.outputs.rustc_hash"
 
       - name: Add Rust targets
         run: rustup target add x86_64-linux-android
 
       - name: Install `cargo-ndk`
         if: steps.cache-deps.outputs.cache-hit != 'true'
-        run: cargo install cargo-ndk --force
+        run: cargo install cargo-ndk
 
       - name: Install Flutter dependencies
         working-directory: ./frb_example/with_flutter
