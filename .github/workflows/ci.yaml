@@ -58,7 +58,20 @@ jobs:
         run: rustup target add aarch64-apple-ios x86_64-apple-ios
 
       - name: Install `cargo-lipo`
-        run: cargo install cargo-lipo
+        run: |
+          PACKAGE_NAME=cargo-lipo
+
+          VERSION=$(cargo search $PACKAGE_NAME | grep $PACKAGE_NAME | cut -d '"' -f 2)
+
+          if ! [ -x "$(command -v $PACKAGE_NAME)" ]; then
+            echo "$PACKAGE_NAME not found. Installing version $VERSION ..."
+            cargo install $PACKAGE_NAME --version $VERSION
+          elif ! $PACKAGE_NAME --version | grep -q $VERSION; then
+            echo "Updating $PACKAGE_NAME to version $VERSION ..."
+            cargo install $PACKAGE_NAME --version $VERSION --force
+          else
+            echo "Already installed the correct version of $PACKAGE_NAME."
+          fi
 
       - name: Install Flutter dependencies
         working-directory: ./frb_example/with_flutter
