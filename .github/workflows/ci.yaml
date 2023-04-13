@@ -44,21 +44,20 @@ jobs:
         with:
           channel: "stable"
           flutter-version: 3.7.3
+          cache: true
           architecture: x64
+      - id: cache-deps
+        uses: ./.github/actions/setup
+        with:
+          cache-key: "steps.checkout.outputs.rustc_hash"
       - uses: dtolnay/rust-toolchain@stable
         with:
           toolchain: 1.68.0
-
-      - id: cache-deps
-        uses: ./.github/actions/setup.yaml
-        with:
-          cache-key: "steps.checkout.outputs.rustc_hash"
 
       - name: Add Rust targets
         run: rustup target add aarch64-apple-ios x86_64-apple-ios
 
       - name: Install `cargo-lipo`
-        if: steps.cache-deps.outputs.cache-hit != 'true'
         run: cargo install cargo-lipo
 
       - name: Install Flutter dependencies
