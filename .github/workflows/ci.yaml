@@ -50,7 +50,7 @@ jobs:
           toolchain: 1.68.0
 
       - id: cache-deps
-        uses: ./.github/actions/setup
+        uses: ./.github/actions/setup.yaml
         with:
           cache-key: "steps.checkout.outputs.rustc_hash"
 
